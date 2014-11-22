@@ -1,0 +1,26 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:1.0.7")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+repositories {
+    jcenter()
+    mavenLocal()
+}
+
+dependencies {
+    testCompile 'net.serenity-bdd:core:1.0.7'
+    testCompile 'net.serenity-bdd:serenity-junit:1.0.7'
+    testCompile('junit:junit:4.11')
+    testCompile('org.assertj:assertj-core:1.7.0')
+    testCompile('org.slf4j:slf4j-simple:1.7.7')
+}
