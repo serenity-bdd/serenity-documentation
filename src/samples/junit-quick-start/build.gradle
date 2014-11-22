@@ -3,14 +3,14 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("net.serenity-bdd:serenity-gradle-plugin:1.0.7")
+        classpath("net.serenity-bdd:serenity-gradle-plugin:1.0.7")      // <1>
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'net.serenity-bdd.aggregator'
+apply plugin: 'net.serenity-bdd.aggregator'                             // <2>
 
 repositories {
     jcenter()
@@ -18,8 +18,8 @@ repositories {
 }
 
 dependencies {
-    testCompile 'net.serenity-bdd:core:1.0.7'
-    testCompile 'net.serenity-bdd:serenity-junit:1.0.7'
+    testCompile 'net.serenity-bdd:core:1.0.7'                           // <3>
+    testCompile 'net.serenity-bdd:serenity-junit:1.0.7'                 // <4>
     testCompile('junit:junit:4.11')
     testCompile('org.assertj:assertj-core:1.7.0')
     testCompile('org.slf4j:slf4j-simple:1.7.7')

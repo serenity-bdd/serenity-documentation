@@ -1,0 +1,15 @@
+<acceptance-test-run title="Should calculate points based on distance" name="shouldCalculatePointsBasedOnDistance" steps="3" successful="3" failures="0" skipped="0" ignored="0" pending="0" result="SUCCESS" duration="131" timestamp="2014-11-22T20:28:02.725Z">
+  <user-story id="net.serenitybdd.samples.junit.CalculatingFrequentFlyerPoints" name="Calculating frequent flyer points" path="net.serenitybdd.samples.junit"/>
+  <tags>
+    <tag name="Calculating frequent flyer points" type="story"/>
+  </tags>
+  <test-step result="SUCCESS" duration="22">
+    <description>Given a traveller has a frequent flyer account with &lt;span class=&apos;step-parameter&apos;&gt;10000&lt;/span&gt; points</description>
+  </test-step>
+  <test-step result="SUCCESS" duration="3">
+    <description>When the traveller flies &lt;span class=&apos;step-parameter&apos;&gt;1000&lt;/span&gt; km</description>
+  </test-step>
+  <test-step result="SUCCESS" duration="3">
+    <description>Then the traveller should have a balance of &lt;span class=&apos;step-parameter&apos;&gt;10100&lt;/span&gt; points</description>
+  </test-step>
+</acceptance-test-run>
