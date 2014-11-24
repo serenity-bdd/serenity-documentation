@@ -1,5 +1,4 @@
-Serenity BDD Documentation
-==========================
+== Serenity BDD Documentation
 
 This project contains the main Serenity BDD documentation. The documentation is broken up into chapters, so many people can contribute simultaneously.
 
