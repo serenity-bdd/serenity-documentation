@@ -27,6 +27,5 @@ dependencies {
     testCompile('org.slf4j:slf4j-simple:1.7.7')
 }
 // end::simple[]
-// tag::advanced[]
+
 gradle.startParameter.continueOnFailure = true  // <5>
-// end::advanced[]
