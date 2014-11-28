@@ -117,5 +117,8 @@
     <orderEntry type="library" scope="TEST" name="Gradle: xerces:xercesImpl:2.11.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: net.sourceforge.nekohtml:nekohtml:1.9.21" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: net.sourceforge.cssparser:cssparser:0.9.14" level="project" />
+    <orderEntry type="library" name="ant-1.9.4" level="project" />
+    <orderEntry type="library" name="serenity-ant-task-1.0.9-sources" level="project" />
+    <orderEntry type="library" name="serenity-ant-task-1.0.10-SNAPSHOT" level="project" />
   </component>
 </module>
