@@ -6,6 +6,7 @@ package net.serenitybdd.samples.junit.model;
 public class FrequentFlyer {
 
     private int balance;
+    private Status status = Status.Bronze;
 
     public static FrequentFlyer withInitialBalanceOf(int initialBalance) {
         return new FrequentFlyer(initialBalance);
@@ -23,6 +24,14 @@ public class FrequentFlyer {
         return balance;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     public class PointCumulator {
         int distance;
 
@@ -32,6 +41,13 @@ public class FrequentFlyer {
 
         public void kilometers() {
             incrementBalanceBy(distance / 10);
+            updateStatus();
+        }
+    }
+
+    private void updateStatus() {
+        if (balance >= 1000) {
+            status = Status.Silver;
         }
     }
 

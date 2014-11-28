@@ -1,6 +1,7 @@
 package net.serenitybdd.samples.junit.steps;
 
 import net.serenitybdd.samples.junit.model.FrequentFlyer;
+import net.serenitybdd.samples.junit.model.Status;
 import net.thucydides.core.annotations.Step;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,6 +25,16 @@ public class TravellerSteps {
     @Step("Then the traveller should have a balance of {0} points")
     public void traveller_should_have_a_balance_of(int expectedBalance ) {
         assertThat(frequentFlyer.getBalance()).isEqualTo(expectedBalance);                  // <5>
+    }
+
+    @Step
+    public void a_traveller_joins_the_frequent_flyer_program() {
+        frequentFlyer = FrequentFlyer.withInitialBalanceOf(0);
+    }
+
+    @Step
+    public void traveller_should_have_a_status_of(Status expectedStatus) {
+        assertThat(frequentFlyer.getStatus()).isEqualTo(expectedStatus);
     }
 }
 // end::classbody[]
