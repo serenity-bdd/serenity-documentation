@@ -6,6 +6,8 @@ import net.thucydides.junit.runners.SerenityRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 // tag::testcase[]
 @RunWith(SerenityRunner.class)                                                          // <1>
 public class CalculatingFrequentFlyerPoints {
