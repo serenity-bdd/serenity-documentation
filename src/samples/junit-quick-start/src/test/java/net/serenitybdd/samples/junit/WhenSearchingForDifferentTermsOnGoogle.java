@@ -47,7 +47,7 @@ public class WhenSearchingForDifferentTermsOnGoogle {
     }
 
     @Test
-    public void shouldInstantiatedPageObjects() {
+    public void shouldInstantiatedPageObjectsForADataDrivenWebTest() {
 
         googlePage.open();
 

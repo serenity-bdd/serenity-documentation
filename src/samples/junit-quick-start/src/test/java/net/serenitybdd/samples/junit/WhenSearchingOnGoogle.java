@@ -27,7 +27,7 @@ public class WhenSearchingOnGoogle {
 // end::pageObjects[]
 // tag::simpletest[]
     @Test
-    public void shouldInstantiatedDriver() {
+    public void shouldInstantiateAWebDriverInstanceForAWebTest() {
         driver.get("http://www.google.com");                                //<3>
 
         driver.findElement(By.name("q")).sendKeys("firefly", Keys.ENTER);
@@ -40,7 +40,7 @@ public class WhenSearchingOnGoogle {
 // tag::pageObjectTest[]
 
     @Test
-    public void shouldInstantiatedPageObjects() {
+    public void shouldInstantiatedPageObjectsForAWebTest() {
 
         googlePage.open();
 
