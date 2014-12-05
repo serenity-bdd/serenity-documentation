@@ -33,7 +33,7 @@ public class FlightSearchSteps extends ScenarioSteps {
         String expectedDestinationCity
                 = Serenity.sessionVariableCalled("destinationCity").toString();                 //<2>
 
-        assertThat(flightDetailsPage.getDestinationCity()).isEqualTo(expectedDestinationCity); 
+        assertThat(flightDetailsPage.getDestinationCity()).isEqualTo(expectedDestinationCity);
     }
 }
 // end::testcase[]

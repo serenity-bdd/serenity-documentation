@@ -3,6 +3,7 @@ package net.serenitybdd.samples.junit;
 import net.serenitybdd.samples.junit.model.Status;
 import net.serenitybdd.samples.junit.steps.TravellerStatusSteps;
 import net.thucydides.core.annotations.Steps;
+import net.thucydides.junit.annotations.Qualifier;
 import net.thucydides.junit.annotations.TestData;
 import net.thucydides.junit.annotations.UseTestDataFrom;
 import net.thucydides.junit.runners.SerenityParameterizedRunner;
@@ -16,34 +17,29 @@ import static net.serenitybdd.samples.junit.model.Status.*;
 
 // tag::testcase[]
 @RunWith(SerenityParameterizedRunner.class)
-@UseTestDataFrom(value="test-data/status-levels.csv", separator=',')        //<1>
+@UseTestDataFrom(value="testdata/status-levels.csv", separator=',')        //<1>
 public class WhenEarningFrequentFlyerStatusUpgradesUsingCSV {
-
-    @TestData
-    public static Collection<Object[]> testData(){
-        return Arrays.asList(new Object[][]{
-                {0,     Bronze},
-                {9999,  Bronze},
-                {10000, Silver},
-                {49999, Silver},
-                {50000, Gold}
-        });
-    }
 
     private int kilometersTravelled;
     private Status expectedStatus;
 
-    public WhenEarningFrequentFlyerStatusUpgradesUsingCSV(int kilometersTravelled,
-                                                          Status expectedStatus) {
+    public void setKilometersTravelled(int kilometersTravelled) {
         this.kilometersTravelled = kilometersTravelled;
-        this.expectedStatus = expectedStatus;
     }
 
+    public void setExpectedStatus(String expectedStatus) {
+        this.expectedStatus = Status.valueOf(expectedStatus);
+    }
+
+    @Qualifier
+    public String qualifier() {
+        return kilometersTravelled + "=>" + expectedStatus;
+    }
     @Steps
     TravellerStatusSteps travellerSteps;
 
     @Test
-    public void reallyShouldEarnNextStatusWithEnoughPoints() {
+    public void reallyhouldEarnNextStatusWithEnoughPoints() {
         // GIVEN
         travellerSteps.a_traveller_joins_the_frequent_flyer_program();
 
