@@ -46,8 +46,10 @@ public class FrequentFlyer {
     }
 
     private void updateStatus() {
-        if (balance >= 1000) {
-            status = Status.Silver;
+        if (balance >= 5000) {
+            setStatus(Status.Gold);
+        } else if (balance >= 1000) {
+            setStatus(Status.Silver);
         }
     }
 

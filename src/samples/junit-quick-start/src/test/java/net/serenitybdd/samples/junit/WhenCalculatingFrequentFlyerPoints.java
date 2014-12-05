@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 // tag::testcase[]
 @RunWith(SerenityRunner.class)                                                          // <1>
-public class CalculatingFrequentFlyerPoints {
+public class WhenCalculatingFrequentFlyerPoints {
 
     @Steps                                                                              // <2>
     TravellerSteps travellerSteps;
