@@ -22,7 +22,7 @@ apply plugin: 'net.serenity-bdd.aggregator'                             // <2>
 dependencies {
     testCompile 'net.serenity-bdd:core:1.0.14'                          // <3>
     testCompile 'net.serenity-bdd:serenity-junit:1.0.14'                // <4>
-    testCompile('junit:junit:4.12')
+    testCompile('junit:junit:4.11')
     testCompile('org.assertj:assertj-core:1.7.0')
     testCompile('org.slf4j:slf4j-simple:1.7.7')
 }

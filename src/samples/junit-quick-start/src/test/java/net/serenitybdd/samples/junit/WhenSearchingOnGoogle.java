@@ -6,6 +6,7 @@ import net.thucydides.core.annotations.findby.By;
 import net.thucydides.junit.runners.SerenityRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -29,7 +30,7 @@ public class WhenSearchingOnGoogle {
     public void shouldInstantiatedDriver() {
         driver.get("http://www.google.com");                                //<3>
 
-        driver.findElement(By.name("q")).sendKeys("firefly");
+        driver.findElement(By.name("q")).sendKeys("firefly", Keys.ENTER);
 
         new WebDriverWait(driver,5).until(titleContains("Google Search"));
 
