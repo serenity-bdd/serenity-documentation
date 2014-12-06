@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b3779de-61de-442b-b6ee-ccb76986bc62" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/resources/data/status-levels.csv" afterPath="$PROJECT_DIR$/src/test/resources/testdata/status-levels.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/steps/FlightSearchSteps.java" afterPath="$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/steps/FlightSearchSteps.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenEarningFrequentFlyerStatusUpgradesUsingCSV.java" afterPath="$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenEarningFrequentFlyerStatusUpgradesUsingCSV.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/junit-quick-start.iws" afterPath="$PROJECT_DIR$/junit-quick-start.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenSearchingOnGoogle.java" afterPath="$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenSearchingOnGoogle.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../asciidoc/junit.asc" afterPath="$PROJECT_DIR$/../../asciidoc/junit.asc" />
     </list>
     <ignored path="junit-quick-start.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,7 +41,29 @@
         <entry file="file://$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenSearchingFlights.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
-              <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+              <caret line="10" column="16" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TravellerSteps.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/steps/TravellerSteps.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
+              <caret line="11" column="31" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FlightSearchSteps.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/steps/FlightSearchSteps.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6875" vertical-offset="132" max-vertical-offset="660">
+              <caret line="33" column="80" selection-start-line="33" selection-start-column="80" selection-end-line="33" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenSearchingOnGoogle.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="750">
-              <caret line="42" column="56" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="56" />
+              <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -72,27 +94,27 @@
       <file leaf-file-name="WhenEarningFrequentFlyerStatusUpgradesUsingCSV.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenEarningFrequentFlyerStatusUpgradesUsingCSV.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="59" max-vertical-offset="705">
-              <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="705">
+              <caret line="19" column="68" selection-start-line="19" selection-start-column="68" selection-end-line="19" selection-end-column="68" />
               <folding>
-                <element signature="e#942#943#0" expanded="true" />
-                <element signature="e#1004#1005#0" expanded="true" />
-                <element signature="e#1064#1065#0" expanded="true" />
-                <element signature="e#1132#1133#0" expanded="true" />
-                <element signature="e#1180#1181#0" expanded="true" />
-                <element signature="e#1246#1247#0" expanded="true" />
+                <element signature="e#935#936#0" expanded="true" />
+                <element signature="e#997#998#0" expanded="true" />
+                <element signature="e#1057#1058#0" expanded="true" />
+                <element signature="e#1125#1126#0" expanded="true" />
+                <element signature="e#1173#1174#0" expanded="true" />
+                <element signature="e#1239#1240#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="status-levels.csv" pinned="false" current-in-tab="true">
+      <file leaf-file-name="status-levels.csv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/resources/testdata/status-levels.csv">
           <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="376">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="165">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="20" />
               <folding />
             </state>
@@ -675,12 +697,12 @@
         <option value="$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/pages/FlightSearchResultsPage.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/pages/FlightDetailsPage.java" />
         <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.serenity-bdd/core/1.0.7/e8a27c1a18c837e336d4cf82c693733b7b83e244/core-1.0.7-sources.jar!/net/thucydides/core/steps/PageObjectDependencyInjector.java" />
-        <option value="$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenSearchingOnGoogle.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenSearchingForDifferentTermsOnGoogle.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenSearchingFlights.java" />
-        <option value="$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/steps/FlightSearchSteps.java" />
         <option value="$PROJECT_DIR$/src/test/resources/testdata/status-levels.csv" />
         <option value="$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenEarningFrequentFlyerStatusUpgradesUsingCSV.java" />
+        <option value="$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenSearchingOnGoogle.java" />
+        <option value="$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/steps/FlightSearchSteps.java" />
       </list>
     </option>
   </component>
@@ -690,8 +712,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-9" />
     <option name="y" value="23" />
-    <option name="width" value="1441" />
-    <option name="height" value="828" />
+    <option name="width" value="1328" />
+    <option name="height" value="950" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -724,10 +746,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="junit-quick-start" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1304,15 +1322,15 @@
       <workItem from="1417079534943" duration="6234000" />
       <workItem from="1417187007594" duration="1985000" />
       <workItem from="1417196146312" duration="10226000" />
-      <workItem from="1417729391714" duration="26196000" />
+      <workItem from="1417729391714" duration="27887000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57980000" />
+    <option name="totallyTimeSpent" value="59671000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="23" width="1441" height="828" extended-state="0" />
+    <frame x="-9" y="23" width="1328" height="950" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1327,8 +1345,8 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28448892" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4103261" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30948678" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35198134" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -1641,14 +1659,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/steps/TravellerSteps.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.serenity-bdd/core/1.0.7/e8a27c1a18c837e336d4cf82c693733b7b83e244/core-1.0.7-sources.jar!/net/thucydides/core/pages/PageObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33242506" vertical-offset="8218" max-vertical-offset="12375">
@@ -1772,38 +1782,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/steps/FlightSearchSteps.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
-          <caret line="35" column="94" selection-start-line="35" selection-start-column="94" selection-end-line="35" selection-end-column="94" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/steps/TravellerStatusSteps.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.51724136" vertical-offset="0" max-vertical-offset="406">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenSearchingFlights.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
-          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenSearchingOnGoogle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="750">
-          <caret line="42" column="56" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="56" />
           <folding />
         </state>
       </provider>
@@ -1864,21 +1846,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenEarningFrequentFlyerStatusUpgradesUsingCSV.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="59" max-vertical-offset="705">
-          <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
-          <folding>
-            <element signature="e#942#943#0" expanded="true" />
-            <element signature="e#1004#1005#0" expanded="true" />
-            <element signature="e#1064#1065#0" expanded="true" />
-            <element signature="e#1132#1133#0" expanded="true" />
-            <element signature="e#1180#1181#0" expanded="true" />
-            <element signature="e#1246#1247#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/resources/testdata/status-levels.csv">
       <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
         <state />
@@ -1887,6 +1854,57 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="376">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="20" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenEarningFrequentFlyerStatusUpgradesUsingCSV.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="705">
+          <caret line="19" column="68" selection-start-line="19" selection-start-column="68" selection-end-line="19" selection-end-column="68" />
+          <folding>
+            <element signature="e#935#936#0" expanded="true" />
+            <element signature="e#997#998#0" expanded="true" />
+            <element signature="e#1057#1058#0" expanded="true" />
+            <element signature="e#1125#1126#0" expanded="true" />
+            <element signature="e#1173#1174#0" expanded="true" />
+            <element signature="e#1239#1240#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenSearchingOnGoogle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="750">
+          <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/WhenSearchingFlights.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
+          <caret line="10" column="16" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/steps/TravellerSteps.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/serenitybdd/samples/junit/steps/FlightSearchSteps.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6875" vertical-offset="132" max-vertical-offset="660">
+          <caret line="33" column="80" selection-start-line="33" selection-start-column="80" selection-end-line="33" selection-end-column="80" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

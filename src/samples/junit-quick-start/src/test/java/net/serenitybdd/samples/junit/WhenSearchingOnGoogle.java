@@ -23,9 +23,9 @@ public class WhenSearchingOnGoogle {
 // tag::pageObjects[]
 
     GooglePage googlePage;
-
 // end::pageObjects[]
 // tag::simpletest[]
+
     @Test
     public void shouldInstantiateAWebDriverInstanceForAWebTest() {
         driver.get("http://www.google.com");                                //<3>

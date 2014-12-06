@@ -17,7 +17,7 @@ import static net.serenitybdd.samples.junit.model.Status.*;
 
 // tag::testcase[]
 @RunWith(SerenityParameterizedRunner.class)
-@UseTestDataFrom(value="testdata/status-levels.csv", separator=',')        //<1>
+@UseTestDataFrom(value="testdata/status-levels.csv")                //<1>
 public class WhenEarningFrequentFlyerStatusUpgradesUsingCSV {
 
     private int kilometersTravelled;

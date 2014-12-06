@@ -9,7 +9,7 @@ import net.thucydides.core.steps.ScenarioSteps;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-// tag::testcase[]
+// tag::classbody[]
 public class FlightSearchSteps extends ScenarioSteps {
 
     FlightSearchPage flightSearchPage;
@@ -18,7 +18,7 @@ public class FlightSearchSteps extends ScenarioSteps {
 
     @Step("A customer searchers for flights between {0} and {1}")
     public void searches_for_flights_between(String departure, String destination) {
-        Serenity.setSessionVariable("destinationCity").to(destination);                         //<1>
+        Serenity.setSessionVariable("destinationCity").to(destination); //<1>
 
         flightSearchPage.searchForFlightsFrom(departure).to(destination);
     }
@@ -31,9 +31,9 @@ public class FlightSearchSteps extends ScenarioSteps {
     @Step
     public void should_see_the_destination_city_in_the_summary() {
         String expectedDestinationCity
-                = Serenity.sessionVariableCalled("destinationCity").toString();                 //<2>
+                = Serenity.sessionVariableCalled("destinationCity").toString(); //<2>
 
         assertThat(flightDetailsPage.getDestinationCity()).isEqualTo(expectedDestinationCity);
     }
 }
-// end::testcase[]
+// end::classbody[]
