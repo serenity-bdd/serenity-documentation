@@ -36,6 +36,5 @@ public class TravellerSteps {
     public void traveller_should_have_a_status_of(Status expectedStatus) {
         assertThat(frequentFlyer.getStatus()).isEqualTo(expectedStatus);
     }
-
 }
 // end::classbody[]

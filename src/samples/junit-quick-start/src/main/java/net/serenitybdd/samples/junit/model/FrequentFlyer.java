@@ -40,7 +40,7 @@ public class FrequentFlyer {
         }
 
         public void kilometers() {
-            incrementBalanceBy((int) (((float)distance) / 10.0));
+            incrementBalanceBy(distance / 10);
             updateStatus();
         }
     }
