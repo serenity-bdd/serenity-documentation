@@ -25,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Concurrent                                                 //<1>
 public class WhenSearchingForDifferentTermsOnGoogle {
 
-    @Managed(driver = "htmlunit")
+    @Managed(driver = "chrome")
     WebDriver driver;
 
     GooglePage googlePage;
