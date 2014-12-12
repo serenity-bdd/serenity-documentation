@@ -1,4 +1,4 @@
-package net.serenitybdd.samples.junit;
+package net.serenitybdd.samples.junit.features.managing_member_accounts;
 
 import net.serenitybdd.samples.junit.steps.TravellerHistorySteps;
 import net.serenitybdd.samples.junit.steps.TravellerStatusSteps;

@@ -53,7 +53,7 @@
                 <version>2.18</version>
                 <configuration>
                     <includes>
-                        <include>**/junit/When*.java</include>                  <!--4-->
+                        <include>**/features/**/When*.java</include>                  <!--4-->
                     </includes>
                     <systemProperties>
                         <webdriver.driver>${webdriver.driver}</webdriver.driver> <!--8-->
@@ -72,6 +72,13 @@
                 <groupId>net.serenity-bdd.maven.plugins</groupId>       <!--5-->
                 <artifactId>serenity-maven-plugin</artifactId>
                 <version>${serenity.maven.version}</version>
+                <dependencies>
+                     <dependency>
+                        <groupId>net.serenity-bdd</groupId>     
+                        <artifactId>core</artifactId>
+                        <version>${serenity.version}</version>
+                    </dependency>                   
+                </dependencies>
                 <executions>
                     <execution>
                         <id>serenity-reports</id>

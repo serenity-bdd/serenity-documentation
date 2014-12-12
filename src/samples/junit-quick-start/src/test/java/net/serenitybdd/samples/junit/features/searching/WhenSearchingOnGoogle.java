@@ -1,9 +1,10 @@
-package net.serenitybdd.samples.junit;
+package net.serenitybdd.samples.junit.features.searching;
 
 import net.serenitybdd.samples.junit.pages.GooglePage;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.findby.By;
 import net.thucydides.junit.runners.SerenityRunner;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.Keys;

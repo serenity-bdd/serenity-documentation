@@ -1,4 +1,4 @@
-package net.serenitybdd.samples.junit;
+package net.serenitybdd.samples.junit.features.searching;
 
 import net.serenitybdd.samples.junit.pages.GooglePage;
 import net.thucydides.core.annotations.Managed;
@@ -7,6 +7,7 @@ import net.thucydides.core.pages.Pages;
 import net.thucydides.junit.annotations.Concurrent;
 import net.thucydides.junit.annotations.TestData;
 import net.thucydides.junit.runners.SerenityParameterizedRunner;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -24,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Concurrent                                                 //<1>
 public class WhenSearchingForDifferentTermsOnGoogle {
 
-    @Managed
+    @Managed(driver = "htmlunit")
     WebDriver driver;
 
     GooglePage googlePage;

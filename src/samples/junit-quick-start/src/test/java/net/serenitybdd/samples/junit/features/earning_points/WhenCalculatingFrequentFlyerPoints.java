@@ -1,4 +1,4 @@
-package net.serenitybdd.samples.junit;
+package net.serenitybdd.samples.junit.features.earning_points;
 
 import net.serenitybdd.samples.junit.steps.TravellerSteps;
 import net.thucydides.core.annotations.Steps;
