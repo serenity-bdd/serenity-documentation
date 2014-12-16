@@ -29,7 +29,7 @@ public class WhenSearchingOnGoogle {
 
     @Test
     public void shouldInstantiateAWebDriverInstanceForAWebTest() {
-        driver.get("http://www.google.com");                                //<3>
+        driver.get("http://www.google.com");                                //<2>
 
         driver.findElement(By.name("q")).sendKeys("firefly", Keys.ENTER);
 
