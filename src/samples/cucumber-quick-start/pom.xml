@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.serenitybdd.samples.junit</groupId>
-    <artifactId>junit-quick-start</artifactId>
+    <artifactId>cucumber-quick-start</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -12,8 +12,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <serenity.version>1.0.17-SNAPSHOT</serenity.version>
-        <serenity.maven.version>1.0.16</serenity.maven.version>
+        <serenity.version>1.0.21</serenity.version>
+        <serenity.maven.version>1.0.21</serenity.maven.version>
+        <serenity.cucumber.version>1.0.3</serenity.cucumber.version>
         <webdriver.driver>firefox</webdriver.driver>
     </properties>
 
@@ -25,8 +26,8 @@
         </dependency>
         <dependency>
             <groupId>net.serenity-bdd</groupId>     <!--2-->
-            <artifactId>serenity-junit</artifactId>
-            <version>${serenity.version}</version>
+            <artifactId>serenity-cucumber</artifactId>
+            <version>${serenity.cucumber.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
