@@ -1,4 +1,4 @@
-package net.serenitybdd.samples.junit;
+package net.serenitybdd.samples.junit.features.earning_points;
 
 import net.serenitybdd.samples.junit.steps.TravellerSteps;
 import net.thucydides.core.annotations.Steps;
@@ -6,9 +6,11 @@ import net.thucydides.junit.runners.SerenityRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 // tag::testcase[]
 @RunWith(SerenityRunner.class)                                                          // <1>
-public class CalculatingFrequentFlyerPoints {
+public class WhenCalculatingFrequentFlyerPoints {
 
     @Steps                                                                              // <2>
     TravellerSteps travellerSteps;
