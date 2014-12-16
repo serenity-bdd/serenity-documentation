@@ -15,7 +15,7 @@ version='1.0.1.1'
 asciidoctor {
   sourceDir 'src/asciidoc'
   sources {
-    include 'index.asc'
+    include 'index.adoc'
   }
   separateOutputDirs false
 }
