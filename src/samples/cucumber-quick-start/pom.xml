@@ -3,12 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.serenitybdd.samples.junit</groupId>
-    <artifactId>cucumber-quick-start</artifactId>
+    <groupId>com.parleys.training.webdriver</groupId>
+    <artifactId>esty-tester</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Serenity JUnit Quick Start Project</name>
+    <name>Etsy test suite</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,16 +16,17 @@
         <serenity.maven.version>1.0.21</serenity.maven.version>
         <serenity.cucumber.version>1.0.3</serenity.cucumber.version>
         <webdriver.driver>firefox</webdriver.driver>
+        <tags></tags>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>net.serenity-bdd</groupId>     <!--1-->
+            <groupId>net.serenity-bdd</groupId>
             <artifactId>core</artifactId>
             <version>${serenity.version}</version>
         </dependency>
         <dependency>
-            <groupId>net.serenity-bdd</groupId>     <!--2-->
+            <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-cucumber</artifactId>
             <version>${serenity.cucumber.version}</version>
         </dependency>
@@ -49,16 +50,39 @@
     </dependencies>
     <build>
         <plugins>
+            <!-- Allow Java 8 -->
             <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>                  <!--3-->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <!-- Don't run any tests during the unit test phase -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+
+            <!-- Run all tests during the integration test phase -->
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.18</version>
                 <configuration>
                     <includes>
-                        <include>**/features/**/When*.java</include>                  <!--4-->
+                        <include>net/serenity/samples/etsy/features/*.java</include>
                     </includes>
                     <systemProperties>
-                        <webdriver.driver>${webdriver.driver}</webdriver.driver> <!--8-->
+                        <webdriver.driver>${webdriver.driver}</webdriver.driver>
+                        <tags>${tags}</tags>
                     </systemProperties>
+                    <parallel>methods</parallel>
+                    <threadCount>2</threadCount>
                 </configuration>
                 <executions>
                     <execution>
@@ -69,23 +93,18 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Generate the test reports after the integration tests -->
             <plugin>
-                <groupId>net.serenity-bdd.maven.plugins</groupId>       <!--5-->
+                <groupId>net.serenity-bdd.maven.plugins</groupId>
                 <artifactId>serenity-maven-plugin</artifactId>
                 <version>${serenity.maven.version}</version>
-                <dependencies>
-                     <dependency>
-                        <groupId>net.serenity-bdd</groupId>     
-                        <artifactId>core</artifactId>
-                        <version>${serenity.version}</version>
-                    </dependency>                   
-                </dependencies>
                 <executions>
                     <execution>
                         <id>serenity-reports</id>
-                        <phase>post-integration-test</phase>             <!--6-->
+                        <phase>post-integration-test</phase>
                         <goals>
-                            <goal>aggregate</goal>                       <!--7-->
+                            <goal>aggregate</goal>
                         </goals>
                     </execution>
                 </executions>
