@@ -1,0 +1,20 @@
+= Serenity BDD Documentation
+
+This project contains the main Serenity BDD documentation.
+The documentation is broken up into chapters, so many people can contribute simultaneously.
+
+== Building and contributing
+
+The Serenity documentation is written in Asciidoc.
+The build uses Gradle and Asciidoctor.
+You can generate the documentation by running the `asciidoctor` task:
+
+ $ gradle clean asciidoctor
+
+The documentation is generated in [path]_build/asciidoc_.
+
+The master document is [path]_index.asc_.
+All of the chapters are included into this document.
+
+All of the source code in the documentation is included as snippets from the sample projects in the [path]_src/sample_ directory.
+Look in [path]_src/ascidoc/first-steps.asc_ to see an example of how this is done.

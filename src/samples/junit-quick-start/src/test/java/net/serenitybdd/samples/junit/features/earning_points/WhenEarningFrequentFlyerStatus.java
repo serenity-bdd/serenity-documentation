@@ -65,7 +65,7 @@ public class WhenEarningFrequentFlyerStatus {
     public void dropsBackToSilverIfLessThan8000PointsEarnedInAYear() {
     }
     //end::pendingTest[]
-    // tag::ignoredTest[]
+    //tag::ignoredTest[]
 
     @Test
     @Ignore
