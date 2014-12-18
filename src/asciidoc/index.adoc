@@ -76,6 +76,7 @@ include::cucumber.adoc[]
 == Retrying failed tests
 
 == Filtering test executing with tags
+include::tags.adoc[]
 
 == Integrating with JIRA
 
