@@ -62,9 +62,11 @@ include::steps.adoc[]
 == Serenity with JUnit
 include::junit.adoc[]
 
-== Serenity with JBehave
+== Serenity with different BDD Frameworks
 
-== Serenity with Cucumber
+=== Serenity with JBehave
+
+=== Serenity with Cucumber
 include::cucumber.adoc[]
 
 == Working with Serenity Page Objects
