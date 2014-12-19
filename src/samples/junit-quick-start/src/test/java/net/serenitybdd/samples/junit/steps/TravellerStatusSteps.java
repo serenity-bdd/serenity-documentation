@@ -18,10 +18,5 @@ public class TravellerStatusSteps extends TravellerSteps {                  // <
     public void traveller_should_have_a_status_of(Status expectedStatus) {
         assertThat(frequentFlyer.getStatus()).isEqualTo(expectedStatus);
     }
-    	
-    @Step 															        
-    public void the_traveller_flies(int distance_in_km){
-    	//TBD
-    }
 }
 // end::testcase[]
