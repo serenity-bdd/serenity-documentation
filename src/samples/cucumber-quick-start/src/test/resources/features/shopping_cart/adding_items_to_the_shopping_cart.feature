@@ -9,5 +9,6 @@ Feature: Adding items to the shopping cart
 
   Scenario: Should see total price including tax
     When I add the item to the shopping cart
-    Then I should see the total price including tax
+    Then the item should appear in the cart
+    And the shipping cost should be included in the total price
 
