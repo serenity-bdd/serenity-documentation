@@ -95,7 +95,7 @@ include::cucumber.adoc[]
 
 == License and Copyright
 
-Copyright 2011-2014 John Ferguson Smart.
+Copyright 2011-2015 John Ferguson Smart.
 
 Online version published by Wakaleo Consulting.
 
