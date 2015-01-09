@@ -1,0 +1,99 @@
+<<<<<<< HEAD
+In Serenity BDD, tests are broken down into reusable steps. An important principle behind Serenity BDD is the idea that it is easier to maintain a test that uses several layers of abstraction to hide the complexity behind different parts of a test. 
+=======
+In Serenity, tests are broken down into reusable steps. An important principle behind Serenity is the idea that it is easier to maintain a test that uses several layers of abstraction to hide the complexity behind different parts of a test. 
+
+For example, consider the following tests:
+
+[source,java]
+include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/features/earning_points/WhenEarningFrequentFlyerStatus.java[tags=header;membersShouldStartWithBronzeStatus;earnSilverAfter1000Points;endTest]
+
+The first test verifies that when a traveller first enrolls in the Frequent Flyer Member programme, then she will start out with Bronze status. This test is broken into two steps:
+>>>>>>> upstream/master
+
+For example, the first test in the following sample is broken into two steps:
+  
+  Verify passenger can be enrolled into Frequent Flyer Member programme and by default s/he has Bronze membership status
+  . Create a new Frequent Flyer member
+  . Check that the member has a status of Bronze
+
+<<<<<<< HEAD
+The second is broken into three steps:
+=======
+The second test verifies that a new Frequent Flyer member will earn Silver status after travelling 10,000 km. This test is also broken into steps:
+>>>>>>> upstream/master
+
+  Verify passenger can be enrolled into Frequent Flyer Member programme and gets upgraded to Silver membership status after flying 10K km
+  . Create a new Frequent Flyer member
+  . Make the member fly 10000 km
+  . Check that the member has a status of Silver
+
+Notice how the second test reuses step methods used in the first to perform a slightly different test. This is a typical example of the way we reuse steps in similar tests, in order to avoid duplicated code and make the code easier to maintain.
+
+<<<<<<< HEAD
+Also notice how we did not need to instantiate the Steps class 'TravellerStatusSteps'. When you annotated a member variable of this class with the `@Steps` annotation, Serenity BDD will automatically instantiate it for you.
+=======
+Also notice how we did not need to instantiate the Steps class `TravellerStatusSteps`. When you annotated a member variable of this class with the `@Steps` annotation, Serenity BDD will automatically instantiate it for you.
+>>>>>>> upstream/master
+
+Step methods are annotated with the `@Step` annotation:
+
+[source,java]
+----
+include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/steps/TravellerStatusSteps.java[tags=testcase]
+----
+<1> Steps classes can extend any class, or none. If it extends class it will be page object class
+<2> The `@Step` annotation denotes a Serenity step method
+<3> The `@Step` can take a String value to override the default step name
+
+By default, the name of a step is derived from the method name. If you want something more readable, you can add a String parameter to the `@Step` annotation. If you put references to variables in the string (`{0}`, `{1}` etc.), Serenity will inject the method parameters into the string. So suppose you define a `@Step` method like this:
+[source,java]
+----
+@Step("The traveller should have {0} status") 
+public void traveller_should_have_a_status_of(Status expectedStatus) { 
+    ...
+}
+----
+When you call this method with a given parameter:
+[source,java]
+----
+travellerSteps.traveller_should_have_a_status_of(Bronze);
+----
+Then the step title will be the following:
+----
+"The traveller should have Bronze status"
+----
+
+Serenity step methods also play an important role in the reporting. When the reports are generated, methods annotated with the `@Step` annotation will appear as lines in the report.
+[[fig-steps-earning-status]]
+.Each `@Step` method appears as a line in the test report
+image::fig-steps-earning-status.png[]
+
+=== Storing data between steps
+
+Sometimes it is useful to be able to pass information between steps. For example, you might need to check that client detailed entered on a registration appears correctly on a confirmation page later on.
+
+You can do this by setting member variables in the step definition classes. In the following code, the `frequentFlyer` member variable is set in the first `@Step` method, and then reused in the subsequent steps.
+
+[source,java]
+----
+include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/steps/TravellerSteps.java[tags=classbody]
+----
+
+A third approach is to use the Serenity test session, which is essentially a hash map where you can store variables for the duration of a single test. Variables in the Serenity test session are available in any step definition class.
+
+The following example shows a simple web test:
+
+[source,java]
+----
+include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/features/searching/WhenSearchingFlights.java[tags=testcase]
+----
+
+We need to store the destination city in the first step to be used in the last step. We could do this using the Serenity session as shown here:
+
+[source,java]
+----
+include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/steps/FlightSearchSteps.java[tags=classbody]
+----
+<1> Store the departure city in a session variable
+<2> Retrieve the session variable in another step
