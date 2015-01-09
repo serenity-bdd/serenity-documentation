@@ -1,0 +1,48 @@
+In real-world projects, scenarios can become quite numerous, and it's important to keep them well organized. You may also need to be able to identify and group scenarios in different ways;
+for example, you might want to distinguish UI-related scenarios from batch-processing scenarios, or identify the regression scenarios only.
+ 
+Tags are also a great way to help organize test execution. For example, you might want to flag all of the web services tests, or mark certain tests to run against Internet Explorer browser only.
+ 
+=== Annotating scenarios with tags
+ 
+In JBehave, you can add tags using the +Meta+ keyword:
+ 
+[source,java]
+----
+Download account statements
+ 
+Meta:               //<1>
+@web @iexplorer     //<2>
+ 
+Scenario: Download account statement in SWIFT MT940 format
+----
+<1> Tags need to be introduced by the Meta keyword
+<2> Tags start with @ and can be any text value
+ 
+With Cucumber, things are even simpler:
+ 
+[source,gherkin]
+----
+Feature: Download account statements
+@web @iexplorer     //<1>
+Scenario: Download account statement in SWIFT MT940 format
+----
+<1> Cucumber doesn't need the Meta keyword
+ 
+This way, when executing the tests, you can configure one or more filters to run (or exclude from run) the tests with a particular tag.
+ 
+You can also use tags as a powerful reporting tool. Using +@tag+ or +@tags+, Serenity lets you define tags that will appear in the test reports:
+ 
+----
+Executing an international payment
+ 
+Meta:
+@tag component: payment     //<1>
+ 
+Scenario: Executing an international payment as a standing order
+----
+<1> Scenarios in this file all involve the Payment component
+ 
+These tags can take any 'name' and 'value' combination and so can be used to report on whatever aspects you need in the living documentation.
+ 
+=== Running scenarios by tags

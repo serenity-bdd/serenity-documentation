@@ -12,11 +12,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
-import static net.serenity_bdd.samples.etsy.pages.Spinners.noSpinnerToBeVisible;
-
 /**
  * Created by john on 18/11/14.
  */
@@ -27,23 +22,6 @@ public class ItemDetailsPage extends PageObject {
 
     public String getItemName() {
         return itemName.getText();
-    }
-
-    public void addToCart() {
-        withAction().moveToElement($("#item-tabs")).perform();
-        $(".buy-button button").click();
-    }
-
-    public List<String> getProductVariationIds() {
-        return findAll(".variation")
-                .stream()
-                .map(elt -> elt.getAttribute("id"))
-                .collect(toList());
-    }
-
-    public void selectVariation(String variationId, int optionIndex) {
-        find(net.serenity_bdd.core.annotations.findby.By.id(variationId)).selectByIndex(optionIndex);
-        waitFor(noSpinnerToBeVisible());
     }
 
 }

@@ -56,11 +56,11 @@ thucydides.requirements.dir=src/test/resources/net/serenity_bdd/samples/etsy/fea
 
 ==== The Scenario Runner
 
-Cucumber runs the feature files via JUnit, and needs a dedicated test runner class to actually run the feature files. When you run the tests with Serenity, you use the `CucumberWithSerenity` test runner. If the feature files are not in the same package as the test runner class, you also need to use the `@CucumberOptions` class to provide the root directory where the feature files can be found. The test runner to run all of the feature files looks like this:
+Cucumber runs the feature files via JUnit, and needs a dedicated test runner class to actually run the feature files. When you run the tests with Serenity, you use the `CucumberWithSerenity` test runner. If the feature files are not in the same package as the test runner class, you also need to use the `@CucumberOptions` class to provide the root directory where the feature files can be found. A simple test runner looks like this:
 
 [source,java]
 ----
-include::{srcdir}/cucumber-quick-start/src/test/java/net/serenity_bdd/samples/etsy/features/AcceptanceTests.java[]
+include::{srcdir}/cucumber-quick-start/src/test/java/net/serenity_bdd/samples/etsy/features/SearchByKeyword.java[]
 ----
 
 If your feature files are stored in or under the same package as your scenario runner class (in `src/test/resources`) as discussed in the previous section, then you don't need to use `@CucumberOptions` to provide the root directory.

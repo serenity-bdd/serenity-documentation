@@ -1,10 +1,10 @@
 package net.serenity_bdd.samples.etsy.features.steps;
 
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import net.serenity_bdd.samples.etsy.features.steps.serenity.BuyerSteps;
 import net.thucydides.core.annotations.Steps;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
 
 // tag::header[]
 public class SearchByKeywordStepDefinitions {
@@ -13,17 +13,17 @@ public class SearchByKeywordStepDefinitions {
 
     // end::header[]
     // tag::woolscenario[]
-    @Given("I want to buy (.*)")
+    @Given("I want to buy $article")
     public void buyerWantsToBuy(String article) {
         buyer.opens_etsy_home_page();
     }
 
-    @When("I search for items containing '(.*)'")
+    @When("I search for items containing '$keyword'")
     public void searchByKeyword(String keyword) {
         buyer.searches_for_items_containing(keyword);
     }
 
-    @Then("I should only see items related to '(.*)'")
+    @Then("I should only see items related to '$keyword'")
     public void resultsForACategoryAndKeywordInARegion(String keyword) {
         buyer.should_see_items_related_to(keyword);
     }
@@ -31,25 +31,25 @@ public class SearchByKeywordStepDefinitions {
 
     String searchTerm;
 
-    @Given("I have searched for items containing '(.*)'")
+    @Given("I have searched for items containing '$keyword'")
     public void buyerHasSearchedFor(String keyword) {
         searchTerm = keyword;
         buyer.opens_etsy_home_page();
         buyer.searches_for_items_containing(keyword);
     }
 
-    @When("I filter results by type '(.*)'")
+    @When("I filter results by type '$type'")
     public void filterResultsBy(String type) {
         buyer.filters_results_by_type(type);
     }
 
-    @Then("I should only see items containing '(.*)' of type '(.*)'")
+    @Then("I should only see items containing '$keyword' of type '$type'")
     public void shouldSeeMatchingFilteredResults(String keyword, String type) {
         buyer.should_see_items_related_to(keyword);
         buyer.should_see_items_of_type(type);
     }
 
-    @When("I (?:select|have selected) an item")
+    @When("I select an item")
     public void selectsAnItem() {
         buyer.selects_item_number(1);
     }
