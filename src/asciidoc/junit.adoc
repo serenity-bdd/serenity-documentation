@@ -106,7 +106,7 @@ The `assuming_the_mainframe_is_available()` method uses the JUnit Assume class, 
 
 === Data-driven tests
 
-Serenity provides some features to support simplified Data-Driven testing. In JUnit 4, you can use the Parameterized test runner to perform data-driven tests. In Serenity, you use the ThucydidesParameterizedRunner. This runner is very similar to the JUnit Parameterized test runner, except that you use the `@TestData` annotation to provide test data, and you can use all of the other Serenity annotations (`@Managed`, `@Steps` and so on). This test runner will also generate proper serenity reports for the executed tests.
+Serenity provides some features to support simplified Data-Driven testing. In JUnit 4, you can use the Parameterized test runner to perform data-driven tests. In Serenity, you use the SerenityParameterizedRunner. This runner is very similar to the JUnit Parameterized test runner, except that you use the `@TestData` annotation to provide test data, and you can use all of the other Serenity annotations (`@Managed`, `@Steps` and so on). This test runner will also generate proper serenity reports for the executed tests.
 
 An example of a data-driven Serenity test is shown below. In this test, we check the number of status points a Frequent Flyer member needs to obtain a new status. To test this, we use several combinations of points and status levels, specified by the testData() method. These values are represented as instance variables in the test class, and instantiated via the constructor.
 
