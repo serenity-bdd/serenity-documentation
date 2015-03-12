@@ -4,6 +4,54 @@ for example, you might want to distinguish UI-related scenarios from batch-proce
 Tags are also a great way to help organize test execution. For example, you might want to flag all of the web services tests, or mark certain tests to run against Internet Explorer browser only.
  
 === Annotating scenarios with tags
+
+Tags are added to JUnit tests using +WithTag+ annotation. The following will add a tag of type _epic_ with name _Audit_:
+
+[source,java]
+----
+@WithTag(type="epic", name="Audit")
+----
+
+If no type is defined, the default tag type is assumed to be _feature_. In other words, the following two tags are equivalent:
+
+[source,java]
+----
+@WithTag(type="feature", name="Reporting")
+@WithTag(name="Reporting")
+----
+
++WithTag+ has an alternative, more concise syntax using a colon (:) to separate the tag _type_ and _name_. For example:
+
+[source,java]
+----
+@WithTag("epic:Audit")
+----
+
+or
+
+[source,java]
+----
+@WithTag("feature:Reporting")
+----
+
+Multiple tags can be added using +@WithTags+ annotation or it's shorter version - +@WithTagsValuesOf+:
+
+[source,java]
+----
+@WithTags (
+	{
+		@WithTag(type="feature", name="Reporting"),
+		@WithTag(type="release", name="sprint-2")
+	}
+)
+----
+
+Using +@WithTagsValuesOf+, the above can be written more succinctly as:
+
+[source,java]
+----
+@WithTagsValuesOf({"Reporting", "release:sprint-2"})
+----
  
 In JBehave, you can add tags using the +Meta+ keyword:
  
@@ -44,5 +92,88 @@ Scenario: Executing an international payment as a standing order
 <1> Scenarios in this file all involve the Payment component
  
 These tags can take any 'name' and 'value' combination and so can be used to report on whatever aspects you need in the living documentation.
+
+TIP: In +@Step+ libraries you have access to both read and add tag values.
+
+To access current tags:
+
+[source,java]
+----
+@Step
+public void should_run_just_for_end_to_end_tests () {
+
+	Map<String, String> metadata = Serenity.getCurrentSession().getMetaData();
+
+	if (!metadata.get("level").equalsIgnoreCase("system")) {
+		StepEventBus.getEventBus().testIgnored();
+	}
+	else {
+		// step logic
+	}
+}
+----
+
+To add tags to existing ones:
+
+[source,java]
+----
+public void add_tags_based_on_sidebar_status () {
+	if (sidebar().shows(REPORTS)) {
+		List<TestTag> myTags = Lists.newArrayList(TestTag.withName("Reports").andType("feature"));
+		StepEventBus.getEventBus().addTagsToCurrentStory(myTags);
+	} elseif (sidebar().shows(DOCUMENTS)) {
+		List<TestTag> myTags = Lists.newArrayList(TestTag.withName("Documents").andType("feature"));
+		StepEventBus.getEventBus().addTagsToCurrentStory(myTags);
+	}
+}
+----
  
 === Running scenarios by tags
+
+You can filter tests by tag while running Serenity. With JUnit tests, this can be achieved by providing a single tag or a comma separated list of tags from command line.
+If provided, only classes and/or methods with tags in this list will be executed.
+
+[source,xml]
+----
+mvn clean verify -Dtags="release:sprint-2"
+----
+
+or
+
+[source,xml]
+----
+mvn clean verify -Dtags="feature:Reporting, release:sprint-2"
+----
+
+In case JBehave is your framework of choice, you can filter tests by using +-Dmetafilter+ in your maven command, as follows:
+
+[source,xml]
+----
+mvn clean verify -Dmetafilter="+feature Reporting"
+----
+
+Using JBehave meta matchers you are not only able to specify which tests to run, but also which tests to skip:
+
+[source,xml]
+----
+mvn clean verify -Dmetafilter="+release sprint-1 -skip"
+----
+
+In the above example, will skip running all the tests assigned to sprint-1. We can even skip a subset of tests, as shown below:
+
+
+[source,xml]
+----
+mvn clean verify -Dmetafilter="+release sprint-2 -feature Reporting"
+----
+
+Using this command, we will execute all test cases assigned to sprint-2, excluding those ones written for Reporting feature.
+
+TIP: With JBehave meta matchers, you can use powerful groovy matchers for advanced tests filtering
+
+[source,xml]
+----
+mvn clean verify -Dmetafilter="groovy: level ==~ /.*[testing|regression].*/"
+----
+
+Please read available http://jbehave.org/reference/stable/meta-filtering.html[JBehave documentation] for more info on meta matchers.
