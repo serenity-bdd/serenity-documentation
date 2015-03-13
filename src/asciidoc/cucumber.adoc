@@ -24,7 +24,7 @@ Sometimes tables can be used to summarize several different examples of the same
     | wool     | Craft Supplies |
 ---- 
 
-=== Writing executable specifications with Cucumber and Serenity
+==== Writing executable specifications with Cucumber and Serenity
 
 In Cucumber, scenarios are stored in 'Feature Files', which contain an overall description of a feature as well as a number of scenarios.. The Feature File for the example above is called `search_by_keyword.feature`, and looks something like this like this:
 
@@ -54,7 +54,7 @@ Another option is to place them in `src/test/resources', but underneath the same
 thucydides.requirements.dir=src/test/resources/net/serenity_bdd/samples/etsy/features
 ----
 
-=== The Scenario Runner
+==== The Scenario Runner
 
 Cucumber runs the feature files via JUnit, and needs a dedicated test runner class to actually run the feature files. When you run the tests with Serenity, you use the `CucumberWithSerenity` test runner. If the feature files are not in the same package as the test runner class, you also need to use the `@CucumberOptions` class to provide the root directory where the feature files can be found. A simple test runner looks like this:
 
@@ -65,7 +65,7 @@ include::{srcdir}/cucumber-quick-start/src/test/java/net/serenity_bdd/samples/et
 
 If your feature files are stored in or under the same package as your scenario runner class (in `src/test/resources`) as discussed in the previous section, then you don't need to use `@CucumberOptions` to provide the root directory.
 
-=== Step definitions
+==== Step definitions
 
 In Cucumber, each line of the Gherkin scenario maps to a method in a Java class, known as a 'Step Definition'. These use annotations like `@Given`, `@When` and `@Then` match lines in the scenario to Java methods. You define simple regular expressions to indicate parameters that will be passed into the methods:
 
@@ -98,6 +98,6 @@ Step definition files need to go in or underneath the package containing the sce
 <3> Step definitions for the scenario runners
 <4> Serenity Step Libraries are placed in a different sub-package
 
-=== Serenity Step Libraries and Page Objects
+==== Serenity Step Libraries and Page Objects
 
 Both scenario step libraries (annotated with the `@Steps` annotation) and Page Objects that are declared inside the Cucumber step definition classes will be automatically instantiated.

@@ -2,7 +2,7 @@ In this section we will look at how to run your Serenity tests using JUnit in mo
 
 === Basic JUnit integration
 
-We have already seen a simple example of a JUnit Serenity test shown earlier on:
+We have already seen a simple example of a JUnit Serenity test shown earlier on ( Refer "First Steps with Serenity BDD"):
 
 [source,java]
 ----
@@ -27,9 +27,9 @@ include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/
 
 === Serenity WebDriver support in JUnit
 
-Serenity BDD also provides strong support for Selenium WebDriver and the Page Objects model. We will look at these features in detail later on. But while we are on the topic of JUNit integration, let's look at how this integration fits in with a JUnit Serenity test.
+Serenity BDD also provides strong support for Selenium WebDriver and the Page Objects model. We will look at these features in detail later on. But while we are on the topic of JUnit integration, let's look at how this integration fits in with a JUnit Serenity test.
 
-Serenity will manage your WebDriver driver, including opening the appropriate driver at the start of each test, and shutting it down when the test is finished. You just need to provide a 'WebDriver' variable in your test, as shown here:
+Serenity will manage your WebDriver instance, including opening the appropriate driver at the start of each test, and shutting it down when the test is finished. You just need to provide a 'WebDriver' instance in your test, as shown here:
 
 [source,java]
 ----
@@ -49,13 +49,22 @@ You can also get Serenity to open the browser at the start of the tests, and lea
 @Managed(uniqueSession=true)
 ----
 
-=== Serenity PageObjects in JUnit
+Or you can as well use 
+----
+@Managed(driver="browser_type",uniqueSession=true/false) 
+@Managed
+----
 
-The WebDriver test in the previous example will work, but it is poorly written for a number of reasons. In particular, it exposes too much WebDriver-specific details about how the test is executed, which as a result obscures the intent of the test. It will also be harder to maintain, as it contains WebDriver logic that would be repeated and maintained in other tests.
+=== Serenity https://code.google.com/p/selenium/wiki/PageObjects[PageObjects] in JUnit
 
-A better approach is to hide the WebDriver logic in "Page Objects". Serenity provides excellent built-in support for Page Objects, as we will learn in the chapter dedicated to Serenity WebDriver support. 
+The WebDriver test in the previous example will work, but it is poorly written for a number of reasons as below 
+<1>In particular, it exposes too much WebDriver-specific details about how the test is executed, which as a result obscures the intent of the test. 
+<2>It will also be harder to maintain, as it contains WebDriver logic that would be repeated and maintained in other tests.
 
-The JUnit Serenity integration provides some special support for Serenity Page Objects. In particular, Serenity will automatically instantiate any PageObject fields in your JUnit test. For example, the following Page Object would perform the same operations as the test shown above:
+A better approach is to hide the WebDriver logic in "Page Objects". Serenity BDD provides excellent built-in support for Page Objects, as we will learn in the chapter dedicated to Serenity WebDriver support (??? which chapter). 
+
+The JUnit Serenity integration provides some special support for Serenity Page Objects. In particular, Serenity will automatically instantiate any PageObject fields in your JUnit test. 
+For example, the following Page Object would perform the same operations as the test shown above:
 
 [source,java]
 ----
@@ -192,7 +201,8 @@ If some of the field values contain commas, you will need to use a different sep
 @UseTestDataFrom(value="test-data/simple-semicolon-data.csv", separator=';')
 ----
 
-=== Modelling requirements in JUnit
+=== Modelling Requirements in JUnit
+This section explains different types of reports generation techniques
 
 As we have seen previously, Serenity produces reports that summarize the test results, going into details about the steps that were executed within each test. Serenity also produces an overall list of the test results, as shown below:
 

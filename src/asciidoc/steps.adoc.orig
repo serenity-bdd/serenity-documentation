@@ -1,4 +1,15 @@
+<<<<<<< HEAD
 In Serenity BDD, tests are broken down into reusable steps. An important principle behind Serenity BDD is the idea that it is easier to maintain a test that uses several layers of abstraction to hide the complexity behind different parts of a test. 
+=======
+In Serenity, tests are broken down into reusable steps. An important principle behind Serenity is the idea that it is easier to maintain a test that uses several layers of abstraction to hide the complexity behind different parts of a test. 
+
+For example, consider the following tests:
+
+[source,java]
+include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/features/earning_points/WhenEarningFrequentFlyerStatus.java[tags=header;membersShouldStartWithBronzeStatus;earnSilverAfter1000Points;endTest]
+
+The first test verifies that when a traveller first enrolls in the Frequent Flyer Member programme, then she will start out with Bronze status. This test is broken into two steps:
+>>>>>>> upstream/master
 
 For example, the first test in the following sample is broken into two steps:
   
@@ -6,19 +17,24 @@ For example, the first test in the following sample is broken into two steps:
   . Create a new Frequent Flyer member
   . Check that the member has a status of Bronze
 
+<<<<<<< HEAD
 The second is broken into three steps:
+=======
+The second test verifies that a new Frequent Flyer member will earn Silver status after travelling 10,000 km. This test is also broken into steps:
+>>>>>>> upstream/master
 
   Verify passenger can be enrolled into Frequent Flyer Member programme and gets upgraded to Silver membership status after flying 10K km
   . Create a new Frequent Flyer member
   . Make the member fly 10000 km
   . Check that the member has a status of Silver
 
-[source,java]
-include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/features/earning_points/WhenEarningFrequentFlyerStatus.java[tags=header;membersShouldStartWithBronzeStatus;earnSilverAfter1000Points;endTest]
-
 Notice how the second test reuses step methods used in the first to perform a slightly different test. This is a typical example of the way we reuse steps in similar tests, in order to avoid duplicated code and make the code easier to maintain.
 
+<<<<<<< HEAD
 Also notice how we did not need to instantiate the Steps class 'TravellerStatusSteps'. When you annotated a member variable of this class with the `@Steps` annotation, Serenity BDD will automatically instantiate it for you.
+=======
+Also notice how we did not need to instantiate the Steps class `TravellerStatusSteps`. When you annotated a member variable of this class with the `@Steps` annotation, Serenity BDD will automatically instantiate it for you.
+>>>>>>> upstream/master
 
 Step methods are annotated with the `@Step` annotation:
 
