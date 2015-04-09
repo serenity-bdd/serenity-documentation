@@ -63,6 +63,7 @@ include::steps.adoc[]
 include::junit.adoc[]
 
 == Serenity with JBehave
+include::jbehave.adoc[]
 
 == Serenity with Cucumber
 include::cucumber.adoc[]

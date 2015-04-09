@@ -1,5 +1,5 @@
 Feature: Adding items to the shopping cart
-  In order to buy multiple items at the same time
+  In order to buy more than one item easily
   As a buyer
   I want to be able to add multiple items to the shopping cart
 

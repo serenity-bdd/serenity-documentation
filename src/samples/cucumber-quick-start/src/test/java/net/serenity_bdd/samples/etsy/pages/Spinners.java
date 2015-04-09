@@ -1,6 +1,6 @@
 package net.serenity_bdd.samples.etsy.pages;
 
-import net.serenity_bdd.core.annotations.findby.By;
+import net.serenitybdd.core.annotations.findby.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,7 +28,7 @@ public class Spinners {
                     return !element.isDisplayed();
                 } catch (StaleElementReferenceException e) {
                     // Returns true because stale element reference implies that element
-                    // is no longer visible.
+                    // is npo longer visible.
                     return true;
                 }
             }

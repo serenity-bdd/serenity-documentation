@@ -1,5 +1,8 @@
 Adding items to the shopping cart
 
+Meta:
+@tag product:cart
+
 Narrative:
   In order to buy multiple items at the same time
   As a buyer

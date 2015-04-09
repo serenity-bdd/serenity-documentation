@@ -2,7 +2,7 @@ package net.serenity_bdd.samples.etsy.features.steps;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import net.serenity_bdd.core.Serenity;
+import net.serenitybdd.core.Serenity;
 import net.serenity_bdd.samples.etsy.features.model.ListingItem;
 import net.serenity_bdd.samples.etsy.features.steps.serenity.BuyerSteps;
 import net.thucydides.core.annotations.Steps;

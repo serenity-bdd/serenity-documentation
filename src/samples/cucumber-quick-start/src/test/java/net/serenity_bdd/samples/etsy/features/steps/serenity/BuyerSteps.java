@@ -1,8 +1,10 @@
 package net.serenity_bdd.samples.etsy.features.steps.serenity;
 
 import com.google.common.base.Optional;
+import net.serenity_bdd.core.Serenity;
 import net.serenity_bdd.samples.etsy.features.model.ListingItem;
 import net.serenity_bdd.samples.etsy.features.model.OrderCostSummary;
+import net.serenity_bdd.samples.etsy.features.model.SessionVariables;
 import net.serenity_bdd.samples.etsy.pages.CartPage;
 import net.serenity_bdd.samples.etsy.pages.HomePage;
 import net.serenity_bdd.samples.etsy.pages.ItemDetailsPage;
@@ -62,7 +64,9 @@ public class BuyerSteps {
 
     @Step
     public void selects_item_number(int number) {
-        searchResultsPage.selectItem(number);
+        ListingItem selectedItem = searchResultsPage.selectItem(number);
+        Serenity.setSessionVariable(SessionVariables.SELECTED_LISTING).to(selectedItem);
+
     }
 
     @Step

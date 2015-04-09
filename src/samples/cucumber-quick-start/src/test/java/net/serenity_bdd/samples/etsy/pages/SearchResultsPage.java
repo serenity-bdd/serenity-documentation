@@ -1,6 +1,7 @@
 package net.serenity_bdd.samples.etsy.pages;
 
 import com.google.common.base.Optional;
+import net.serenity_bdd.samples.etsy.features.model.ListingItem;
 import net.thucydides.core.pages.PageObject;
 import net.thucydides.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
@@ -24,9 +25,16 @@ public class SearchResultsPage extends PageObject {
                 .collect(Collectors.toList());
     }
 // end::searchByKeyword[]
-    public void selectItem(int itemNumber) {
+    public ListingItem selectItem(int itemNumber) {
+        ListingItem selectedItem = convertToListingItem(listingCards.get(itemNumber - 1));
         listingCards.get(itemNumber - 1)
                 .findElement(By.tagName("a")).click();
+        return selectedItem;
+    }
+
+    private ListingItem convertToListingItem(WebElement itemElement) {
+        return new ListingItem(itemElement.findElement(By.className("title")).getText(),
+                               Double.parseDouble(itemElement.findElement(By.className("currency-value")).getText()));
     }
 
     public void filterByType(String type) {
