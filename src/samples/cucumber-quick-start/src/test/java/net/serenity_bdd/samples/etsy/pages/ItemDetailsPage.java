@@ -1,7 +1,7 @@
 package net.serenity_bdd.samples.etsy.pages;
 
-import net.thucydides.core.pages.PageObject;
-import org.openqa.selenium.By;
+import net.serenitybdd.core.pages.PageObject;
+import net.serenitybdd.core.annotations.findby.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -29,6 +29,10 @@ public class ItemDetailsPage extends PageObject {
         return itemName.getText();
     }
 
+    public String getItemDescription() {
+        return $("#description-text").getText();
+    }
+
     public void addToCart() {
         withAction().moveToElement($("#item-tabs")).perform();
         $(".buy-button button").click();
@@ -38,11 +42,12 @@ public class ItemDetailsPage extends PageObject {
         return findAll(".variation")
                 .stream()
                 .map(elt -> elt.getAttribute("id"))
+                .filter(id -> !id.isEmpty())
                 .collect(toList());
     }
 
     public void selectVariation(String variationId, int optionIndex) {
-        find(net.serenity_bdd.core.annotations.findby.By.id(variationId)).selectByIndex(optionIndex);
+        find(By.id(variationId)).selectByIndex(optionIndex);
         waitFor(noSpinnerToBeVisible());
     }
 

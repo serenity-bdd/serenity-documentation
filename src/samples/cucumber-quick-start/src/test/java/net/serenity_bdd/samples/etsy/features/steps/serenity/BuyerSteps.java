@@ -1,7 +1,7 @@
 package net.serenity_bdd.samples.etsy.features.steps.serenity;
 
 import com.google.common.base.Optional;
-import net.serenity_bdd.core.Serenity;
+import net.serenitybdd.core.Serenity;
 import net.serenity_bdd.samples.etsy.features.model.ListingItem;
 import net.serenity_bdd.samples.etsy.features.model.OrderCostSummary;
 import net.serenity_bdd.samples.etsy.features.model.SessionVariables;
@@ -34,6 +34,7 @@ public class BuyerSteps {
     @Step
     public void searches_for_items_containing(String keywords) {
         homePage.searchFor(keywords);
+        homePage.dismissLocationMessage();
     }
 
     @Step
@@ -72,7 +73,9 @@ public class BuyerSteps {
     @Step
     public void should_see_matching_details(String searchTerm) {
         String itemName = detailsPage.getItemName();
-        assertThat(itemName.toLowerCase()).contains(searchTerm);
+        String itemDescription = detailsPage.getItemDescription();
+
+        assertThat((itemName + " " + itemDescription).toLowerCase()).contains(searchTerm);
     }
 
     @Step

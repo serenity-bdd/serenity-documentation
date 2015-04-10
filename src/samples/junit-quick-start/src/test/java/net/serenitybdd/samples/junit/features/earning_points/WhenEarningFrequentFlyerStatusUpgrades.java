@@ -1,15 +1,10 @@
 package net.serenitybdd.samples.junit.features.earning_points;
 
+import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.serenitybdd.samples.junit.model.Status;
 import net.serenitybdd.samples.junit.steps.TravellerStatusSteps;
-import net.thucydides.core.annotations.Pending;
 import net.thucydides.core.annotations.Steps;
-import net.thucydides.core.annotations.Title;
-import net.thucydides.junit.annotations.Concurrent;
 import net.thucydides.junit.annotations.TestData;
-import net.thucydides.junit.runners.SerenityParameterizedRunner;
-import net.thucydides.junit.runners.SerenityRunner;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

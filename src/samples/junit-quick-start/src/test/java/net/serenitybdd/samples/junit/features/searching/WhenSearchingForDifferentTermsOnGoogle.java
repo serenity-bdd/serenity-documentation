@@ -1,13 +1,10 @@
 package net.serenitybdd.samples.junit.features.searching;
 
+import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.serenitybdd.samples.junit.pages.GooglePage;
 import net.thucydides.core.annotations.Managed;
-import net.thucydides.core.annotations.ManagedPages;
-import net.thucydides.core.pages.Pages;
 import net.thucydides.junit.annotations.Concurrent;
 import net.thucydides.junit.annotations.TestData;
-import net.thucydides.junit.runners.SerenityParameterizedRunner;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -15,9 +12,6 @@ import org.openqa.selenium.WebDriver;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static net.serenitybdd.samples.junit.model.Status.Bronze;
-import static net.serenitybdd.samples.junit.model.Status.Gold;
-import static net.serenitybdd.samples.junit.model.Status.Silver;
 import static org.assertj.core.api.Assertions.assertThat;
 
 // tag::testcase[]

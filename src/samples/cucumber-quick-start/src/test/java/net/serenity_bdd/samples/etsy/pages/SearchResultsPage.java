@@ -2,13 +2,18 @@ package net.serenity_bdd.samples.etsy.pages;
 
 import com.google.common.base.Optional;
 import net.serenity_bdd.samples.etsy.features.model.ListingItem;
-import net.thucydides.core.pages.PageObject;
-import net.thucydides.core.pages.WebElementFacade;
+import net.serenitybdd.core.pages.PageObject;
+import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 // tag::header[]
@@ -27,18 +32,32 @@ public class SearchResultsPage extends PageObject {
 // end::searchByKeyword[]
     public ListingItem selectItem(int itemNumber) {
         ListingItem selectedItem = convertToListingItem(listingCards.get(itemNumber - 1));
-        listingCards.get(itemNumber - 1)
-                .findElement(By.tagName("a")).click();
+        listingCards.get(itemNumber - 1).findElement(By.tagName("a")).click();
         return selectedItem;
     }
 
     private ListingItem convertToListingItem(WebElement itemElement) {
-        return new ListingItem(itemElement.findElement(By.className("title")).getText(),
-                               Double.parseDouble(itemElement.findElement(By.className("currency-value")).getText()));
+        NumberFormat format = NumberFormat.getInstance();
+        String price = itemElement.findElement(By.className("currency-value")).getText();
+
+        try {
+            return new ListingItem(itemElement.findElement(By.className("title")).getText(),
+                                                           format.parse(price).doubleValue());
+        } catch (ParseException e) {
+            throw new AssertionError("Failed to parse item price: ",e);
+        }
     }
 
     public void filterByType(String type) {
-        findBy("#filter-marketplace").then(By.partialLinkText(type)).click();
+        confirmLocaleIfNecessary();
+        withTimeoutOf(2, TimeUnit.SECONDS).find("#filter-marketplace").then(By.partialLinkText(type)).click();
+    }
+
+    private void confirmLocaleIfNecessary() {
+        if (isElementVisible(By.id("locale-nag-confirm")) && isElementVisible(By.id("input[value='Okay']"))) {
+            find(By.cssSelector("input[value='Okay']")).click();
+            waitFor(ExpectedConditions.invisibilityOfElementLocated(By.id("locale-nag-confirm")));
+        }
     }
 
     public int getItemCount() {

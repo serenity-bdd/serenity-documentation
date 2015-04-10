@@ -1,12 +1,8 @@
 package net.serenitybdd.samples.junit.features.managing_member_accounts;
 
+import net.serenitybdd.junit.runners.SerenityRunner;
 import net.serenitybdd.samples.junit.steps.TravellerHistorySteps;
-import net.serenitybdd.samples.junit.steps.TravellerStatusSteps;
-import net.thucydides.core.annotations.Pending;
 import net.thucydides.core.annotations.Steps;
-import net.thucydides.core.annotations.Title;
-import net.thucydides.junit.runners.SerenityRunner;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

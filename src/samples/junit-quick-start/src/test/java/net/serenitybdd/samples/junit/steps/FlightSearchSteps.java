@@ -1,6 +1,6 @@
 package net.serenitybdd.samples.junit.steps;
 
-import net.serenity_bdd.core.Serenity;
+import net.serenitybdd.core.Serenity;
 import net.serenitybdd.samples.junit.pages.FlightDetailsPage;
 import net.serenitybdd.samples.junit.pages.FlightSearchPage;
 import net.serenitybdd.samples.junit.pages.FlightSearchResultsPage;

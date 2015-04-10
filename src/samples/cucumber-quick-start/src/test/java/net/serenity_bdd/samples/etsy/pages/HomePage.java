@@ -3,6 +3,7 @@ package net.serenity_bdd.samples.etsy.pages;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.thoughtworks.selenium.webdriven.commands.WaitForCondition;
+import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
@@ -33,6 +34,12 @@ public class HomePage extends PageObject {              // <2>
     public void searchFor(String keywords) {
         $("#search-query").sendKeys(keywords);          // <3>
         searchButton.click();                           // <4>
+    }
+
+    public void dismissLocationMessage() {
+        if (!findAll(By.cssSelector("input[value='Okay']")).isEmpty()) {
+            find(By.cssSelector("input[value='Okay']")).click();
+        }
     }
 // end::searchByKeyword[]
 // tag::tail[]

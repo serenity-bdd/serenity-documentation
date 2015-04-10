@@ -29,7 +29,6 @@ Feature: Searching by keyword
     | material | type           |
     | silk     | Handmade       |
     | bronze   | Vintage        |
-    | wool     | Craft Supplies |
 
 # end::handmadeoutline[]
 # tag::viewdetails[]

@@ -1,19 +1,14 @@
 package net.serenitybdd.samples.junit.features.earning_points;
 
+import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.serenitybdd.samples.junit.model.Status;
 import net.serenitybdd.samples.junit.steps.TravellerStatusSteps;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.junit.annotations.Qualifier;
-import net.thucydides.junit.annotations.TestData;
 import net.thucydides.junit.annotations.UseTestDataFrom;
-import net.thucydides.junit.runners.SerenityParameterizedRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.Arrays;
-import java.util.Collection;
-
-import static net.serenitybdd.samples.junit.model.Status.*;
 
 // tag::testcase[]
 @RunWith(SerenityParameterizedRunner.class)
