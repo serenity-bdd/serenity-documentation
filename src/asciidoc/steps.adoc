@@ -1,5 +1,7 @@
 In Serenity, tests are broken down into reusable steps. An important principle behind Serenity is the idea that it is easier to maintain a test that uses several layers of abstraction to hide the complexity behind different parts of a test. 
 
+In an automated web test, test steps represent the level of abstraction between your Page Objects (which are designed in terms of actions that you perform on a given page) and higher-level stories (sequences of more business-focused actions that illustrate how a given user story has been implemented). If your automated test is not UI-oriented (for example, if it calls a web service), steps orchestrate other more technical components such as REST clients. Steps can contain other steps, and are included in the Serenity reports. Whenever a step is executed, a screenshot is stored and displayed in the report.
+
 For example, consider the following tests:
 
 [source,java]
@@ -81,3 +83,8 @@ include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/
 ----
 <1> Store the departure city in a session variable
 <2> Retrieve the session variable in another step
+
+
+Note that step methods can take parameters. The parameters that are passed into a step method will be recorded and reported in the Serenity reports, making this an excellent technique to make your tests more maintainable and more modular. 
+
+Steps can also call other steps, which is very useful for more complicated test scenarios. 

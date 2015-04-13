@@ -24,7 +24,6 @@ public class BuyerSteps {
 
     HomePage homePage;                                          // <1>
     SearchResultsPage searchResultsPage;
-    CartPage cartPage;
 
     @Step                                                       // <2>
     public void opens_etsy_home_page() {
@@ -58,8 +57,6 @@ public class BuyerSteps {
     }
 // end::filterByType[]
 
-    ItemDetailsPage detailsPage;
-
     @Step
     public void selects_item_number(int number) {
         ListingItem selectedItem = searchResultsPage.selectItem(number);
@@ -79,10 +76,20 @@ public class BuyerSteps {
         assertThat(selectedType.get()).isEqualTo(type);
     }
 
+    // tag::shoppingCartSteps[]
+
+    ItemDetailsPage detailsPage;
+    CartPage cartPage;
+
     @Step
     public void selects_any_product_variations() {
         detailsPage.getProductVariationIds().stream()
                 .forEach(id -> detailsPage.selectVariation(id,2));
+    }
+
+    @Step
+    public void adds_current_item_to_shopping_cart() {
+        detailsPage.addToCart();
     }
 
     @Step
@@ -104,12 +111,7 @@ public class BuyerSteps {
         assertThat(shipping).isGreaterThan(0.0);
         assertThat(totalCost).isCloseTo(itemTotal + shipping, Offset.offset(0.001));
     }
-
-    @Step
-    public void adds_current_item_to_shopping_cart() {
-        detailsPage.addToCart();
-    }
-
+   // end::shoppingCartSteps[]
 
 // tag::tail[]
 }

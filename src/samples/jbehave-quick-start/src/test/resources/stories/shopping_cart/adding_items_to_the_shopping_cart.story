@@ -1,7 +1,7 @@
 Adding items to the shopping cart
 
 Meta:
-@tag product:cart
+@driver phantomjs
 
 Narrative:
   In order to buy multiple items at the same time

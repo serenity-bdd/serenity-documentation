@@ -4,15 +4,10 @@ In JBehave, you write automate your acceptance criteria by writing test stories 
 
 [source,gherkin]
 ----
-include::{srcdir}/jbehave-quick-start/src/test/resources/stories/search/search_by_keyword.story[tags=woolscenario]
+include::{srcdir}/jbehave-quick-start/src/test/resources/stories/search/search_by_keyword.story[]
 ----
 
 Scenarios like this go in `.story` files: a story file is designed to contain all the scenarios (acceptence criteria) of a given user story. A story file can also have a narrative section at the top, which gives some background and context about the story being tested:
-
-[source,gherkin]
-----
-include::{srcdir}/jbehave-quick-start/src/test/resources/stories/search/search_by_keyword.story[tags=header;woolscenario]
-----
 
 You usually implement a JBehave story using classes and methods written in Java, Groovy or Scala. You implement the story steps using annotated methods to represent the steps in the text scenarios, as shown in the following example:
 
@@ -77,18 +72,20 @@ By default, Serenity supports a simple directory-based convention for organizing
 
 If you prefer another hierarchy, you can use the `serenity.requirement.types` system property to override the default convention. For example. if you prefer to organize your requirements in a hierachy consisting of epics, theme and stories, you could set the `serenity.requirement.types` property to 'epic,theme' (the story level is represented by the .story file).
 
-When you start a project, you will typically have a good idea of the capabilities you intent to implement, and probably some of the main features. If you simply store your .story files in the right directory structure, the Serenity reports will reflect these requirements, even if no tests have yet been specified for them. This is an excellent way to keep track of project progress. At the start of an iteration, the reports will show all of the requirements to be implemented, even those with no tests defined or implemented yet. As the iteration progresses, more and more acceptance criteria will be implemented, until acceptance criteria have been defined and implemented for all of the requirements that need to be developed.
+When you start a project, you will typically have a good idea of the high level capabilities you intent to implement, and probably some of the main features. If you simply store your .story files in the right directory structure, the Serenity reports will reflect these requirements, even if no tests have yet been specified for them. This is an excellent way to keep track of project progress. At the start of an iteration, the reports will show all of the requirements to be implemented, even those with no tests defined or implemented yet. As the iteration progresses, more and more acceptance criteria will be implemented, until acceptance criteria have been defined and implemented for all of the requirements that need to be developed.
 
-An optional but useful feature of the JBehave story format is the narrative section that can be placed at the start of a story to help provide some more context about that story and the scenarios it contains. This narrative will appear in the Serenity reports, to help give product owners, testers and other team members more information about the background and motivations behind each story. For example, if you are working on an online classifieds website, you might want users to be able to search ads using keywords. You could describe this functionality with a textual description like this one:
+An optional but useful feature of the JBehave story format is the narrative section that can be placed at the start of a story to help provide some more context about that story and the scenarios it contains. This narrative will appear in the Serenity reports, to help give product owners, testers and other team members more information about the background and motivations behind each story. For example, if you are working on an online classifieds website, you might want users to be able to search ads using keywords. You could describe this functionality with a textual description like this one from the `locating_a_customer.story` story file:
 
 [source,gherkin]
 ---------------------
-include::{srcdir}/jbehave-quick-start/src/test/resources/stories/search/locating_a_customer.story[tags=header]
+Narrative:
+In order to provide assistance to customers more quickly
+As a financial adviser
+I want to be able to locate a customer using a variety of different criteria
 ---------------------
 
 However to make the reports more useful still, it is a good idea to document not only the stories, but to also do the same for your higher level requirements. In Serenity, you can do this by placing a text file called `narrative.txt` in each of the requirements directories you want to document (see below). These files follow the JBehave convention for writing narratives, with an optional title on the first line, followed by a narrative section started by the keyword `Narrative:`. For example, for a search feature for an online classifieds web site, you might have a description along the following lines: 
 
-[source,gherkin]
 ---------------------
 Search for online ads
 
@@ -109,17 +106,10 @@ image::jbehave-requirements-report.png[scaledwidth="80%", width=475]
 
 Narratives can be written in http://www.methods.co.nz/asciidoc/[Asciidoc] for richer formatting. Set the +narrative.format+ property to +asciidoc+ to allow Serenity to parse the narrative in asciidoc format.
 
-For example, the following narrative,
-
-[source,gherkin]
----------------------
-Item search
-
-Narrative:
-In order to find the items I am interested in faster
-As a +buyer+
-*I want to be able to list all the ads with a particular keyword in the description or title*.
----------------------
+For example, the following narrative:
+----
+include::{srcdir}/jbehave-quick-start/src/test/resources/stories/search/narrative.txt[]
+----
 
 will be rendered on the report as shown below.
 
@@ -161,21 +151,10 @@ You can use the JBehave Meta tag to provide additional information to Serenity a
 
 [source,gherkin]
 ----
-Meta:
-@driver phantimjs
 
-Scenario: A scenario that uses selenium
-
-Given I am on the test page
-When I enter the first name <firstname>
-And I enter the last name <lastname>
-Then I should see <firstname> and <lastname> in the names fields
-And I should be using HtmlUnit
-
-Examples:
-|firstname|lastname|
-|Joe      | Blow   |
-|John     | Doe    |
+[source,gherkin]
+----
+include::{srcdir}/jbehave-quick-start/src/test/resources/stories/shopping_cart/adding_items_to_the_shopping_cart.story[]
 ----
 
 You can also use the @issue annotation to link scenarios with issues, as illustrated here:
@@ -213,7 +192,6 @@ When I run the scenario
 Then I should get a successful result
 ------------------
 
-
 ==== Implementing the tests
 
 If you want your tests to actually do anything, you will also need classes in which you place your JBehave step implementations. If you place these in any package at or below the package of your main JUnit test, JBehave will find them with no extra configuration. 
@@ -224,114 +202,21 @@ A typical example is shown below. In this implementation of one of the scenarios
 
 [source,java]
 ----
-public class SearchScenarioSteps {
-    @Steps
-    BuyerSteps buyer;
-
-    @Given("Sally wants to buy a $present for her son")
-    public void buyingAPresent(String present) {
-        buyer.opens_home_page();
-    }
-
-    @When("she looks for ads in the $category category containing $keyword in $region")
-    public void adSearchByCategoryAndKeywordInARegion(String category,String keyword,String region){
-        buyer.chooses_region(region);
-        buyer.chooses_category_and_keywords(category, keyword);
-        buyer.performs_search();
-    }
-
-    @Then("she should obtain a list of $category ads containing the word $keyword from advertisers in $region")
-    public void resultsForACategoryAndKeywordInARegion(String category,String keyword,String region){
-        buyer.should_only_see_results_with_titles_containing(keyword);
-        buyer.should_only_see_results_from_region(region);
-        buyer.should_only_see_results_in_category(category);
-    }
-}
+include::{srcdir}/jbehave-quick-start/src/test/java/net/serenitybdd/samples/etsy/features/steps/ShoppingCartStepDefinitions.java[]
 ----
 
-The Serenity steps can be found in the BuyserSteps class. This class in turn uses Page Objects to interact with the actual web application, as illustrated here:
+The Serenity steps can be found in the BuyerSteps class. This class in turn uses Page Objects to interact with the actual web application, as illustrated here:
 
 [source,java]
 ----
-public class BuyerSteps extends ScenarioSteps {
-
-    HomePage homePage;
-    SearchResultsPage searchResultsPage;
-
-    public BuyerSteps(Pages pages) {
-        super(pages);
-        homePage = getPages().get(HomePage.class);
-        searchResultsPage = getPages().get(SearchResultsPage.class);
-    }
-
-    @Step
-    public void opens_home_page() {
-        homePage.open();
-    }
-
-    @Step
-    public void chooses_region(String region) {
-        homePage.chooseRegion(region);
-    }
-
-    @Step
-    public void chooses_category_and_keywords(String category, String keywords) {
-        homePage.chooseCategoryFromDropdown(category);
-        homePage.enterKeywords(keywords);
-    }
-
-    @Step
-    public void performs_search() {
-        homePage.performSearch();
-    }
-
-    @Step
-    public void should_only_see_results_with_titles_containing(String title) {
-        searchResultsPage.allTitlesShouldContain(title);
-    }
-    ...
-}
+include::{srcdir}/jbehave-quick-start/src/test/java/net/serenitybdd/samples/etsy/features/steps/serenity/BuyerSteps.java[header,shoppingCartSteps,tail]
 ----
 
 The Page Objects are similar to those you would find in any Serenity project, as well as most WebDriver projects. An example is listed below:
 
 [source,java]
 ----
-@DefaultUrl("http://www.newsclassifieds.com.au")
-public class HomePage extends PageObject {
-
-    @CacheLookup
-    @FindBy(name="adFilter.searchTerm")
-    WebElement searchTerm;
-
-    @CacheLookup
-    @FindBy(css=".keywords button")
-    WebElement search;
-
-    public HomePage(WebDriver driver) {
-        super(driver);
-    }
-
-    public void chooseRegion(String region) {
-        findBy("#location-select .arrow").then().click();
-        waitFor(500).milliseconds();
-        findBy("//ul[@class='dropdown-menu']//a[.='" + region + "']").then().click();
-    }
-
-    public void chooseCategoryFromDropdown(String category) {
-        getDriver().navigate().refresh();
-        findBy("#category-select").then(".arrow").then().click();
-        findBy("//span[@id='category-select']//a[contains(.,'" + category + "')]").then().click();
-    }
-
-    public void enterKeywords(String keywords) {
-        element(searchTerm).type(keywords);
-    }
-
-    public void performSearch() {
-        element(search).click();
-    }
-}
+include::{srcdir}/jbehave-quick-start/src/test/java/net/serenitybdd/samples/etsy/pages/ItemDetailsPage.java[]
 ----
 
 When these tests are executed, the JBehave steps combine with the Serenity steps to create a narrative report of the test results.
@@ -365,7 +250,7 @@ This archetype creates a project directory structure similar to the one shown he
 
 === Running all tests in a single browser window
 
-All web tests can be run in a single browser window using either by setting the thucydides.use.unique.browser system property or programmatically using runSerenity().inASingleSession() inside the junit runner.
+All web tests can be run in a single browser window using either by setting the `serenity.use.unique.browser` system property or programmatically using runSerenity().inASingleSession() inside the junit runner.
 
 [source,java]
 ----
@@ -378,38 +263,3 @@ public class JBehaveTestCase extends SerenityStories {
 }
 ----
 
-== Implementing Step Libraries       
-
-Once you have defined the steps you need to describe your high level tests, you need to implement these steps. In an automated web test, test steps represent the level of abstraction between your Page Objects (which are designed in terms of actions that you perform on a given page) and higher-level stories (sequences of more business-focused actions that illustrate how a given user story has been implemented). Steps can contain other steps, and are included in the Serenity reports. Whenever a step is executed, a screenshot is stored and displayed in the report.
-
-=== Creating Step Libraries
-
-Test steps are regular java methods, annotated with the +@Step+ annotation. You organize steps and step groups in step libraries. A step library is just a normal Java class. If you are running web tests, your step library should either have a +Pages+ member variable, or (more simply) extend the +ScenarioSteps+ class, e.g.
-
-
-[source,java]
-----
-public class JobSeekerSteps extends ScenarioSteps {
-    public JobSeekerSteps(Pages pages) {
-        super(pages);
-    }
-
-
-    @Step
-    public void opens_jobs_page() {
-        FindAJobPage page = getPages().get(FindAJobPage.class);
-        page.open();
-    }
-
-    @Step
-    public void searches_for_jobs_using(String keywords) {
-        FindAJobPage page = getPages().get(FindAJobPage.class);
-        page.look_for_jobs_with_keywords(keywords);
-
-    }
-} 
-----
-
-Note that step methods can take parameters. The parameters that are passed into a step method will be recorded and reported in the Serenity reports, making this an excellent technique to make your tests more maintainable and more modular. 
-
-Steps can also call other steps, which is very useful for more complicated test scenarios. The result is the sort of nested structure you can see in <<fig-test-report>>.

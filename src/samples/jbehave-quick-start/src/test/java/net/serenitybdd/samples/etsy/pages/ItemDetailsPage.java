@@ -17,9 +17,6 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 import static net.serenitybdd.samples.etsy.pages.Spinners.noSpinnerToBeVisible;
 
-/**
- * Created by john on 18/11/14.
- */
 public class ItemDetailsPage extends PageObject {
 
     @FindBys({@FindBy(id="listing-page-cart"), @FindBy(tagName = "h1")})

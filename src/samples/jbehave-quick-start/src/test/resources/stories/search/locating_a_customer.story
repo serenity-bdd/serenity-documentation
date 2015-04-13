@@ -1,9 +1,8 @@
-!-- tag::header[]
 Narrative:
 In order to provide assistance to customers more quickly
 As a financial adviser
 I want to be able to locate a customer using a variety of different criteria
-!-- end::header[]
+
 Scenario: Search for customer by name
 Given I am logged into the application
 And the following customers exist:

@@ -73,14 +73,12 @@
                 <version>2.18</version>
                 <configuration>
                     <includes>
-                        <include>net/serenity/samples/etsy/features/*.java</include>
+                        <include>**/features/*.java</include>
                     </includes>
                     <systemProperties>
                         <webdriver.driver>${webdriver.driver}</webdriver.driver>
                         <tags>${tags}</tags>
                     </systemProperties>
-                    <parallel>methods</parallel>
-                    <threadCount>2</threadCount>
                 </configuration>
                 <executions>
                     <execution>
