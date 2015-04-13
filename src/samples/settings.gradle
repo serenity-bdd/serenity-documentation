@@ -1,1 +1,1 @@
-include 'junit-quick-start','cucumber-quick-start'
+include 'junit-quick-start','cucumber-quick-start','jbehave-quick-start'
