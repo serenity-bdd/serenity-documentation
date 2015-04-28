@@ -59,6 +59,9 @@ include::maven.adoc[]
 == Writing Serenity Step Libraries
 include::steps.adoc[]
 
+== Writing Serenity Page Objects
+include::page-objects.adoc[]
+
 == Serenity with JUnit
 include::junit.adoc[]
 
