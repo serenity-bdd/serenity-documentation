@@ -78,8 +78,10 @@ public class SearchResultsPage extends PageObject {
     }
 
     public void filterByLocalRegion() {
-        withAction().moveToElement($("#filter-location")).perform();
-        findAll(".geoname-option a").get(1).click();
+        if (containsElements("#filter-location")) {
+            withAction().moveToElement($("#filter-location")).perform();
+            findAll(".geoname-option a").get(1).click();
+        }
     }
 // tag::tail[]
 }
