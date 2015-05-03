@@ -21,6 +21,13 @@ public class SearchByKeywordStepDefinitions {
     @When("I search for items containing '$keyword'")
     public void searchByKeyword(String keyword) {
         buyer.searches_for_items_containing(keyword);
+        buyer.filters_results_to_local_region();
+    }
+
+
+    @When("I search for local items containing '$keyword'")
+    public void localSearchByKeyword(String keyword) {
+        buyer.searches_for_items_containing(keyword);
     }
 
     @Then("I should only see items related to '$keyword'")

@@ -48,7 +48,13 @@ public class ItemDetailsPage extends PageObject {
 
     public void selectVariation(String variationId, int optionIndex) {
         find(By.id(variationId)).selectByIndex(optionIndex);
-        waitFor(noSpinnerToBeVisible());
+        if (spinnerIsVisible()) {
+            waitFor(noSpinnerToBeVisible());
+        }
+    }
+
+    private boolean spinnerIsVisible() {
+        return containsElements(".spinner-small");
     }
 
 }

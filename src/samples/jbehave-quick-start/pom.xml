@@ -13,9 +13,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <webdriver.driver>firefox</webdriver.driver>
-        <serenity.version>1.0.47-SNAPSHOT</serenity.version>
-        <serenity.maven.version>1.0.46</serenity.maven.version>
-        <serenity.jbehave.version>1.0.21-SNAPSHOT</serenity.jbehave.version>
+        <serenity.version>1.0.47</serenity.version>
+        <serenity.maven.version>1.0.47</serenity.maven.version>
+        <serenity.jbehave.version>1.0.21</serenity.jbehave.version>
     </properties>
 
     <dependencies>
@@ -28,7 +28,7 @@
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-jbehave</artifactId>
-            <version>1.0.21-SNAPSHOT</version>
+            <version>${serenity.jbehave.version}</version>
         </dependency>
         <!-- end::dependencies[] -->
         <dependency>

@@ -31,12 +31,21 @@ public class SearchByKeywordStepDefinitions {
 
     String searchTerm;
 
-    @Given("I have searched for items containing '(.*)'")
+    @Given("I have searched for items containing '(.*)' in my region")
     public void buyerHasSearchedFor(String keyword) {
         searchTerm = keyword;
         buyer.opens_etsy_home_page();
         buyer.searches_for_items_containing(keyword);
+        buyer.filters_by_local_region();
     }
+
+    @Given("I have searched for items containing the word '(.*)'")
+    public void buyerHasSearchedForWord(String keyword) {
+        searchTerm = keyword;
+        buyer.opens_etsy_home_page();
+        buyer.searches_for_items_containing(keyword);
+    }
+
 
     @When("I filter results by type '(.*)'")
     public void filterResultsBy(String type) {

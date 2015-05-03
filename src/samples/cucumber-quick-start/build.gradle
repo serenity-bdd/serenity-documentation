@@ -26,9 +26,9 @@ dependencies {
 
     testCompile 'junit:junit:4.11'
     testCompile 'org.assertj:assertj-core:1.7.0'
-    testCompile 'net.serenity-bdd:core:1.0.47-SNAPSHOT'
-    testCompile 'net.serenity-bdd:serenity-junit:1.0.47-SNAPSHOT'
-    testCompile 'net.serenity-bdd:serenity-cucumber:1.0.15-SNAPSHOT'
+    testCompile 'net.serenity-bdd:core:1.0.47'
+    testCompile 'net.serenity-bdd:serenity-junit:1.0.47'
+    testCompile 'net.serenity-bdd:serenity-cucumber:1.0.15'
 }
 
 tasks.withType(Test) {

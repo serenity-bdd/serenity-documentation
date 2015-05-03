@@ -111,7 +111,12 @@ public class BuyerSteps {
         assertThat(shipping).isGreaterThan(0.0);
         assertThat(totalCost).isCloseTo(itemTotal + shipping, Offset.offset(0.001));
     }
-   // end::shoppingCartSteps[]
+
+    @Step
+    public void filters_results_to_local_region() {
+        searchResultsPage.filterByLocalRegion();
+    }
+    // end::shoppingCartSteps[]
 
 // tag::tail[]
 }

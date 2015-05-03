@@ -32,23 +32,9 @@ public class CartPage extends PageObject {
 
     public static OrderCostSummary convertToOrderCostSummary(WebElementFacade summaryElement) {
         String name = summaryElement.find(net.serenitybdd.core.annotations.findby.By.tagName("h3")).getText();
-
-        NumberFormat format = NumberFormat.getInstance();
-
-        String itemTotalPrice = summaryElement.findBy(".item-total .currency-value").getText();
-        String shippingPrice = summaryElement.findBy(".shipping .currency-value").getText();
-        String grandTotalPrice = summaryElement.findBy(".grand-total .currency-value").getText();
-
-        double itemTotal = 0;
-        double shipping = 0;
-        double grandTotal = 0;
-        try {
-            itemTotal = format.parse(itemTotalPrice).doubleValue();
-            shipping = format.parse(shippingPrice).doubleValue();
-            grandTotal = format.parse(grandTotalPrice).doubleValue();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        double itemTotal = Double.parseDouble(summaryElement.findBy(".item-total .currency-value").getText());
+        double shipping = Double.parseDouble(summaryElement.findBy(".shipping .currency-value").getText());
+        double grandTotal = Double.parseDouble(summaryElement.findBy(".grand-total .currency-value").getText());
         return new OrderCostSummary(name, itemTotal, shipping, grandTotal);
     }
 

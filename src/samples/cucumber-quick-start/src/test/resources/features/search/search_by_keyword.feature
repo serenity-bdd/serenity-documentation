@@ -15,16 +15,16 @@ Feature: Searching by keyword
 # end::woolscenario[]
 # tag::handmadescenario[]
   Scenario: Should be able to filter search results by item type
-    Given I have searched for items containing 'wool'
+    Given I have searched for items containing 'wool' in my region
     When I filter results by type 'Handmade'
     Then I should only see items containing 'wool' of type 'Handmade'
 
 # end::handmadescenario[]
 # tag::handmadeoutline[]
   Scenario Outline: Filter by different item types
-    Given I have searched for items containing '<material>'
+    Given I have searched for items containing '<material>' in my region
     When I filter results by type '<type>'
-    Then I should only see items containing 'foo' of type '<type>'
+    Then I should only see items containing '<material>' of type '<type>'
   Examples:
     | material | type           |
     | silk     | Handmade       |
@@ -33,7 +33,7 @@ Feature: Searching by keyword
 # end::handmadeoutline[]
 # tag::viewdetails[]
   Scenario: Should be able to view details about a searched item
-    Given I have searched for items containing 'wool'
+    Given I have searched for items containing the word 'wool'
     When I select an item
     Then I should see the corresponding item details
 # end::viewdetails[]

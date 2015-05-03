@@ -50,7 +50,8 @@ public class SearchResultsPage extends PageObject {
 
     public void filterByType(String type) {
         confirmLocaleIfNecessary();
-        withTimeoutOf(2, TimeUnit.SECONDS).find("#filter-marketplace").then(By.partialLinkText(type)).click();
+        withAction().moveToElement($("#filter-marketplace")).perform();
+        $("#filter-marketplace").then(By.partialLinkText(type)).click();
     }
 
     private void confirmLocaleIfNecessary() {
@@ -74,6 +75,11 @@ public class SearchResultsPage extends PageObject {
     public Optional<String> getSelectedType() {
         List<WebElementFacade> selectedTypes = findAll("#filter-marketplace a.selected");
         return (selectedTypes.isEmpty()) ? Optional.absent() : Optional.of(selectedTypes.get(0).getText());
+    }
+
+    public void filterByLocalRegion() {
+        withAction().moveToElement($("#filter-location")).perform();
+        findAll(".geoname-option a").get(1).click();
     }
 // tag::tail[]
 }

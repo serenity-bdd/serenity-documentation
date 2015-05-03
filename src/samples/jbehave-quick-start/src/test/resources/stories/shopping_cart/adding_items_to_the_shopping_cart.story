@@ -9,7 +9,7 @@ Narrative:
   I want to be able to add multiple items to the shopping cart
 
 Scenario: Should see total price including tax
-Given I have searched for items containing 'wool'
+Given I have searched for local items containing 'wool'
 And I have selected an item
 When I add the item to the shopping cart
 Then the item should appear in the cart

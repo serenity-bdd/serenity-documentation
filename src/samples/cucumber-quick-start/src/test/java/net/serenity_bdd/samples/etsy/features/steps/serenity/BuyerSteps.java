@@ -72,10 +72,7 @@ public class BuyerSteps {
 
     @Step
     public void should_see_matching_details(String searchTerm) {
-        String itemName = detailsPage.getItemName();
-        String itemDescription = detailsPage.getItemDescription();
-
-        assertThat((itemName + " " + itemDescription).toLowerCase()).contains(searchTerm);
+        detailsPage.shouldContainText(searchTerm);
     }
 
     @Step
@@ -114,6 +111,10 @@ public class BuyerSteps {
     @Step
     public void adds_current_item_to_shopping_cart() {
         detailsPage.addToCart();
+    }
+
+    public void filters_by_local_region() {
+        searchResultsPage.filterByLocalRegion();
     }
 
 
