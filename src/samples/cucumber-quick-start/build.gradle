@@ -32,7 +32,6 @@ dependencies {
 }
 
 tasks.withType(Test) {
-    systemProperty 'webdriver.driver', System.getProperty('webdriver.driver', 'chrome')
     systemProperty 'tags', System.getProperty('tags', '')
 }
 

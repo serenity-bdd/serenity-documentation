@@ -104,8 +104,11 @@ public class BuyerSteps {
         double totalCost = orderCostSummary.getTotalCost();
 
         assertThat(itemTotal).isEqualTo(selectedItem.getPrice());
-        assertThat(shipping).isGreaterThan(0.0);
-        assertThat(totalCost).isCloseTo(itemTotal + shipping, Offset.offset(0.001));
+
+        if (cartPage.isShowingShippingCosts()) {
+            assertThat(shipping).isGreaterThan(0.0);
+            assertThat(totalCost).isCloseTo(itemTotal + shipping, Offset.offset(0.001));
+        }
     }
 
     @Step

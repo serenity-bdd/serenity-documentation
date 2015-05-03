@@ -42,4 +42,8 @@ public class CartPage extends PageObject {
 
         return new OrderCostSummary(name, itemTotal, shipping, grandTotal);
     }
+
+    public boolean isShowingShippingCosts() {
+        return containsElements(".shipping .currency-value");
+    }
 }
