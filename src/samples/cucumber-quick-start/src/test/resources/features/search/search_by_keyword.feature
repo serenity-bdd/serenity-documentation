@@ -22,7 +22,7 @@ Feature: Searching by keyword
 # end::handmadescenario[]
 # tag::handmadeoutline[]
   Scenario Outline: Filter by different item types
-    Given I have searched for items containing '<material>' in my region
+    Given I have searched for items containing the word '<material>'
     When I filter results by type '<type>'
     Then I should only see items containing '<material>' of type '<type>'
   Examples:
