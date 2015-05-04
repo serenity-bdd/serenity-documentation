@@ -2,19 +2,13 @@ package net.serenity_bdd.samples.etsy.pages;
 
 import net.serenity_bdd.samples.etsy.features.model.ListingItem;
 import net.serenity_bdd.samples.etsy.features.model.OrderCostSummary;
-import net.thucydides.core.annotations.findby.By;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- * Created by john on 12/11/14.
- */
 public class CartPage extends PageObject {
 
     public List<OrderCostSummary> getOrderCostSummaries() {

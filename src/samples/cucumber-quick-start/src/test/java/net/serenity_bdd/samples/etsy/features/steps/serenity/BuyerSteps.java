@@ -29,12 +29,12 @@ public class BuyerSteps {
     @Step                                                       // <2>
     public void opens_etsy_home_page() {
         homePage.open();
+        homePage.dismissLocationMessage();
     }
 
     @Step
     public void searches_for_items_containing(String keywords) {
         homePage.searchFor(keywords);
-        homePage.dismissLocationMessage();
     }
 
     @Step

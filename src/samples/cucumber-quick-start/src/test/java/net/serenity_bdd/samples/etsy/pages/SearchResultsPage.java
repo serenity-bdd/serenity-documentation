@@ -48,18 +48,11 @@ public class SearchResultsPage extends PageObject {
         }
     }
 
+    // tag::withTimeout[]
     public void filterByType(String type) {
-        confirmLocaleIfNecessary();
-        withAction().moveToElement($("#filter-marketplace")).perform();
-        $("#filter-marketplace").then(By.partialLinkText(type)).click();
+        withTimeoutOf(15, TimeUnit.SECONDS).find("#filter-marketplace").then(By.partialLinkText(type)).click();
     }
-
-    private void confirmLocaleIfNecessary() {
-        if (isElementVisible(By.id("locale-nag-confirm")) && isElementVisible(By.id("input[value='Okay']"))) {
-            find(By.cssSelector("input[value='Okay']")).click();
-            waitFor(ExpectedConditions.invisibilityOfElementLocated(By.id("locale-nag-confirm")));
-        }
-    }
+// end::withTimeout[]
 
     public int getItemCount() {
         String resultCount = $(".result-count").getText()
