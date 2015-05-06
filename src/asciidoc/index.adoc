@@ -75,9 +75,12 @@ include::page-objects.adoc[]
 
 == Running Remote tests
 include::remote.adoc[]
+
 == Managing screenshots
+include::screenshots.adoc[]
 
 == Retrying failed tests
+include::retry.adoc[]
 
 == Filtering test executing with tags
 include::tags.adoc[]
@@ -87,6 +90,7 @@ include::tags.adoc[]
 == Customizing the JIRA Workflow
 
 == Integrating with Spring
+include::spring.adoc[]
 
 == Running Serenity tests in parallel batches
 

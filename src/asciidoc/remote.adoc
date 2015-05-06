@@ -50,8 +50,8 @@ mvn verify -Dsaucelabs.target.platform=XP -Dwebdriver.driver=chrome -Dsaucelabs.
 
 The setup for running tests on BrowserStack is similar to the one for SauceLabs. The following system properties are availbale:
 
-- browserstack.url
-- browserstack.os
-- browserstack.os.version
-- browserstack.browser
-- browserstack.browser.version
+* browserstack.url
+* browserstack.os
+* browserstack.os.version
+* browserstack.browser
+* browserstack.browser.version
