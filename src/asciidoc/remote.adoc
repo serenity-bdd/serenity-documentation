@@ -13,21 +13,21 @@ To run your Serenity tests on a Selenium Grid, you need to provide the URL of th
 
 For example, if you were running a Selenium Hub locally on port 4444 (the default),
 
----
+-----
 mvn verify -Dwebdriver.remote.url=http://localhost:4444 -Dwebdriver.remote.driver=chrome -Dwebdriver.remote.os=WINDOWS
----
+-----
 
 If you are running PhantomJS remotely, you may need to specify what port PhantomJS is to run on using the `phantomjs.webdriver` property.
 
----
+-----
 mvn verify -Dphantomjs.webdriver=5555 -Dwebdriver.remote.url=http://seleniumgrid:4444
----
+-----
 
 You can also pass the usual driver-specific capabilities to the remote browser
 
----
+-----
 mvn verify -Dwebdriver.remote.url=http://localhost:4444 -Dwebdriver.remote.driver=chrome -Dwebdriver.remote.os=WINDOWS -Dchrome.switches="--no-sandbox,--ignore-certificate-errors,--homepage=about:blank,--no-first-run"
----
+-----
 
 === Running tests on SauceLabs
 Serenity has special support for running tests on the Cloud-based testing platform http://www.saucelabs.com[SauceLabs]. The general approach is the same as discussed above, but there are a few extra Saucelabs-specific properties:
