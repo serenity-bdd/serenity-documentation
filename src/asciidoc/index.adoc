@@ -3,7 +3,7 @@ John Ferguson Smart <https://twitter.com/wakaleo[@wakaleo]>
 ifdef::project-version[:revnumber: {project-version}]
 :description: Comprehensive Reference manual for the Serenity BDD living documentation tool
 :lang: en
-:keywords: serenity-bdd, bdd, reference, learn, how to 
+:keywords: serenity-bdd, bdd, reference, learn, how to
 :doctype: book
 :compat-mode:
 :page-layout!:
@@ -26,12 +26,12 @@ image::serenity-logo.png[]
 
 Serenity BDD is an open source library that aims to make the idea of http://en.wikipedia.org/wiki/Specification_by_example[living documentation] a reality.
 
-Serenity BDD helps you write cleaner and more maintainable automated acceptance and regression tests faster. Serenity also uses the test results to produce illustrated, narrative reports that document and describe what your application does and how it works. Serenity tells you not only what tests have been executed, but more importantly, what requirements have been tested.  
+Serenity BDD helps you write cleaner and more maintainable automated acceptance and regression tests faster. Serenity also uses the test results to produce illustrated, narrative reports that document and describe what your application does and how it works. Serenity tells you not only what tests have been executed, but more importantly, what requirements have been tested.
 
 One key advantage of using Serenity BDD is that you do not have to invest time in building and maintaining your own automation framework.
 
 Serenity BDD provides strong support for automated web tests using http://docs.seleniumhq.org/projects/webdriver[Selenium 2], though it also works very effectively for non-web tests such as tests that exercise web services or even call application code directly.
-          
+
 The aim of Serenity is to make it easy to quickly write well-structured, maintainable automated acceptance criteria, using your favorite BDD or conventional testing library. You can work with Behavior-Driven-Development tools like Cucumber or JBehave, or simply use JUnit. You can integrate with requirements stored in an external source (such as JIRA or any other test cases mangement tool), or just use a simple directory-based approach to organize your requirements.
 
 Up until November 2014, Serenity went by the name of Thucydides.
@@ -45,7 +45,7 @@ include::basic-concepts.adoc[]
 include::first-steps.adoc[]
 
 == Different Ways of Building your Project
- 
+
 Serenity tries to fit into your current build practices, whether you are using Maven, Gradle or even Ant. We assume you have some background in Java build tools, but if you are curious http://zeroturnaround.com/rebellabs/java-build-tools-maven-gradle-and-ant-plus-the-dsl-vs-xml-debate/[here is a rundown of all three].
 
 === Building Serenity projects in Gradle
@@ -59,9 +59,6 @@ include::maven.adoc[]
 == Writing Serenity Step Libraries
 include::steps.adoc[]
 
-== Writing Serenity Page Objects
-include::page-objects.adoc[]
-
 == Serenity with JUnit
 include::junit.adoc[]
 
@@ -71,10 +68,13 @@ include::jbehave.adoc[]
 == Serenity with Cucumber
 include::cucumber.adoc[]
 
-== Working with Serenity Page Objects
+== Writing Serenity Page Objects
+include::page-objects.adoc[]
 
 == Advanced WebDriver integration
 
+== Running Remote tests
+include::remote.adoc[]
 == Managing screenshots
 
 == Retrying failed tests
@@ -98,15 +98,13 @@ include::tags.adoc[]
 
 == License and Copyright
 
-Copyright 2011-2014 John Ferguson Smart.
+Copyright 2011-2015 John Ferguson Smart.
 
 Online version published by Wakaleo Consulting.
 
-Serenity-BDD is released under the http://www.apache.org/licenses/LICENSE-2.0.html[Apache 2] open source license. 
+Serenity-BDD is released under the http://www.apache.org/licenses/LICENSE-2.0.html[Apache 2] open source license.
 
 This reference manual is licensed under a Creative Commons
 Attribution-Noncommercial-No Derivative Works 3.0 United States
 license. For more information about this license, see
 http://creativecommons.org/licenses/by-nc-nd/3.0/us/[creativecommons.org/licenses/by-nc-nd/3.0/us/].
-
-

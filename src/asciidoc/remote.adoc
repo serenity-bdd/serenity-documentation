@@ -1,0 +1,57 @@
+You can also use Serenity to run your WebDriver tests on a remote machine, such as a Selenium Grid or a remote service such as provided by http://www.saucelabs.com[SauceLabs] or https://www.browserstack.com[BrowserStack]. This allows you to run your web tests against a variety of different browsers and operating systems, and also benefit from faster test execution when running the tests in parallel.
+
+In all cases, you tell Serenity to run tests remotely by using the Selenium Remote driver,
+
+=== Running tests against a Selenium Grid server
+
+https://code.google.com/p/selenium/wiki/Grid2[Selenium Grid]] allows you to run tests on a number of remote machines. It is open source, and relatively easy to set up and configure.
+
+To run your Serenity tests on a Selenium Grid, you need to provide the URL of the Selenium Hub using the `webdriver.remote.url` property. You may also want to provide more information about how and where you want to run your tests, using the following properties:
+`webdriver.remote.driver`:: What driver to use remotely ('firefox','chrome','iexplore' etc.)
+`webdriver.remote.browser.version`:: What version of the remote browser to use
+`webdriver.remote.os`:: What operating system the tests should be run on.
+
+For example, if you were running a Selenium Hub locally on port 4444 (the default),
+
+---
+mvn verify -Dwebdriver.remote.url=http://localhost:4444 -Dwebdriver.remote.driver=chrome -Dwebdriver.remote.os=WINDOWS
+---
+
+If you are running PhantomJS remotely, you may need to specify what port PhantomJS is to run on using the `phantomjs.webdriver` property.
+
+---
+mvn verify -Dphantomjs.webdriver=5555 -Dwebdriver.remote.url=http://seleniumgrid:4444
+---
+
+You can also pass the usual driver-specific capabilities to the remote browser
+
+---
+mvn verify -Dwebdriver.remote.url=http://localhost:4444 -Dwebdriver.remote.driver=chrome -Dwebdriver.remote.os=WINDOWS -Dchrome.switches="--no-sandbox,--ignore-certificate-errors,--homepage=about:blank,--no-first-run"
+---
+
+=== Running tests on SauceLabs
+Serenity has special support for running tests on the Cloud-based testing platform http://www.saucelabs.com[SauceLabs]. The general approach is the same as discussed above, but there are a few extra Saucelabs-specific properties:
+
+`saucelabs.url`:: Usually of the form http://<my_id>:<my_API Key>@ondemand.saucelabs.com:80/wd/hu
+`saucelabs.target.platform`:: See https://saucelabs.com/platforms/
+`saucelabs.driver.version`:: See https://saucelabs.com/platforms/
+`saucelabs.test.name`:: The name of the test as it will appear on the Saucelabs site
+`saucelabs.access.key`:: Your Saucelabs API key, optional, used to generate links to the Saucelabs results
+`saucelabs.user.id`:: Your Saucelabs User ID, optional, used to generate links to the Saucelabs results
+`saucelabs.record.screenshots`::Saucelabs records screenshots as well as videos by default. Since Serenity also records screenshots, this feature is disabled by default. It can be reactivated using this system property
+`saucelabs.implicit.wait`:: Override the default implicit timeout value for the Saucelabs driver
+
+An example of running tests on Saucelabs is shown here:
+---
+mvn verify -Dsaucelabs.target.platform=XP -Dwebdriver.driver=chrome -Dsaucelabs.driver.version=26 -Dsaucelabs.url=http://<my_id>:<my_API Key>@ondemand.saucelabs.com:80/wd/hub -Dsaucelabs.access.key=<My_API_Key> -Dsaucelabs.user.id=<my_id> -Dwebdriver.base.url=https://www.website.com -Dmaven.test.failure.ignore=true
+---
+
+=== Running tests on BrowserStack
+
+The setup for running tests on BrowserStack is similar to the one for SauceLabs. The following system properties are availbale:
+
+- browserstack.url
+- browserstack.os
+- browserstack.os.version
+- browserstack.browser
+- browserstack.browser.version

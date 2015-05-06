@@ -34,7 +34,7 @@ The equivalent in Gradle is:
 include::{srcdir}/jbehave-quick-start/build.gradle[tags=dependencies]
 ----
 
-New versions come out regularly, so be sure to check the Maven Central repository (http://search.maven.org) to know the latest version numbers for each dependency. 
+New versions come out regularly, so be sure to check the Maven Central repository (http://search.maven.org) to know the latest version numbers for each dependency.
 
 === Setting up your project and organizing your directory structure
 
@@ -57,7 +57,7 @@ Placing all of your JBehave stories in one directory does not scale well; it is 
 
 By default, Serenity supports a simple directory-based convention for organizing your requirements. The standard structure uses three levels: capabilities, features and stories. A story is represented by a JBehave .story file so two directory levels underneath the `stories` directory will do the trick. An example of this structure is shown below:
 
-----------------------  
+----------------------
 + src
   + test
     + resources
@@ -68,7 +68,7 @@ By default, Serenity supports a simple directory-based convention for organizing
             - dig_up_organic_potatoes.story [another story]
           + grow_sweet_potatoes             [another feature]
           ...
-----------------------  
+----------------------
 
 If you prefer another hierarchy, you can use the `serenity.requirement.types` system property to override the default convention. For example. if you prefer to organize your requirements in a hierachy consisting of epics, theme and stories, you could set the `serenity.requirement.types` property to 'epic,theme' (the story level is represented by the .story file).
 
@@ -84,7 +84,7 @@ As a financial adviser
 I want to be able to locate a customer using a variety of different criteria
 ---------------------
 
-However to make the reports more useful still, it is a good idea to document not only the stories, but to also do the same for your higher level requirements. In Serenity, you can do this by placing a text file called `narrative.txt` in each of the requirements directories you want to document (see below). These files follow the JBehave convention for writing narratives, with an optional title on the first line, followed by a narrative section started by the keyword `Narrative:`. For example, for a search feature for an online classifieds web site, you might have a description along the following lines: 
+However to make the reports more useful still, it is a good idea to document not only the stories, but to also do the same for your higher level requirements. In Serenity, you can do this by placing a text file called `narrative.txt` in each of the requirements directories you want to document (see below). These files follow the JBehave convention for writing narratives, with an optional title on the first line, followed by a narrative section started by the keyword `Narrative:`. For example, for a search feature for an online classifieds web site, you might have a description along the following lines:
 
 ---------------------
 Search for online ads
@@ -92,11 +92,11 @@ Search for online ads
 Narrative:
 In order to increase sales of advertised articles
 As a seller
-I want potential buyers to be able to display only the ads for 
+I want potential buyers to be able to display only the ads for
 articles that they might be interested in purchasing.
 ---------------------
 
-When you run these stories (without having implemented any actual tests), you will get a report containing lots of pending tests, but more interestingly, a list of the requirements that need to be implemented, even if there are no tests or stories associated with them yet. This makes it easier to plan an iteration: you will initially have a set of requirements with only a few tests, but as the iteration moves forward, you will typically see the requirements fill out with pending and passing acceptance criteria as work progresses. 
+When you run these stories (without having implemented any actual tests), you will get a report containing lots of pending tests, but more interestingly, a list of the requirements that need to be implemented, even if there are no tests or stories associated with them yet. This makes it easier to plan an iteration: you will initially have a set of requirements with only a few tests, but as the iteration moves forward, you will typically see the requirements fill out with pending and passing acceptance criteria as work progresses.
 
 [[jbehave-requirements-report]]
 .You can see the requirements that you need to implement n the requirements report
@@ -151,9 +151,6 @@ You can use the JBehave Meta tag to provide additional information to Serenity a
 
 [source,gherkin]
 ----
-
-[source,gherkin]
-----
 include::{srcdir}/jbehave-quick-start/src/test/resources/stories/shopping_cart/adding_items_to_the_shopping_cart.story[]
 ----
 
@@ -194,7 +191,7 @@ Then I should get a successful result
 
 ==== Implementing the tests
 
-If you want your tests to actually do anything, you will also need classes in which you place your JBehave step implementations. If you place these in any package at or below the package of your main JUnit test, JBehave will find them with no extra configuration. 
+If you want your tests to actually do anything, you will also need classes in which you place your JBehave step implementations. If you place these in any package at or below the package of your main JUnit test, JBehave will find them with no extra configuration.
 
 Serenity makes no distinction between the JBehave-style @Given, @When and @Then annotations, and the Serenity-style @Step annotations: both will appear in the test reports. However you need to start with the  @Given, @When and @Then-annotated methods so that JBehave can find the correct methods to call for your stories. A method annotated with @Given, @When or @Then can call Serenity @Step methods, or call page objects directly (though the extra level of abstraction provided by the @Step methods tends to make the tests more reusable and maintainable on larger projects).
 
@@ -259,7 +256,6 @@ import net.serenitybdd.jbehave.SerenityStories;
 public class JBehaveTestCase extends SerenityStories {
     public JBehaveTestCase() {
       runSerenity().inASingleSession();
-    } 
+    }
 }
 ----
-

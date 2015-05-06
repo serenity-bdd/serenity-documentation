@@ -48,7 +48,7 @@ These tests would initially fail, because the `FrequentFlyer.flies()` method has
 $ gradle clean test aggregate
 ----
 
-This will produce a report like the one below in the `target/site/thucydides` directory.
+This will produce a report like the one below in the `target/site/serenity` directory.
 
 [[fig-test-report]]
 .The `@Step` methods appear as lines in the test report
