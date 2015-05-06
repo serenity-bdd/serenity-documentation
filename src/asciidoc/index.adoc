@@ -72,6 +72,7 @@ include::cucumber.adoc[]
 include::page-objects.adoc[]
 
 == Advanced WebDriver integration
+include::advanced-webdriver.adoc[]
 
 == Running Remote tests
 include::remote.adoc[]
@@ -98,7 +99,8 @@ include::spring.adoc[]
 
 = Appendicies
 
-== Serenity System Properties reference
+== Serenity System Properties and Configuration
+include::system-props.adoc[]
 
 == License and Copyright
 
