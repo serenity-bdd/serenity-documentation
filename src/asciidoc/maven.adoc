@@ -27,6 +27,8 @@ Next, you need to add and configure the `serenity-maven-plugin`.Pt. 5 A useful t
 mvn verify
 ----
 
-This will run the tests and generate an aggregate report in the `target/site/thucydides` directory.
+This will run the tests and generate an aggregate report in the `target/site/serenity` directory.
 
 Like the surefire plugin the `maven-failsafe-plugin` starts a new JVM instance to run the tests. For this reason, if you need to pass system parameters to the tests (for example, the `webdriver.driver` property shown here), you need to use the `<systemProperties>` section
+
+Tip: It is possible to use a Junit Run Configuration to run a Serenity Testrunner. This will not generate an aggregate report. If you find your index.html file is missing, check that you are using a Maven build Run Configuration with goal verify to run your test and get the aggregate report. 
