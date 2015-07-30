@@ -14,7 +14,7 @@ The full list is shown here:
 
 *webdriver.remote.url*:: The URL to be used for remote drivers (including a selenium grid hub or SauceLabs URL)
 
-*phantomjs.webdriver.port*:: What port to run PhantomJS on (used in conjunction with webdriver.remote.url to register with a Selenium hub, e.g. -Dphantomjs.webdriver=5555 -Dwebdriver.remote.url=http://localhost:4444
+*phantomjs.webdriver.port*:: What port to run PhantomJS on (used in conjunction with webdriver.remote.url to register with a Selenium hub, e.g. -Dphantomjs.webdriver=5555 -Dwebdriver.remote.url=http://localhost:4444/wd/hub
 
 *webdriver.remote.driver*:: The driver to be used for remote drivers
 
