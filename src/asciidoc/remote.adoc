@@ -4,7 +4,7 @@ In all cases, you tell Serenity to run tests remotely by using the Selenium Remo
 
 === Running tests against a Selenium Grid server
 
-https://code.google.com/p/selenium/wiki/Grid2[Selenium Grid]] allows you to run tests on a number of remote machines. It is open source, and relatively easy to set up and configure.
+https://code.google.com/p/selenium/wiki/Grid2[Selenium Grid] allows you to run tests on a number of remote machines. It is open source, and relatively easy to set up and configure.
 
 To run your Serenity tests on a Selenium Grid, you need to provide the URL of the Selenium Hub using the `webdriver.remote.url` property. You may also want to provide more information about how and where you want to run your tests, using the following properties:
 `webdriver.remote.driver`:: What driver to use remotely ('firefox','chrome','iexplore' etc.)
