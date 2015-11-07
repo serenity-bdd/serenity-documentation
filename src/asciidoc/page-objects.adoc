@@ -485,7 +485,7 @@ resetImplicitTimeout()
 
 See http://docs.seleniumhq.org/docs/04_webdriver_advanced.jsp#implicit-waits[Selenium Documentation] for more details on how the WebDriver implicit waits work.
 
-====Explicit Timeouts
+==== Explicit Timeouts
 You can also wait until an element is in a particular state. For example, we could wait until a field becomes visible:
 
 ----
