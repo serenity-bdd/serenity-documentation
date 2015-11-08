@@ -1,1 +1,1 @@
-Sometimes it is required to retry a failed test. This can be achieved by setting the system property +max.retries+ to the number of times you want failed tests to be retried.
+Sometimes it is required to retry a failed test. This can be achieved by setting the system property +max.retries+ to the number of times you want failed tests to be retried. If +max.retries+ provided, all method tests will be executed until first successful run, but not more than 1 + +max.retries+ times.
