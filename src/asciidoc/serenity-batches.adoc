@@ -13,7 +13,7 @@ To split tests to batches you need configure serenity run some tests and skip ot
 
 For configuration batches three parameters are used:
 
-*serenity.batch.strategy*:: Optional parameter for choosing batch creating strategy. Possible values are `DIVIDE_EQUALLY` and 'DIVIDE_BY_TEST_COUNT'. Default value is `DIVIDE_EQUALLY`. Instead of it can be used redundant `thucydides.batch.strategy`, but it strongly not recommended
+*serenity.batch.strategy*:: Optional parameter for choosing batch creating strategy. Possible values are `DIVIDE_EQUALLY` and `DIVIDE_BY_TEST_COUNT`. Default value is `DIVIDE_EQUALLY`. Instead of it can be used redundant `thucydides.batch.strategy`, but it strongly not recommended
 
 *serenity.batch.size*:: This parameter should be the same for each batch, and should more than 0. This is amount of all bathes for current sources, and synonym of 'serenity.batch.count'. Instead of it can be used redundant `thucydides.batch.size`, but it strongly not recommended
 
@@ -21,13 +21,64 @@ For configuration batches three parameters are used:
 
 *serenity.batch.number*:: This parameter should be different for each batch, and should be less or equal `serenity.batch.size` and more than 0. This is number of bath for execution in current build. Instead of it can be used redundant `thucydides.batch.number`, but it strongly not recommended
 
-idea of spliting tests to batches. Exiting different strategies
+Those parameters can be populated as system parameters of in serenity.properties file. Meaning of parameters size/number depends on `serenity.batch.strategy` value. For explanation strategies will be used tests with next structure (full sources available under https://github.com/serenity-bdd/serenity-demos[serenity-demos] repository):
 
-==== Divide equally batch strategy
-description and example of using divide tests to batches with DIVIDE_EQUALLY strategy
+[source,java]
+----
+...
+include::{srcdir}/junit-batch-configuration-example/src/test/java/net/serenity/samples/batch/junit/features/registration/LoginUserTest.java[]
+----
 
-==== Divide by test count strategy
-description and example of using divide tests to batches with DIVIDE_BY_TEST_COUNT strategy
+[source,java]
+----
+...
+include::{srcdir}/junit-batch-configuration-example/src/test/java/net/serenity/samples/batch/junit/features/registration/RegisterUserTest.java[]
+----
+
+[source,java]
+----
+...
+include::{srcdir}/junit-batch-configuration-example/src/test/java/net/serenity/samples/batch/junit/features/registration/UserActivationProcessTest.java[]
+----
+
+Screenshot for aggregation report created after executing all tests without enabling batches (`serenity.batch.count` and `serenity.batch.number` and `serenity.batch.size` aren't provided or equal to 0). It contains all Tests from above classes:
+
+[[fig-serenity-report-for-bathes-example-project]]
+.Serenity report for bathes example project with turned off batching
+image::junit-batches-all-test-cases.png[]
+
+
+==== Divide tests to batches using DIVIDE_EQUALLY batch strategy
+
+This strategy enabled by default. It allows split all test classes among `serenity.batch.size` batches. Value `serenity.batch.number` will refer to some batch and only tests from Test classes from this batch will be executed.When test phase will be started Serenity will check if `serenity.batch.size > 0` and `serenity.batch.number > 0`, and if so it will split tests classes to `serenity.batch.size` batches and run batch with number equal to `serenity.batch.number`.
+All classes will be included to bathes one by one. So if size=3 and we have classes T1, T2, T3, T4, T5 - first batch will contains {T1,T4}, second - {T2,T5}, third - {T3}.
+
+For example to split Test classes (`LoginUserTest`, `RegisterUserTest`, `UserActivationProcessTest`) into two bathes and execute first batch we should provide `serenity.batch.size = 2`, `serenity.batch.number = 1`. Serenity report will be next:
+
+[[fig-serenity-report-for-equally-batch-strategy-number-1]]
+.Serenity report for batch number 1 for equally strategy
+image::serenity-report-for-equally-batch-strategy-number-1.png[]
+
+To run same build for second batch, we need provide `serenity.batch.size = 2`, `serenity.batch.number = 2`. In this case Serenity report will be:
+
+[[fig-serenity-report-for-equally-batch-strategy-number-2]]
+.Serenity report for batch number 2 for equally strategy
+image::serenity-report-for-equally-batch-strategy-number-2.png[]
+
+
+==== Divide tests to batches using DIVIDE_BY_TEST_COUNT strategy
+This strategy will be enabled if during test phase set `serenity.batch.strategy = DIVIDE_BY_TEST_COUNT`.It allows split all test classes among `serenity.batch.size` batches. Value `serenity.batch.number` will refer to some batch and only tests from Test classes from this batch will be executed.
+When test phase will be started Serenity will check if `serenity.batch.size > 0` and `serenity.batch.number > 0`, and if so it will split tests classes to `serenity.batch.size` batches and run batch with number equal to `serenity.batch.number`.
+All classes will be included to bathes according to numbers of testCases in this classes. This strategy allows split tests between batches optimally. In our case `LoginUserTest` contains 4 tests, `RegisterUserTest` contains 2 tests, `UserActivationProcessTest` contains 2 tests, if we try to split this tests to 2  bathes using this strategy - both batch will contain 4 tests, first one from `LoginUserTest`, second one from `UserActivationProcessTest` and `RegisterUserTest`. It will look like:
+
+[[fig-serenity-report-for-divide-by-test-count-batch-strategy-number-1]]
+.Serenity report for batch number 1 for DIVIDE_BY_TEST_COUNT strategy
+image::serenity-report-for-divide-by-test-count-batch-strategy-number-1.png[]
+
+[[fig-serenity-report-for-divide-by-test-count-batch-strategy-number-2]]
+.Serenity report for batch number 2 for DIVIDE_BY_TEST_COUNT strategy
+image::serenity-report-for-divide-by-test-count-batch-strategy-number-2.png[]
+
 
 === Configuration parallel executing with Jenkins
 This approach is easy to set up on Jenkins using a multi-configuration build. In the following screenshot, we are running a multi-configuration build to run web tests across three batches. We use a single user-defined parameter (BATCH_NUMBER) to define the batch being run, passing this parameter into the Maven build job properties we discussed above.
