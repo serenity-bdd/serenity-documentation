@@ -94,6 +94,7 @@ include::tags.adoc[]
 include::spring.adoc[]
 
 == Running Serenity tests in parallel batches
+include::serenity-batches.adoc[]
 
 == Importing test results from external sources
 
