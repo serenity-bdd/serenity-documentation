@@ -11,6 +11,8 @@ The property +serenity.take.screenshots+ can be set to configure how often the s
 
 +FOR_FAILURES+:: Saves screenshots only for failing steps. This can save disk space and speed up the tests a little. It is very useful for data-driven testing.
 
++DISABLED+:: Doesn't save screenshots for any steps.
+
 === Using annotations to control screenshots
 An even more granular level of control is possible using annotations. You can annotate any test or step method (or any method used by a step or test) with the +@Screenshots+ annotation to override the number of screenshots taken within this step (or sub-step). Some sample uses are shown here:
 
@@ -26,6 +28,10 @@ public void should_take_screenshots_for_each_step_in_this_test() {…}
 @Test
 @Screenshots(forEachAction=true)
 public void should_take_screenshots_for_each_action_in_this_test() {…}
+
+@Test
+@Screenshots(disabled=true)
+public void should_not_take_screenshots_for_any_action_in_this_test(() {…}
 ------------------
 
 
