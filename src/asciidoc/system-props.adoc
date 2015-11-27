@@ -220,7 +220,7 @@ public void aTestUsingMyCustomProfile() {...}
 
 === Colors in console output
 
-There is feature for colorful console output during executing serenity tests. To enable it you should provide variable +serenity.console.colors = true+, by default it is turned off.
+There is feature for colorful console output during executing serenity tests. To enable it you should provide variable +serenity.console.colors = true+, by default it is turned off. This feature can cause errors if it is enabled for builds under Jenkins.
 Possible values are:
 
  - true
