@@ -162,7 +162,7 @@ A complete reference to Firefox's configuration settings is given http://kb.mozi
 
 *serenity.console.headings*:: Write the console headings using ascii-art ("ascii", default value) or in normal text ("normal")
 
-*tags*:: Comma separated list of tags. If provided, only jUnit classes and/or methods with tags in this list will be executed. For example,
+*tags*:: Comma separated list of tags. If provided, only JUnit classes and/or methods with tags in this list will be executed. For example,
 
 ---------------
 mvn verify -Dtags="iteration:I1"

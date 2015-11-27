@@ -1,22 +1,24 @@
-In Serenity, tests are broken down into reusable steps. An important principle behind Serenity is the idea that it is easier to maintain a test that uses several layers of abstraction to hide the complexity behind different parts of a test. 
+In Serenity, tests are broken down into reusable steps. An important principle behind Serenity is the idea that it is easier to maintain a test that uses several layers of abstraction to hide the complexity behind different parts of a test.
 
 In an automated web test, test steps represent the level of abstraction between your Page Objects (which are designed in terms of actions that you perform on a given page) and higher-level stories (sequences of more business-focused actions that illustrate how a given user story has been implemented). If your automated test is not UI-oriented (for example, if it calls a web service), steps orchestrate other more technical components such as REST clients. Steps can contain other steps, and are included in the Serenity reports. Whenever a step is executed, a screenshot is stored and displayed in the report.
 
-For example, consider the following tests:
-
-[source,java]
-include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/features/earning_points/WhenEarningFrequentFlyerStatus.java[tags=header;membersShouldStartWithBronzeStatus;earnSilverAfter1000Points;endTest]
-
-The first test verifies that when a traveller first enrolls in the Frequent Flyer Member programme, then she will start out with Bronze status. This test is broken into two steps:
+For example, the first test in the following sample is broken into two steps:
 
   . Create a new Frequent Flyer member
   . Check that the member has a status of Bronze
 
-The second test verifies that a new Frequent Flyer member will earn Silver status after travelling 10,000 km. This test is also broken into steps:
+The second is broken into three steps:
+
+Verify passenger can be enrolled into Frequent Flyer Member programme and gets upgraded to Silver membership status after flying 10K km
 
   . Create a new Frequent Flyer member
   . Make the member fly 10000 km
   . Check that the member has a status of Silver
+
+[source,java]
+----
+include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/features/earning_points/WhenEarningFrequentFlyerStatus.java[tags=header;membersShouldStartWithBronzeStatus;earnSilverAfter1000Points;endTest]
+----
 
 Notice how the second test reuses step methods used in the first to perform a slightly different test. This is a typical example of the way we reuse steps in similar tests, in order to avoid duplicated code and make the code easier to maintain.
 
@@ -28,15 +30,15 @@ Step methods are annotated with the `@Step` annotation:
 ----
 include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/steps/TravellerStatusSteps.java[tags=testcase]
 ----
-<1> Step classes can extend any class, or none
+<1> Steps classes can extend any class, or none
 <2> The `@Step` annotation denotes a Serenity step method
 <3> The `@Step` can take a String value to override the default step name
 
 By default, the name of a step is derived from the method name. If you want something more readable, you can add a String parameter to the `@Step` annotation. If you put references to variables in the string (`{0}`, `{1}` etc.), Serenity will inject the method parameters into the string. So suppose you define a `@Step` method like this:
 [source,java]
 ----
-@Step("The traveller should have {0} status") 
-public void traveller_should_have_a_status_of(Status expectedStatus) { 
+@Step("The traveller should have {0} status")
+public void traveller_should_have_a_status_of(Status expectedStatus) {
     ...
 }
 ----
@@ -85,6 +87,6 @@ include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/
 <2> Retrieve the session variable in another step
 
 
-Note that step methods can take parameters. The parameters that are passed into a step method will be recorded and reported in the Serenity reports, making this an excellent technique to make your tests more maintainable and more modular. 
+Note that step methods can take parameters. The parameters that are passed into a step method will be recorded and reported in the Serenity reports, making this an excellent technique to make your tests more maintainable and more modular.
 
-Steps can also call other steps, which is very useful for more complicated test scenarios. 
+Steps can also call other steps, which is very useful for more complicated test scenarios.
