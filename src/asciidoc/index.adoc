@@ -59,14 +59,17 @@ include::maven.adoc[]
 == Writing Serenity Step Libraries
 include::steps.adoc[]
 
-== Serenity with JUnit
-include::junit.adoc[]
+== Serenity with different BDD Frameworks
+Serenity provide integration with Behavior-Driven-Development tools like Cucumber or JBehave.
 
-== Serenity with JBehave
+=== Serenity with JBehave
 include::jbehave.adoc[]
 
-== Serenity with Cucumber
+=== Serenity with Cucumber
 include::cucumber.adoc[]
+
+== Serenity with JUnit
+include::junit.adoc[]
 
 == Writing Serenity Page Objects
 include::page-objects.adoc[]

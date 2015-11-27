@@ -2,7 +2,7 @@ In this section we will look at how to run your Serenity tests using JUnit in mo
 
 === Basic JUnit integration
 
-We have already seen a simple example of a JUnit Serenity test shown earlier on:
+We have already seen a simple example of a JUnit Serenity test shown earlier on (<<First Steps with Serenity BDD>>):
 
 [source,java]
 ----
@@ -27,9 +27,9 @@ include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/
 
 === Serenity WebDriver support in JUnit
 
-Serenity BDD also provides strong support for Selenium WebDriver and the Page Objects model. We will look at these features in detail later on. But while we are on the topic of JUNit integration, let's look at how this integration fits in with a JUnit Serenity test.
+Serenity BDD also provides strong support for Selenium WebDriver and the Page Objects model. We will look at these features in detail later on. But while we are on the topic of JUnit integration, let's look at how this integration fits in with a JUnit Serenity test.
 
-Serenity will manage your WebDriver driver, including opening the appropriate driver at the start of each test, and shutting it down when the test is finished. You just need to provide a 'WebDriver' variable in your test, as shown here:
+Serenity will manage your WebDriver instance, including opening the appropriate driver at the start of each test, and shutting it down when the test is finished. You just need to provide a 'WebDriver' variable in your test, as shown here:
 
 [source,java]
 ----
@@ -51,9 +51,12 @@ You can also get Serenity to open the browser at the start of the tests, and lea
 
 === Serenity PageObjects in JUnit
 
-The WebDriver test in the previous example will work, but it is poorly written for a number of reasons. In particular, it exposes too much WebDriver-specific details about how the test is executed, which as a result obscures the intent of the test. It will also be harder to maintain, as it contains WebDriver logic that would be repeated and maintained in other tests.
+The WebDriver test in the previous example will work, but it is poorly written for a number of reasons as below:
 
-A better approach is to hide the WebDriver logic in "Page Objects". Serenity provides excellent built-in support for Page Objects, as we will learn in the chapter dedicated to Serenity WebDriver support. 
+  - In particular, it exposes too much WebDriver-specific details about how the test is executed, which as a result obscures the intent of the test
+  - It will also be harder to maintain, as it contains WebDriver logic that would be repeated and maintained in other tests
+
+A better approach is to hide the WebDriver logic in "Page Objects". Serenity provides excellent built-in support for Page Objects, as we will learn in the chapter dedicated to Serenity WebDriver support (<<Writing Serenity Page Objects>>).
 
 The JUnit Serenity integration provides some special support for Serenity Page Objects. In particular, Serenity will automatically instantiate any PageObject fields in your JUnit test. For example, the following Page Object would perform the same operations as the test shown above:
 
@@ -62,7 +65,7 @@ The JUnit Serenity integration provides some special support for Serenity Page O
 include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/pages/GooglePage.java[]
 ----
 
-Now, when you declare a field of type 'GooglePage' in your test, Serenity will instatiate it for you:	
+Now, when you declare a field of type 'GooglePage' in your test, Serenity will instatiate it for you:
 
 [source,java]
 ----
@@ -93,13 +96,13 @@ Sometimes it can be useful to define a pre-condition for a test. For example, su
 include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/features/managing_member_accounts/WhenUpdatingMemberAccounts.java[tags=testcase]
 ----
 
-The assumption is encapsulated in the `assuming_the_mainframe_is_available()` method:  
+The assumption is encapsulated in the `assuming_the_mainframe_is_available()` method:
 
 [source,java]
 ----
 include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/steps/TravellerHistorySteps.java[tags=header;assumptionSteps]
 ----
-<1> Ensure that the mainframe is available 
+<1> Ensure that the mainframe is available
 <2> Do whatever needs to be done to check the availability of the mainframe
 
 The `assuming_the_mainframe_is_available()` method uses the JUnit Assume class, which behaves in a very similar way to Hamcrest matchers. If this check fails, the test will not be executed, and the test result will be reported as 'Ignored'.
@@ -185,7 +188,7 @@ The test runner will create a new instance of this class for each row of data in
 
 There are a few points to note. The columns in the CSV files are converted to camel-case property names (so for example `KILOMETERS TRAVELLED` becomes `kilometersTravelled`). All of the fields should be strings or primitive types.
 
-If some of the field values contain commas, you will need to use a different separator. You can use the separator attribute of the `@UseTestDataFrom` annotation to specify an alternative separator. 
+If some of the field values contain commas, you will need to use a different separator. You can use the separator attribute of the `@UseTestDataFrom` annotation to specify an alternative separator.
 
 [source,java]
 ----
@@ -223,7 +226,7 @@ For this to work properly, you need to tell Serenity the root package that you a
 include::{srcdir}/junit-quick-start/thucydides.properties[]
 ----
 
-The way Serenity will report your requirements depends on the depth of the directory structure you use to store your requirements. By default, if you group your test cases in a single level of directories (as in the example above), Serenity will treat each directory as a `feature`. If there are two levels, the first level directories will be considered `capabilities`, and the second `features`. 
+The way Serenity will report your requirements depends on the depth of the directory structure you use to store your requirements. By default, if you group your test cases in a single level of directories (as in the example above), Serenity will treat each directory as a `feature`. If there are two levels, the first level directories will be considered `capabilities`, and the second `features`.
 
 You can define your own way of naming your requirements using the `serenity.requirement.types` property. For example, if you wanted top-level directories to represent "themes", and have a second level "epics" that actually contains the test cases, you could set this property to the following value:
 
