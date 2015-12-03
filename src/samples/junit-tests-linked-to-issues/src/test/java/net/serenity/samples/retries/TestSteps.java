@@ -1,10 +1,3 @@
-package net.serenity.samples.retries;
-
-import net.thucydides.core.annotations.Step;
-import org.junit.Assert;
-
-import java.util.concurrent.ThreadLocalRandom;
-
 public class TestSteps {
 
     @Step

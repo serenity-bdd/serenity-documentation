@@ -1,13 +1,3 @@
-package net.serenity.samples.retries;
-
-import net.serenitybdd.junit.runners.SerenityRunner;
-import net.thucydides.core.annotations.Issue;
-import net.thucydides.core.annotations.Issues;
-import net.thucydides.core.annotations.Steps;
-import net.thucydides.core.annotations.Title;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 @RunWith(SerenityRunner.class)
 public class SampleTest {
 

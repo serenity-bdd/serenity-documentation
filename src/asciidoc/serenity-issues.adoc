@@ -2,7 +2,8 @@ Serenity BDD allows create links between stories/tests and issues. Sometimes it 
 
 Configuration of links is made by annotations and property `serenity.issue.tracker.url` that can be provided in serenity.params or using system variables. The URL provided by `serenity.issue.tracker.url` is used as "body of link", and issue name provided in annotations - last part of this link.
 
-Generally in annotations you should use name of issues according to mask #(NAME)(-)(NUMBER), link will be created to (NAME)(-)(NUMBER),for example if you will use #MP-14, you will find link to http./../905, if you will use #905 you will find link to http./../905 and so on.
+Generally in annotations you should use name of issues according to mask #(NAME)(-)(NUMBER), link will be created to (NAME)(-)(NUMBER), below you can find example.
+
 ==== Linking with issues for JUnit
 When tests created with JUnit you can use annotations `@Issue`, `@Issues`, `@Title`.
 
@@ -30,7 +31,7 @@ include::{srcdir}/junit-tests-linked-to-issues/src/test/java/net/serenity/sample
 In this case report will look like:
 
 [[jbehave-requirements-report]]
-.Here you can see report with test cases linked to issues
+.Report with test cases linked to issues
 image::tests_with_references_to_issues.png[]
 
 Also, all references clickable and will be :
