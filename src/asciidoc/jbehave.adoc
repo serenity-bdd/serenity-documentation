@@ -154,7 +154,7 @@ You can use the JBehave Meta tag to provide additional information to Serenity a
 include::{srcdir}/jbehave-quick-start/src/test/resources/stories/shopping_cart/adding_items_to_the_shopping_cart.story[]
 ----
 
-You can also use the @issue annotation to link scenarios with issues, as illustrated here:
+You can also use the @issue annotation to link scenarios with issues, more information can be found  under <<Linking scenarios/tests with issues>>, as illustrated here:
 
 [source,gherkin]
 ----

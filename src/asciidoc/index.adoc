@@ -92,7 +92,7 @@ include::tags.adoc[]
 == Integration with Issue & Project Tracking systems
 Serenity BDD provides different ways of integration with issue and project tracking systems. Most simple way - including references to issues in reports of tests. Also Serenity BDD allow create two way JIRA integrations.
 
-=== Issue Tracking systems
+=== Linking scenarios/tests with issues
 include::serenity-issues.adoc[]
 
 == Integrating with JIRA

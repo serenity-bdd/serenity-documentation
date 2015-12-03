@@ -1,2 +1,30 @@
-Serenity BDD allows create links in reports to issues just from code. Sometimes it is useful for complex development workflow, and for organizing self-documented tests.
+Serenity BDD allows create links between stories/tests and issues. Sometimes it is useful for complex development workflow, and for organizing self-documented tests.
+
+Configuration of links made by annotations.Generally in annotations you should use name of issues according to mask #(NAME)(-)(NUMBER), link will be created to (NAME)(-)(NUMBER),for example if you will use #MP-14, you will find link to http./../905, if you will use #905 you will find link to http./../905 and so on.
+
+For such configuration with JUnit you can you can use annotations `@Issue`, `@Issues`, `@Title`.
+
+
+
+
+More information about `@Title` can be find under <<Human-readable method titles>>.
+
+
+You can also use the `@issue` annotation to link scenarios with issues when using JBehave, as illustrated here:
+[source,gherkin]
+----
+Meta:
+@issue #MYPROJ-1, #MYPROJ-2
+
+Scenario: A scenario that works
+Meta:
+@issues #MYPROJ-3,#MYPROJ-4
+@issue #MYPROJ-5
+
+Given I have an implemented JBehave scenario
+And the scenario works
+When I run the scenario
+Then I should get a successful result
+----
+
 
