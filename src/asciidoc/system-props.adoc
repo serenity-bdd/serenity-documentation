@@ -104,7 +104,10 @@ The full list is shown here:
 
 *serenity.proxy.password*:: HTTP Proxy password configuration for Firefox and PhantomJS
 
-*serenity.logging*:: Three levels are supported: QUIET, NORMAL and VERBOSE
+*serenity.logging*:: Property for providing level of serenity actions, results, etc.
+  * *QUIET* : No Thucydides logging at all
+  * *NORMAL* : Log the start and end of tests
+  * *VERBOSE* : Log the start and end of tests and test steps, default value
 
 *serenity.test.root*:: The root package for the tests in a given project. If provided, Serenity will use this as the root package when determining the capabilities associated with a test. If you are using the File System Requirements provider, Thucydides will expect this directory structure to exist at the top of the requirements tree. If you want to exclude packages in a requirements definition and start at a lower level in the hierarchy, use the `serenity.requirement.exclusions` property.
 
