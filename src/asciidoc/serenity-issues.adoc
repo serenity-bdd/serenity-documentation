@@ -1,16 +1,48 @@
 Serenity BDD allows create links between stories/tests and issues. Sometimes it is useful for complex development workflow, and for organizing self-documented tests.
 
-Configuration of links made by annotations.Generally in annotations you should use name of issues according to mask #(NAME)(-)(NUMBER), link will be created to (NAME)(-)(NUMBER),for example if you will use #MP-14, you will find link to http./../905, if you will use #905 you will find link to http./../905 and so on.
+Configuration of links is made by annotations and property `serenity.issue.tracker.url` that can be provided in serenity.params or using system variables. The URL provided by `serenity.issue.tracker.url` is used as "body of link", and issue name provided in annotations - last part of this link.
 
-For such configuration with JUnit you can you can use annotations `@Issue`, `@Issues`, `@Title`.
+Generally in annotations you should use name of issues according to mask #(NAME)(-)(NUMBER), link will be created to (NAME)(-)(NUMBER),for example if you will use #MP-14, you will find link to http./../905, if you will use #905 you will find link to http./../905 and so on.
+==== Linking with issues for JUnit
+When tests created with JUnit you can use annotations `@Issue`, `@Issues`, `@Title`.
+
+* `@Issue` used for linking single issue. It should be initialised with name of referenced issue, started with `#`
+* `@Issues` used for linking multiple issues. It should be initialised with array with names of referenced issues, started with `#`
+* `@Title` used for providing readable name of test case (more in <<Human-readable method titles>>), also it can be used to linking multiple issues to this scenario - in title should be included name of issue started with `#`
+
+Here is little example with test cases linked to issues:
+
+serenity.properties contains:
+
+[source,gherkin]
+----
+include::{srcdir}/junit-tests-linked-to-issues/serenity.properties[]
+----
 
 
+test class looks like:
 
+[source,java]
+----
+include::{srcdir}/junit-tests-linked-to-issues/src/test/java/net/serenity/samples/retries/SampleTest.java[]
+----
 
-More information about `@Title` can be find under <<Human-readable method titles>>.
+In this case report will look like:
 
+[[jbehave-requirements-report]]
+.Here you can see report with test cases linked to issues
+image::tests_with_references_to_issues.png[]
 
-You can also use the `@issue` annotation to link scenarios with issues when using JBehave, as illustrated here:
+Also, all references clickable and will be :
+----
+#PN-97:  https://example.server.com/cases/view/PN-97
+#KB-927: https://example.server.com/cases/view/KB-927
+#NO-97:  https://example.server.com/cases/view/NO-97
+----
+
+==== Linking with issues for JBehave
+Also you can use the `@issue` annotation to link scenarios with issues when using JBehave, as illustrated here:
+
 [source,gherkin]
 ----
 Meta:
@@ -27,4 +59,5 @@ When I run the scenario
 Then I should get a successful result
 ----
 
+In this case links will be created according same rules as for <<Linking with issues for JUnit>>
 
