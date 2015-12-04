@@ -11,6 +11,7 @@ thucydides.driver.capabilities = mydriver
 
 Your custom driver must implement the DriverSource interface, as shown here:
 
+[source,java]
 -----
 public class MyPhantomJSDriver implements DriverSource {
 

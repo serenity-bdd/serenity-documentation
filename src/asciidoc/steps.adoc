@@ -35,6 +35,7 @@ include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/
 <3> The `@Step` can take a String value to override the default step name
 
 By default, the name of a step is derived from the method name. If you want something more readable, you can add a String parameter to the `@Step` annotation. If you put references to variables in the string (`{0}`, `{1}` etc.), Serenity will inject the method parameters into the string. So suppose you define a `@Step` method like this:
+
 [source,java]
 ----
 @Step("The traveller should have {0} status")
