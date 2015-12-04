@@ -1,5 +1,3 @@
-== Customizing the JIRA Workflow
-
 With Selenium BDD it is possible create tight one and two-way integration with JIRA
 
 === Getting started with Serenity BDD/JIRA integration
@@ -39,9 +37,57 @@ For this to work, Serenity needs to know where your JIRA server. The simplest wa
 
 [source,gherkin]
 ----
-include::{srcdir}/jira-integration-scenarios/serenioty.properties[]
+include::{srcdir}/jira-integration-scenarios/serenity.properties[]
 ----
 
 You can also set these properties up in your Maven pom.xml file or pass them in as system properties.
 
-Thucydides also supports two-way integration with JIRA. You can also get Thucydides to update the JIRA issue with a comment pointing to the corresponding test result.
+=== Feature Coverage
+But test results only report part of the picture. If you are using JIRA to store your stories and epics, you can use these to keep track of progress. But how do you know what automated acceptance tests have been implemented for your stories and epics, and, equally importantly, how do you know which stories or epics have no automated acceptance tests? In agile terms, a story cannot be declared “done” until the automated acceptance tests pass. Furthermore, we need to be confident not only that the tests exist, but they test the right requirements, and that they test them sufficiently well.
+
+We call this idea of measuring the number (and quality) of the acceptance tests for each of the features we want to build “feature coverage”. Serenity can provide feature coverage reporting in addition to the more conventional test results. If you are using JIRA, you will need to add thucydides-jira-requirements-provider to the dependencies section of your pom.xml file:
+
+[source,xml]
+----
+include::{srcdir}/jira-integration-scenarios/sample-dependency.xml[]
+----
+
+(The actual version number might be different for you – always take a look at http://search.maven.org/#search%7Cga%7C1%7Cthucydides[Maven Central] to know what the latest version is).
+
+You will also need to add this dependency to the Serenity reporting plugin configuration:
+
+[source,xml]
+----
+include::{srcdir}/jira-integration-scenarios/serenity-reporting-plugin-configuration.xml[]
+----
+
+Now, when you run the tests, Serenity will query JIRA to determine the epics and stories that you have defined, and list them in the Requirements page. This page gives you an overview of how many requirements (epics and stories) have passing tests (green), how many have failing (red) or broken (orange) tests, and how many have no tests at all (blue):
+
+[[serenity-jira-requirements-view]]
+.Requirements in Serenity report
+image::serenity-jira-requirements-view.png[]
+
+If you click on an epic, you can see the stories defined for the epic, including an indicator (in the “Coverage” column) of how well each story has been tested.
+
+[[serenity-jira-report-epic-details]]
+.Epic details in Serenity report
+image::serenity-jira-report-epic-details.png[]
+
+From here, you may want to drill down into the details about a given story, including what acceptance tests have been defined for this story, and whether they ran successfully:
+
+[[serenity-jira-story-report]]
+.Story in Serenity report
+image::serenity-jira-story-report.png[]
+
+Both JIRA and the JIRA-Serenity integration are quite flexible. We saw earlier that we had configured a custom “Acceptance Criteria” field in our JIRA stories. We have displayed this custom field in the report shown above by including it in the thucydides.properties file, like this:
+
+----
+jira.custom.field.1=Acceptance Criteria
+----
+
+Serenity reads the narrative text appearing in this report (“As a frequent flyer…”) from the Descriptionfield of the corresponding JIRA card. We can override this behavior and get Serenity to read this value from a different custom field using the `jira.custom.narrative.field` property. For example, some teams use a custom field called “User Story” to store the narrative text, instead of the Description field. We could get Serenity to use this field as follows:
+
+----
+jira.custom.narrative.field=User Story
+----
+
