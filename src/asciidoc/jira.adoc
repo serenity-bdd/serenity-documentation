@@ -1,0 +1,47 @@
+== Customizing the JIRA Workflow
+
+With Selenium BDD it is possible create tight one and two-way integration with JIRA
+
+=== Getting started with Serenity BDD/JIRA integration
+
+https://www.atlassian.com/software/jira[JIRA] is a popular issue tracking system that is also often used for Agile project and requirements management. Many teams using JIRA store their requirements electronically in the form of story cards and epics in JIRA
+
+Suppose we are implementing a Frequent Flyer application for an airline. The idea is that travellers will earn points when they fly with our airline, based on the distance they fly. Travellers start out with a “Bronze” status, and can earn a better status by flying more frequently. Travellers with a higher frequent flyer status benefit from advantages such as lounge access, prioritized boarding, and so on. One of the story cards for this feature might look like the following:
+
+[[frequent-flyer-story-card]]
+.Frequent Flyer story card
+image::frequent-flyer-story-card.png[]
+
+This story contains a description following one of the frequently-used formats for user story descriptions (“as a..I want..so that”). It also contains a custom “Acceptance Criteria” field, where we can write down a brief outline of the “definition of done” for this story.
+
+These stories can be grouped into epics, and placed into sprints for project planning, as illustrated in the JIRA Agile board shown here:
+
+[[jira-agile-board]]
+.JIRA sample agile board
+image::jira-agile-board.png[]
+
+As illustrated in the story card, each of these stories has a set of acceptance criteria, which we can build into more detailed scenarios, based on concrete examples. We can then automate these scenarios using a BDD tool like JBehave.
+
+The story in <<frequent-flyer-story-card>> describes how many points members need to earn to be awarded each status level. A JBehave scenario for the story card illustrated earlier might look like this:
+
+[source,gherkin]
+----
+include::{srcdir}/jira-integration-scenarios/sample-jbehabe-scenatio.story[]
+----
+
+Serenity lets you associate JBehave stories or JUnit tests with a JIRA card using the @issue meta tag (illustrated above), or the equivalent @Issue annotation in JUnit. At the most basic level, this will generate links back to the corresponding JIRA cards in your test reports, as illustrated here:
+
+[[jira-serenity-report]]
+.Serenity report with links to JIRA
+image::jira-serenity-report.png[]
+
+For this to work, Serenity needs to know where your JIRA server. The simplest way to do this is to define the following properties in a file called thucydides.properties in your project root directory:
+
+[source,gherkin]
+----
+include::{srcdir}/jira-integration-scenarios/serenioty.properties[]
+----
+
+You can also set these properties up in your Maven pom.xml file or pass them in as system properties.
+
+Thucydides also supports two-way integration with JIRA. You can also get Thucydides to update the JIRA issue with a comment pointing to the corresponding test result.

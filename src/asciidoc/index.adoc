@@ -90,8 +90,7 @@ include::retry.adoc[]
 include::tags.adoc[]
 
 == Integrating with JIRA
-
-== Customizing the JIRA Workflow
+include::jira.adoc[]
 
 == Integrating with Spring
 include::spring.adoc[]
