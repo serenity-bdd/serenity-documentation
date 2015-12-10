@@ -96,8 +96,7 @@ Serenity BDD provides different ways of integration with issue and project track
 include::serenity-issues.adoc[]
 
 == Integrating with JIRA
-
-== Customizing the JIRA Workflow
+include::jira.adoc[]
 
 == Integrating with Spring
 include::spring.adoc[]
