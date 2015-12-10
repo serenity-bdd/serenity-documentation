@@ -25,6 +25,8 @@ include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/
 ----
 <1> The `@Title` annotation lets you provide your own title for this test in the test reports
 
+Also `@Title` can be used for providing information about issues for this test, you can find more info in <<Linking scenarios/tests with issues>>
+
 === Serenity WebDriver support in JUnit
 
 Serenity BDD also provides strong support for Selenium WebDriver and the Page Objects model. We will look at these features in detail later on. But while we are on the topic of JUnit integration, let's look at how this integration fits in with a JUnit Serenity test.
