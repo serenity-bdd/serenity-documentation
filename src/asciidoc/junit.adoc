@@ -42,11 +42,14 @@ include::{srcdir}/junit-quick-start/src/test/java/net/serenitybdd/samples/junit/
 
 The `@Managed` annotation also provides several useful parameters. The 'driver' parameter lets you define what WebDriver driver you want to run these tests in. Possible values include 'firefox', 'chrome','iexplorer','phantomjs', and 'htmlunit':
 
+[source,java]
 ----
 @Managed(driver="chrome")
 ----
 
 You can also get Serenity to open the browser at the start of the tests, and leave it open until all of the tests in this test case have been executed, using the 'uniqueSession' parameter:
+
+[source,java]
 ----
 @Managed(uniqueSession=true)
 ----
@@ -232,6 +235,7 @@ The way Serenity will report your requirements depends on the depth of the direc
 
 You can define your own way of naming your requirements using the `serenity.requirement.types` property. For example, if you wanted top-level directories to represent "themes", and have a second level "epics" that actually contains the test cases, you could set this property to the following value:
 
+[source,properties]
 ----
 serenity.requirement.types=theme,epic
 ----

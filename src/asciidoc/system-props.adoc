@@ -207,6 +207,7 @@ mvn verify -Dtags="color:red,flavor:strawberry"
 
 If you need to configure your own customized Firefox profile, you can do this by using the Thucydidies.useFirefoxProfile() method before you start your tests. For example:
 
+[source,java]
 ------
 @Before
 public void setupProfile() {

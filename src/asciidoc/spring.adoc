@@ -3,7 +3,7 @@ If you are running your acceptance tests against an embedded web server (for exa
 
 Spring provides excellent support for integration tests, via the SpringJUnit4ClassRunner test runner. Unfortunately, if you are using Serenity, this is not an option, as a test cannot have two runners at the same time. Fortunately, however, there is a solution! To inject dependencies using a Spring configuration file, you just need to include the Serenity SpringIntegration rule in your test class. You instantiate this variable as shown here:
 
-
+[source,java]
 --------------------
 @Rule
 public SpringIntegration springIntegration = new SpringIntegration();
@@ -11,7 +11,7 @@ public SpringIntegration springIntegration = new SpringIntegration();
 
 Then you use the +@ContextConfiguration+ annotation to define the configuration file or files to use. The you can inject dependencies as you would with an ordinary Spring integration test, using the usual Spring annotations such as @Autowired or +@Resource+. For example, suppose we are using the following Spring configuration file, called ‘config.xml’:
 
-
+[source,xml]
 --------------------
 <beans>
     <bean id="widgetService" class="net.serenity.junit.spring.WidgetService">
@@ -27,7 +27,7 @@ Then you use the +@ContextConfiguration+ annotation to define the configuration 
 
 We can use this configuration file to inject dependencies as shown here:
 
-
+[source,java]
 --------------------
 @RunWith(SerenityRunner.class)
 @ContextConfiguration(locations = "/config.xml")
@@ -59,7 +59,7 @@ public class WhenInjectingSpringDependencies {
 
 Other context-related annotations such as +@DirtiesContext+ will also work as they would in a traditional Spring Integration test. Spring will create a new ApplicationContext for each test, but it will use a single ApplicationContext for all of the methods in your test. If one of your tests modifies an object in the ApplicationContext, you may want to tell Spring so that it can reset the context for the next test. You do this using the +@DirtiesContext+ annotation. In the following test case, for example, the tests will fail without the +@DirtiesContext+ annotation:
 
-
+[source,java]
 --------------------
 @RunWith(SerenityRunner.class)
 @ContextConfiguration(locations = "/spring/config.xml")
@@ -96,6 +96,7 @@ public class WhenWorkingWithDirtyContexts {
 
 You can also inject Spring dependencies directly into your Step libraries, for JUnit, Cucumber and JBehave, as shown in this example:
 
+[source,java]
 --------------------
 @ContextConfiguration(locations = "/spring/config.xml")
 public class NestedSpringEnabledSteps {
