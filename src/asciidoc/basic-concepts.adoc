@@ -55,3 +55,61 @@ Serenity BDD also gives you a broader picture, helping you see where individual 
 Serenity BDD is also commonly used for automated http://en.wikipedia.org/wiki/Regression_testing [Regression Tests]. Whereas BDD Acceptance Tests are defined very early on in the piece, before development starts, Regression Tests involve an existing system. Other than that, the steps involved in defining and automating the tests are very similar.
 
 When it comes to implementing the tests themselves, Serenity BDD also provides many features that make it easier, faster and cleaner to write clear, maintainable tests. This is particularly true for automated web tests using WebDriver, but Serenity BDD also caters for non-web tests as well. Serenity BDD plays well with JUnit as well as more specialized BDD frameworks such as Cucumber and JBehave.
+
+=== Detailed description of aggregation reports
+
+Serenity BDD aggregation report can be organised with using features, stories, steps, scenarios/tests. When you using different framework with Serenity BDD it is possible that same things will have different names - for example examples in jBehave/Cucumber have almost same minion as Test Data during using Junit, or scenario in jBehave/Cucumber and test in JUnit. We will use some short example for this chapter to describe serenity bdd report, how create and organise all test process you can find in next chapters.
+
+Our example will contain 2 feature, and some amount stories. Each story can contains one or more scenario, each scenario can contains one or moro step ond use some amount of examples. If you don't use any examples - it the same as you use 1 example.
+
+Sample:
+---
+Feature:Definition
+		Story: Look for definition
+			Scenario: Looking for definition
+                examples: 3
+                steps: 3
+			Scenario: Looking for definition with incorrect symbols: ignored
+                examples: 4
+                steps: 3
+			Scenario: Looking for not existed definition: failed
+                examples: 2
+                steps: 3
+		Story: Update a definition
+			Scenario: Updating a definition: some interanal error
+                examples: 5
+                steps: 3
+
+Feature:Petstore
+		Story: Remove a pet
+			Scenario: Removing a pet: skip
+				examples: 1
+			  	steps: 5
+			Scenario: Removing multiple pets: pending
+				examples: 1
+			  	steps: 6
+		Story: Update a pet
+			Scenario: Updating a pet: ignore
+				examples: 1
+			  	steps: 4
+		Story: Add a pet
+			Scenario: Adding a pet: pass
+				examples: 1
+			  	steps: 3
+---
+
+After running all test (doesn't matter if you use jBehave, Cucumber or JUnit) you will receive aggregation report, that will look similar with structure of tests:
+
+[[basic-concepts-detailed-test-count]]
+.Serenity BDD report for test structure on tab Test Count
+image::basic-concepts-detailed-test-count.png[]
+
+
+Report contains next tabs:
+
+*Overall Test Results*:: contains test results of all executed scenarios, general info about provided features/components stories in this test. Also statistics of passing/ignoring/skipping/failing based on amount of tests and examples under them.
+
+*Requirements*::
+
+
+
