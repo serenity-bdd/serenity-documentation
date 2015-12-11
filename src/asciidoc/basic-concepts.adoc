@@ -66,37 +66,42 @@ Sample:
 ---
 Feature:Definition
 		Story: Look for definition
-			Scenario (or Test, or Acceptance Criteria): Looking for definition
+			Scenario (or Test, or Acceptance Criteria): Looking for definition: pass
                 examples: 3
                 steps: 3
-			Scenario: Looking for definition with incorrect symbols: ignored
+			Scenario: Looking for definition with incorrect symbols: @Ignore
                 examples: 4
                 steps: 3
 			Scenario: Looking for not existed definition: failed
                 examples: 2
                 steps: 3
 		Story: Update a definition
-			Scenario: Updating a definition: some interanal error
+			Scenario: Updating a definition: some internal error
                 examples: 5
                 steps: 3
 
 Feature:Petstore
 		Story: Remove a pet
-			Scenario: Removing a pet: skip
-				examples: 1
+			Scenario: Removing a pet: @Skip
 			  	steps: 5
-			Scenario: Removing multiple pets: pending
-				examples: 1
+			Scenario: Removing multiple pets: @Pending
 			  	steps: 6
 		Story: Update a pet
-			Scenario: Updating a pet: ignore
-				examples: 1
+			Scenario: Updating a pet: @Ignore
 			  	steps: 4
 		Story: Add a pet
 			Scenario: Adding a pet: pass
-				examples: 1
 			  	steps: 3
 ---
+
+Scenarios Removing a pet, Removing multiple pets, Updating a pet, Adding a pet are created without using any examples.
+Scenarios Looking for definition, Looking for definition with incorrect symbols, Looking for not existed definition, Updating a definition are created without with examples.
+Scenario Removing a pet is marked to be skipped.
+Scenarios Updating a pet, Looking for definition with incorrect symbols are marked to be ignored.
+Scenarios Looking for definition, Adding a pet should pass.
+Scenario Looking for not existed definition should pass.
+Scenario Updating a definition should throw unexpected exception during execution.
+Scenario Removing multiple pets is marked to be pending.
 
 After running all tests (doesn't matter if you use jBehave, Cucumber or JUnit) you will receive aggregation report, that will look similar with structure of tests:
 
@@ -123,9 +128,31 @@ In this table you can find almost all information about executed tests. Here is 
 
 *Weighted Tests*:: summary page with all general statistics and info, weighted by scenarios size in steps.
 
+Here also general information is included about executed tests:
+---
+8 test scenarios (15 tests in all, including 10 rows of test data)
+4 passes, 1 pending, 2 failed, 5 with errors, 0 compromised, 2 ignored, 1 skipped
+---
+
+
+*ignored* = 2 - amount of all scenarios are marked to be ignored. To get this number Serenity counts scenarios are marked to be ignored. In our case there is 2 such scenario.
+*skipped* = 1 - amount of all scenarios are marked to be skipped. To get this number Serenity counts scenarios are marked to be skipped. In our case there is 1 such scenario.
+*with errors* = 5 - amount of all scenarios what throw some unexpected exception during execution. To get this number Serenity count scenarios or examples for those scenarios if provided. In our case there is 1 such scenario with 5 examples.
+*failed* = 2 - amount of all scenarios what fail. To get this number Serenity counts scenarios or counts examples for those scenarios if provided. In our case there is 1 such scenario with 2 examples.
+*pending* = 1 - amount of all scenarios are marked to be skipped. To get this number Serenity counts scenarios or examples for those scenarios if provided. In our case there is 1 such scenario without examples.
+*passes* = 4 - amount of passed scenarios. To get this number Serenity counts scenarios or examples for those scenarios if provided. In our case there are 2 such scenario: one without examples, and second with 3 examples.
+*rows of test data* = 10 - amount of all examples from scenarios witch are used in this report, including skipped scenarios and without ignored scenarios. To get this number Serenity counts examples for those scenarios if provided. In our case there are 3 such scenario: with 2, 3 and 5 examples.
+*tests in all* = 15 - sum of "skipped", "skipped", "with errors", "failed", "pending", "passes" values
+*test scenarios* = 8 - amount of all scenarios in this test. In our sample there are 8 scenarios.
+
+
 ==== Sub-Tab Test Count
 
-As you can see on <<basic-concepts-detailed-test-count>>, it contains next elements Pie Chart, Test Result Summary table, Related Tags table, Tests table.
+As you can see on <<basic-concepts-detailed-test-count>>, it contains next elements: Pie Chart, Test Result Summary table, Related Tags table, Tests table.
+
+There is some rules, that are used during creating this reports:
+ -  *total amount* of test scenarios equal the same as amount of executed scenarios (In our example 8 scenarios)
+ -  * *
 
 
 
