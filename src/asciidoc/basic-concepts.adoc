@@ -58,7 +58,7 @@ When it comes to implementing the tests themselves, Serenity BDD also provides m
 
 === Detailed description of aggregation reports
 
-Serenity BDD aggregation report can be organised with using features, stories, steps, scenarios/tests. When you using different framework with Serenity BDD it is possible that same things will have different names - for example examples in jBehave/Cucumber have almost same minion as Test Data during using Junit, or scenario in jBehave/Cucumber and test in JUnit. We will use some short example for this chapter to describe serenity bdd report, how create and organise all test process you can find in next chapters.
+Serenity BDD aggregation report can be organised with using features, stories, steps, scenarios/tests. When you using different framework with Serenity BDD it is possible that same things will have different names - for example `examples` in jBehave/Cucumber have almost same minion as `Test Data` during using Junit, or `scenario` in jBehave/Cucumber and `test` in JUnit. Also *Test* - it synonym of *Acceptance Criteria*. We will use some short example for this chapter to describe serenity bdd report, how create and organise all test process you can find in next chapters.
 
 Our example will contain 2 feature, and some amount stories. Each story can contains one or more scenario, each scenario can contains one or moro step ond use some amount of examples. If you don't use any examples - it the same as you use 1 example.
 
@@ -66,7 +66,7 @@ Sample:
 ---
 Feature:Definition
 		Story: Look for definition
-			Scenario: Looking for definition
+			Scenario (or Test, or Acceptance Criteria): Looking for definition
                 examples: 3
                 steps: 3
 			Scenario: Looking for definition with incorrect symbols: ignored
@@ -98,18 +98,36 @@ Feature:Petstore
 			  	steps: 3
 ---
 
-After running all test (doesn't matter if you use jBehave, Cucumber or JUnit) you will receive aggregation report, that will look similar with structure of tests:
+After running all tests (doesn't matter if you use jBehave, Cucumber or JUnit) you will receive aggregation report, that will look similar with structure of tests:
 
 [[basic-concepts-detailed-test-count]]
 .Serenity BDD report for test structure on tab Test Count
 image::basic-concepts-detailed-test-count.png[]
 
 
-Report contains next tabs:
+Report contains test results of all executed scenarios, and separated on next tabs:
 
-*Overall Test Results*:: contains test results of all executed scenarios, general info about provided features/components stories in this test. Also statistics of passing/ignoring/skipping/failing based on amount of tests and examples under them.
+*Overall Test Results*:: general info about provided features/components stories in this test. Also statistics of passing/ignoring/skipping/failing based on amount of tests and examples under them.
 
-*Requirements*::
+*Requirements*:: detailed info about statistics based on Features, Stories, Acceptance Criteria
+
+*Features*:: summary table all Features
+
+*Stories*:: summary table with statistics by stories
+
+==== Tab Overall Test Results
+
+In this table you can find almost all information about executed tests. Here is two sub-tabs:
+
+*Test Count*:: summary page with all general statistics and info, created based on amount of scenarios and used examples.
+
+*Weighted Tests*:: summary page with all general statistics and info, weighted by scenarios size in steps.
+
+==== Sub-Tab Test Count
+
+As you can see on <<basic-concepts-detailed-test-count>>, it contains next elements Pie Chart, Test Result Summary table, Related Tags table, Tests table.
+
+
 
 
 
