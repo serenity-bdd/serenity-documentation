@@ -128,7 +128,7 @@ In this table you can find almost all information about executed tests. Here is 
 
 *Weighted Tests*:: summary page with all general statistics and info, weighted by scenarios size in steps.
 
-Here also general information is included about executed tests:
+Here also general summary information is included about executed tests:
 ---
 8 test scenarios (15 tests in all, including 10 rows of test data)
 4 passes, 1 pending, 2 failed, 5 with errors, 0 compromised, 2 ignored, 1 skipped
@@ -139,10 +139,10 @@ Here also general information is included about executed tests:
 *skipped* = 1 - amount of all scenarios are marked to be skipped. To get this number Serenity counts scenarios are marked to be skipped. In our case there is 1 such scenario.
 *with errors* = 5 - amount of all scenarios what throw some unexpected exception during execution. To get this number Serenity count scenarios or examples for those scenarios if provided. In our case there is 1 such scenario with 5 examples.
 *failed* = 2 - amount of all scenarios what fail. To get this number Serenity counts scenarios or counts examples for those scenarios if provided. In our case there is 1 such scenario with 2 examples.
-*pending* = 1 - amount of all scenarios are marked to be skipped. To get this number Serenity counts scenarios or examples for those scenarios if provided. In our case there is 1 such scenario without examples.
+*pending* = 1 - amount of all scenarios are marked to be pending. To get this number Serenity counts scenarios or examples for those scenarios if provided. In our case there is 1 such scenario without examples.
 *passes* = 4 - amount of passed scenarios. To get this number Serenity counts scenarios or examples for those scenarios if provided. In our case there are 2 such scenario: one without examples, and second with 3 examples.
 *rows of test data* = 10 - amount of all examples from scenarios witch are used in this report, including skipped scenarios and without ignored scenarios. To get this number Serenity counts examples for those scenarios if provided. In our case there are 3 such scenario: with 2, 3 and 5 examples.
-*tests in all* = 15 - sum of "skipped", "skipped", "with errors", "failed", "pending", "passes" values
+*tests in all* = 15 - sum of "ignored", "skipped", "with errors", "failed", "pending", "passes" values
 *test scenarios* = 8 - amount of all scenarios in this test. In our sample there are 8 scenarios.
 
 
@@ -150,9 +150,20 @@ Here also general information is included about executed tests:
 
 As you can see on <<basic-concepts-detailed-test-count>>, it contains next elements: Pie Chart, Test Result Summary table, Related Tags table, Tests table.
 
-There is some rules, that are used during creating this reports:
- -  *total amount* of test scenarios equal the same as amount of executed scenarios (In our example 8 scenarios)
- -  * *
+*Test Result Summary*:
+This table contains more detailed statics than short summary above.
+Row *Automated* contains automated tests.
+- *Ignored* - count of automated tests are marked to be ignored.To get this number Serenity counts scenarios are marked to be ignored. In our case there is 2 such scenario.
+- *Percent of ignored tests* - percentage of *Ignored* tests to *tests in all*. In our case there are 2 such scenario, and it is 13% from 15.
+- *Pending* - amount of all scenarios are marked to be pending. To get this number Serenity counts scenarios or examples for those scenarios if provided. In our case there is 1 such scenario without examples.
+- *Percent of pending tests* - percentage of *Pending* tests to *tests in all*. In our case there is 1 such scenario, and it is 7% from 15.
+- *Fail* - amount of all scenarios what fail plus scenarios with errors. To get this number Serenity counts scenarios or counts examples for those scenarios if provided. In our case there is 1 fail scenario with 2 examples and 1 error scenario with 5 examples - 7 at all.
+- *Percent of fail tests* - percentage of *Fail* tests to *tests in all*. In our case there are 7 scenarios/examples and it is 47% from 15.
+- *Pass* - amount of passed scenarios. To get this number Serenity counts scenarios or examples for those scenarios if provided. In our case there are 2 such scenario: one without examples, and second with 3 examples - 4 at all.
+- *Percent of passed tests* - percentage of *Pass* tests to *tests in all*. In our case there are 4 scenarios/examples and it is 27% from 15.
+- *Total* - eqaul to *tests in all*
+
+Row *Manual* conains manual tests, to do test manual you should use @Manual annotaion.
 
 
 
