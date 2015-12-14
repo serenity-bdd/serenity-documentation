@@ -181,9 +181,11 @@ Row *Automated* contains automated tests.
 
 - *Percent of passed tests* - percentage of *Pass* tests to *tests in all*. In our case there are 4 scenarios/examples and it is 27% from 15.
 
-- *Total* - eqaul to *tests in all*
+- *Total* - equal to *tests in all*
 
-Row *Manual* conains manual tests, to do test manual you should use @Manual annotaion.
+Row *Manual* contains manual tests, to do test manual you should use @Manual annotation, idea the same as for Automated row.
+
+Row *Total* should contains summary for each column.
 
 
 
