@@ -42,14 +42,14 @@ Also, all references clickable and will be :
 ----
 
 ==== Linking with issues for JBehave
-Also you can use the `@issue` annotation to link scenarios with issues when using JBehave, as illustrated here:
+Also you can use the `@issue` annotation or `#` in scenario name to link scenarios with issues when using JBehave, as illustrated here:
 
 [source,gherkin]
 ----
 Meta:
 @issue #MYPROJ-1, #MYPROJ-2
 
-Scenario: A scenario that works
+Scenario: A scenario that works according #MP-4
 Meta:
 @issues #MYPROJ-3,#MYPROJ-4
 @issue #MYPROJ-5
