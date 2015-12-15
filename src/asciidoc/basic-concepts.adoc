@@ -107,7 +107,7 @@ Scenario Removing multiple pets is marked to be pending.
 After running all tests (doesn't matter if you use jBehave, Cucumber or JUnit) you will receive aggregation report, that will look similar with structure of tests:
 
 [[basic-concepts-detailed-test-count]]
-.Serenity BDD report for test structure on tab Test Count
+.Serenity BDD report for example test on tab Test Count
 image::basic-concepts-detailed-test-count.png[]
 
 
@@ -156,7 +156,7 @@ Here also general summary information is included about executed tests:
 *test scenarios* = 8 - amount of all scenarios in this test. In our sample there are 8 scenarios.
 
 
-==== Sub-Tab Test Count
+===== Sub-Tab Test Count
 
 As you can see on <<basic-concepts-detailed-test-count>>, it contains next elements: Pie Chart, Test Result Summary table, Related Tags table, Tests table.
 
@@ -187,7 +187,34 @@ Row *Manual* contains manual tests, to do test manual you should use @Manual ann
 
 Row *Total* should contains summary for each column.
 
+===== Sub-Tab Weighted tests
 
+This sub tab contains rest results weighted by test size in steps
 
+[[basic-concepts-detailed-weighted-tests]]
+.Serenity BDD report for example test on tab Weighted tests
+image::basic-concepts-detailed-weighted-tests.png[]
 
+==== Tab Requirements
 
+On this tab all tests results are organized as requirements
+
+[[basic-concepts-detailed-requirements]]
+.Serenity BDD report for test structure on tab with Requirements
+image::basic-concepts-detailed-requirements.png[]
+
+==== Tab Features
+
+On this tab all tests results are organized as features. In our example we have 2 features
+
+[[basic-concepts-detailed-test-count]]
+.Serenity BDD report for test structure on tab with Features
+image::basic-concepts-detailed-features.png[]
+
+==== Tab Stories
+
+There are stories on this tab. in our example - there are 5 stories.
+
+[[basic-concepts-detailed-test-count]]
+.Serenity BDD report for test structure on tab with Stories
+image::basic-concepts-detailed-stories.png[]
