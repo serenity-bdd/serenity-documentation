@@ -55,3 +55,166 @@ Serenity BDD also gives you a broader picture, helping you see where individual 
 Serenity BDD is also commonly used for automated http://en.wikipedia.org/wiki/Regression_testing [Regression Tests]. Whereas BDD Acceptance Tests are defined very early on in the piece, before development starts, Regression Tests involve an existing system. Other than that, the steps involved in defining and automating the tests are very similar.
 
 When it comes to implementing the tests themselves, Serenity BDD also provides many features that make it easier, faster and cleaner to write clear, maintainable tests. This is particularly true for automated web tests using WebDriver, but Serenity BDD also caters for non-web tests as well. Serenity BDD plays well with JUnit as well as more specialized BDD frameworks such as Cucumber and JBehave.
+
+=== Detailed description of aggregation reports
+
+Serenity BDD aggregation report can be organised with using features, stories, steps, scenarios/tests. When you using different framework with Serenity BDD it is possible that same things will have different names - for example `examples` in jBehave/Cucumber have almost same minion as `Test Data` during using Junit, or `scenario` in jBehave/Cucumber and `test` in JUnit. Also *Test* - it synonym of *Acceptance Criteria*. We will use some short example for this chapter to describe serenity bdd report, how create and organise all test process you can find in next chapters.
+
+Our example will contain 2 feature, and some amount stories. Each story can contains one or more scenario, each scenario can contains one or moro step ond use some amount of examples. If you don't use any examples - it the same as you use 1 example.
+
+Sample:
+
+----
+Feature:Definition
+		Story: Look for definition
+			Scenario (or Test, or Acceptance Criteria): Looking for definition: pass
+                examples: 3
+                steps: 3
+			Scenario: Looking for definition with incorrect symbols: @Ignore
+                examples: 4
+                steps: 3
+			Scenario: Looking for not existed definition: failed
+                examples: 2
+                steps: 3
+		Story: Update a definition
+			Scenario: Updating a definition: some internal error
+                examples: 5
+                steps: 3
+
+Feature:Petstore
+		Story: Remove a pet
+			Scenario: Removing a pet: @Skip
+			  	steps: 5
+			Scenario: Removing multiple pets: @Pending
+			  	steps: 6
+		Story: Update a pet
+			Scenario: Updating a pet: @Ignore
+			  	steps: 4
+		Story: Add a pet
+			Scenario: Adding a pet: pass
+			  	steps: 3
+----
+
+Scenarios Removing a pet, Removing multiple pets, Updating a pet, Adding a pet are created without using any examples.
+Scenarios Looking for definition, Looking for definition with incorrect symbols, Looking for not existed definition, Updating a definition are created without with examples.
+Scenario Removing a pet is marked to be skipped.
+Scenarios Updating a pet, Looking for definition with incorrect symbols are marked to be ignored.
+Scenarios Looking for definition, Adding a pet should pass.
+Scenario Looking for not existed definition should pass.
+Scenario Updating a definition should throw unexpected exception during execution.
+Scenario Removing multiple pets is marked to be pending.
+
+After running all tests (doesn't matter if you use jBehave, Cucumber or JUnit) you will receive aggregation report, that will look similar with structure of tests:
+
+[[basic-concepts-detailed-test-count]]
+.Serenity BDD report for example test on tab Test Count
+image::basic-concepts-detailed-test-count.png[]
+
+
+Report contains test results of all executed scenarios, and separated on next tabs:
+
+*Overall Test Results*:: general info about provided features/components stories in this test. Also statistics of passing/ignoring/skipping/failing based on amount of tests and examples under them.
+
+*Requirements*:: detailed info about statistics based on Features, Stories, Acceptance Criteria
+
+*Features*:: summary table all Features
+
+*Stories*:: summary table with statistics by stories
+
+==== Tab Overall Test Results
+
+In this table you can find almost all information about executed tests. Here is two sub-tabs:
+
+*Test Count*:: summary page with all general statistics and info, created based on amount of scenarios and used examples.
+
+*Weighted Tests*:: summary page with all general statistics and info, weighted by scenarios size in steps.
+
+Here also general summary information is included about executed tests:
+
+----
+8 test scenarios (15 tests in all, including 10 rows of test data)
+4 passes, 1 pending, 2 failed, 5 with errors, 0 compromised, 2 ignored, 1 skipped
+----
+
+
+*ignored* = 2 - amount of all scenarios are marked to be ignored. To get this number Serenity counts scenarios are marked to be ignored. In our case there is 2 such scenario.
+
+*skipped* = 1 - amount of all scenarios are marked to be skipped. To get this number Serenity counts scenarios are marked to be skipped. In our case there is 1 such scenario.
+
+*with errors* = 5 - amount of all scenarios what throw some unexpected exception during execution. To get this number Serenity count scenarios or examples for those scenarios if provided. In our case there is 1 such scenario with 5 examples.
+
+*failed* = 2 - amount of all scenarios what fail. To get this number Serenity counts scenarios or counts examples for those scenarios if provided. In our case there is 1 such scenario with 2 examples.
+
+*pending* = 1 - amount of all scenarios are marked to be pending. To get this number Serenity counts scenarios or examples for those scenarios if provided. In our case there is 1 such scenario without examples.
+
+*passes* = 4 - amount of passed scenarios. To get this number Serenity counts scenarios or examples for those scenarios if provided. In our case there are 2 such scenario: one without examples, and second with 3 examples.
+
+*rows of test data* = 10 - amount of all examples from scenarios witch are used in this report, including skipped scenarios and without ignored scenarios. To get this number Serenity counts examples for those scenarios if provided. In our case there are 3 such scenario: with 2, 3 and 5 examples.
+
+*tests in all* = 15 - sum of "ignored", "skipped", "with errors", "failed", "pending", "passes" values
+
+*test scenarios* = 8 - amount of all scenarios in this test. In our sample there are 8 scenarios.
+
+
+===== Sub-Tab Test Count
+
+As you can see on <<basic-concepts-detailed-test-count>>, it contains next elements: Pie Chart, Test Result Summary table, Related Tags table, Tests table.
+
+*Test Result Summary*:
+This table contains more detailed statistics than short summary above.
+
+Row *Automated* contains automated tests.
+
+- *Ignored* - count of automated tests are marked to be ignored.To get this number Serenity counts scenarios are marked to be ignored. In our case there is 2 such scenario.
+
+- *Percent of ignored tests* - percentage of *Ignored* tests to *tests in all*. In our case there are 2 such scenario, and it is 13% from 15.
+
+- *Pending* - amount of all scenarios are marked to be pending. To get this number Serenity counts scenarios or examples for those scenarios if provided. In our case there is 1 such scenario without examples.
+
+- *Percent of pending tests* - percentage of *Pending* tests to *tests in all*. In our case there is 1 such scenario, and it is 7% from 15.
+
+- *Fail* - amount of all scenarios what fail plus scenarios with errors. To get this number Serenity counts scenarios or counts examples for those scenarios if provided. In our case there is 1 fail scenario with 2 examples and 1 error scenario with 5 examples - 7 at all.
+
+- *Percent of fail tests* - percentage of *Fail* tests to *tests in all*. In our case there are 7 scenarios/examples and it is 47% from 15.
+
+- *Pass* - amount of passed scenarios. To get this number Serenity counts scenarios or examples for those scenarios if provided. In our case there are 2 such scenario: one without examples, and second with 3 examples - 4 at all.
+
+- *Percent of passed tests* - percentage of *Pass* tests to *tests in all*. In our case there are 4 scenarios/examples and it is 27% from 15.
+
+- *Total* - equal to *tests in all*
+
+Row *Manual* contains manual tests, to do test manual you should use @Manual annotation, idea the same as for Automated row.
+
+Row *Total* should contains summary for each column.
+
+===== Sub-Tab Weighted tests
+
+This sub tab contains rest results weighted by test size in steps
+
+[[basic-concepts-detailed-weighted-tests]]
+.Serenity BDD report for example test on tab Weighted tests
+image::basic-concepts-detailed-weighted-tests.png[]
+
+==== Tab Requirements
+
+On this tab all tests results are organized as requirements
+
+[[basic-concepts-detailed-requirements]]
+.Serenity BDD report for test structure on tab with Requirements
+image::basic-concepts-detailed-requirements.png[]
+
+==== Tab Features
+
+On this tab all tests results are organized as features. In our example we have 2 features
+
+[[basic-concepts-detailed-test-count]]
+.Serenity BDD report for test structure on tab with Features
+image::basic-concepts-detailed-features.png[]
+
+==== Tab Stories
+
+There are stories on this tab. in our example - there are 5 stories.
+
+[[basic-concepts-detailed-test-count]]
+.Serenity BDD report for test structure on tab with Stories
+image::basic-concepts-detailed-stories.png[]

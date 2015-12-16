@@ -74,6 +74,9 @@ include::junit.adoc[]
 == Writing Serenity Page Objects
 include::page-objects.adoc[]
 
+== Serenity and the Journey Pattern
+include::journey-pattern.adoc[]
+
 == Advanced WebDriver integration
 include::advanced-webdriver.adoc[]
 
