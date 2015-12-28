@@ -1,6 +1,6 @@
 The Journey Pattern is an approach to writing high quality automated acceptance tests based on good software engineering principles such as the Single Responsibility Principle, the Open-Closed Principle, and effective use of Layers of Abstraction. It encourages good testing habits and well-designed test suites that are easy to read, easy to maintain and easy to extend, enabling teams to write more robust and more reliable automated tests more effectively.
 
-In this section we will look at how to use the Journey Pattern with Serenity BDD. We will be illustrating the Journey Pattern using the AngularJS implementation of the well-known TodoMVC (http://todomvc.com) project (see <<tiger_image>>). You can experiment with this application at http://todomvc.com/examples/angularjs/#/.
+In this section we will look at how to use the Journey Pattern with Serenity BDD. We will be illustrating the Journey Pattern using the AngularJS implementation of the well-known TodoMVC (http://todomvc.com) project (see <<fig-todomvc-app>>). You can experiment with this application at http://todomvc.com/examples/angularjs/#/.
 
 [[fig-todomvc-app]]
 .The Journey Pattern will be illustrated by some tests against the TodoMVC application
@@ -8,13 +8,14 @@ image::journey-todo-app.png[]
 
 You can use the Journey Pattern with Serenity BDD in JUnit, Cucumber or JBehave. For simplicity, the examples will be using JUnit.
 
-=== The Journey Pattern in Action ===
+=== Introducing the Journey Pattern ===
 
 Suppose we are implementing the “Add new todo items” feature. This feature could have and acceptance criteria along the lines of “Should be able to add a new todo item”. If we were testing these scenarios manually, we could create test plans like the following:
-* Should be able to add a new todo item
-** Open the application
-** Add an item called ‘Buy some milk’
-** The ‘Buy some milk’ item should appear in the todo list
+
+ * Should be able to add a new todo item
+ ** Open the application
+ ** Add an item called ‘Buy some milk’
+ ** The ‘Buy some milk’ item should appear in the todo list
 
 Using the Journey Pattern, we could write this code very naturally like this:
 
@@ -35,7 +36,7 @@ image::journey-report.png[]
 
 The code listed above certainly reads cleanly, but it may leave you wondering how it actually works under the hood. Let’s see how it all fits together.
 
-==== Journey Pattern tests runs like any other Serenity test ====
+=== Journey Pattern tests runs like any other Serenity test ===
 
 At the time of writing, the Serenity Journey pattern integrates with both JUnit and Cucumber. For example, in JUnit, you use the SerenityRunner JUnit runner, as for any other Serenity JUnit tests. The full source code of the test we saw earlier is shown here:
 
@@ -48,18 +49,19 @@ include::{srcdir}/journey-pattern-sample/src/test/java/net/serenitybdd/demos/tod
 
 It’s not hard to glean what this test does just by reading the code. There are however a few things here that will be unfamiliar, even if you a have used Serenity before. In the following sections, we will take a closer look at the details.
 
-==== The Journey Pattern encourages strong layers of abstraction ====
+=== The Journey Pattern encourages strong layers of abstraction ===
 
 Experienced automated testers use layers of abstraction to separate the intent of the test (what you are trying to achieve) from the implementation details (how you achieve it). By separating the what from the how, the intent from the implementation, layers of abstraction help make tests easier to understand and to maintain. Indeed, well defined layers of abstraction are perhaps the single most important factor in writing high quality automated tests.
 
 In User Experience (UX) Design, we break down the way a user interacts with an application into goals, tasks and actions:
-* The goal describes what the user is trying to achieve in business terms
-* The tasks describe the high level steps the user needs to perform to achieve this goal, and
-* The actions correspond to how a user interacts with the system to perform a particular task, such as by clicking on a button or entering a value into a field.
+
+  * The goal describes what the user is trying to achieve in business terms
+  * The tasks describe the high level steps the user needs to perform to achieve this goal, and
+  * The actions correspond to how a user interacts with the system to perform a particular task, such as by clicking on a button or entering a value into a field.
 
 As we will see, the Journey Pattern in Serenity BDD provides a clear distinction between tasks and actions, which makes it easier for teams to write layered tests more consistently.
 
-==== The Journey Pattern uses an actor-centric model ====
+=== The Journey Pattern uses an actor-centric model ===
 
 Tests describe how a user interacts with the application to achieve a goal. For this reason, tests read much better if they are presented from the point of view of the user.
 
@@ -78,7 +80,7 @@ Actor james = Actor.named("James");
 
 We find it useful to give the actors real names, rather than just to use a generic one such as "the user". Different names can be a short-hand for different user roles or personas, and make the scenarios easier to relate to.
 
-==== Actors have abilities ====
+=== Actors have abilities ===
 
 Actors need to be able to do things to perform their assigned tasks. So we give our actors “abilities”, a bit like the superpowers of a super-hero, but in more mundane. If this is a web test, for example, we need James to be able to browse the web using a browser.
 
@@ -106,7 +108,7 @@ givenThat(james).can(BrowseTheWeb.with(hisBrowser));
 
 Each of the actor’s abilities is represented by an Ability class (in this case, `BrowseTheWeb`) which keeps track of the things the actor needs to perform this ability (for example, the `WebDriver` instance used to interact with the browser). Keeping the things an actor can do (browse the web, invoke a web service...) separate from the actor makes it easier to extend the actor’s abilities. For example, to add a new custom ability, you just need to implement a new `Ability` class.
 
-==== Actors perform tasks ====
+=== Actors perform tasks ===
 
 An actor needs to perform a number of tasks to achieve a business goal. A fairly typical example of a task is “adding a todo item”, which we could write as follows:
 
@@ -123,12 +125,13 @@ james.wasAbleTo(AddATodoItem.called("Buy some milk"))
 ----
 
 For more readability, we can also wrap the actor in a static method from the `GivenWhenThen` class:
-* givenThat()
-* andThat()
-* when()
-* then()
-* and()
-* but()
+
+ * givenThat()
+ * andThat()
+ * when()
+ * then()
+ * and()
+ * but()
 
 For example, we could have written the last line of code like this:
 [source,java]
@@ -144,7 +147,7 @@ image::journey-command-pattern.png[]
 
 Tasks are just objects that implement the `Task` interface, and need to implement the `performAs(actor)` method. In fact, you can think of any Task class as basically a `performAs()` method alongside a supporting cast of helper methods.
 
-==== Tasks can be created using annotated fields or builders ====
+=== Tasks can be created using annotated fields or builders ===
 
 To do its reporting magic, Serenity BDD needs to instrument the task and action objects used during the tests. The simplest way to do arrange this is to let Serenity create it for you, just like any other Serenity step library, using the @Steps annotation. In the following code snippet, Serenity will instantiate the openTheApplication field for you, so that James can use it to open the application:
 
@@ -191,11 +194,11 @@ public class AddATodoItem implements Task {
 }
 ----
 
-==== High level tasks rely on other lower-level tasks or actions ====
+=== High level tasks rely on other lower-level tasks or actions ===
 
 To get the job done, a high level business task will usually need to call either lower level business tasks or actions that interact more directly with the application. In practice, this means that the `performAs()` method of a task typically executes other, lower level tasks or interacts with the application in some other way. For example, adding a todo item requires two UI actions:
-1.	Enter the todo text in the text field
-2.	Press Return
+  1. Enter the todo text in the text field
+  2. Press Return
 
 [source,java]
 ----
@@ -244,7 +247,7 @@ Any member variables can be referred to in the @Step annotation by name using th
 .Test reports show details about both tasks and UI interactions
 image::journey-action-report.png[]
 
-==== Action classes can access the Serenity WebDriver integration ====
+=== Action classes can access the Serenity WebDriver integration ===
 
 You can also write your own `Action` classes. If the actor has the `BrowseTheWeb` ability, the Action class can integrate with the Serenity WebDriver support in several ways.
 
@@ -258,7 +261,7 @@ public <T extends Actor> void performAs(T theActor) {
 }
 ----
 
-===== Tasks can be used as building blocks by other tasks =====
+=== Tasks can be used as building blocks by other tasks ===
 
 It is easy to reuse tasks in other, higher level tasks. For example, the sample project uses a AddTodoItems task to add a number of todo items to the list, like this:
 
@@ -276,7 +279,7 @@ include::{srcdir}/journey-pattern-sample/src/main/java/net/serenitybdd/demos/tod
 
 It is quite frequent to reuse existing tasks to build up more sophisticated business tasks in this way.
 
-===== Actors can ask questions about the state of the application =====
+=== Actors can ask questions about the state of the application ===
 
 A typical automated acceptance test has three parts:
 1. Set up some test data and/or get the application into a known state
@@ -300,7 +303,7 @@ image::journey-breakdown.png[]
 
 As you might expect, this code checks a value retrieved from the application (the items displayed on the screen) against an expected value (described by a Hamcrest expression). However, rather than passing an actual value, we pass a Question object. The role of a Question object is to answer a precise question about the state of the application, from the point of view of the actor, and typically using the abilities of the actor to do so.
 
-===== Actors use their abilities to interact with the system =====
+=== Actors use their abilities to interact with the system ===
 
 Let’s see this principle in action in another test. The Todo application has a counter in the bottom left hand corner indicating the remaining number of items (see <<fig-journey-remaining-count>>).
 
@@ -349,23 +352,23 @@ Serenity provides a number of Interaction classes that let you query the web pag
 
 There are interaction classes for most WebDriver calls, including:
 
-* Attribute
-* CSSValue
-* CurrentlyEnabled
-* CurrentVisibility
-* Enabled
-* JavaScript
-* Presence
-* SelectedOptions
-* SelectedStatus
-* SelectedValue
-* SelectedVisibleTextValue
-* Text
-* TheCoordinates
-* TheLocation
-* TheSize
-* Value
-* Visibility
+ * Attribute
+ * CSSValue
+ * CurrentlyEnabled
+ * CurrentVisibility
+ * Enabled
+ * JavaScript
+ * Presence
+ * SelectedOptions
+ * SelectedStatus
+ * SelectedValue
+ * SelectedVisibleTextValue
+ * Text
+ * TheCoordinates
+ * TheLocation
+ * TheSize
+ * Value
+ * Visibility
 
 A few examples of these methods are shown here:
 
