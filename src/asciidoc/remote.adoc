@@ -32,7 +32,7 @@ mvn verify -Dwebdriver.remote.url=http://localhost:4444/wd/hub -Dwebdriver.remot
 === Running tests on SauceLabs
 Serenity has special support for running tests on the Cloud-based testing platform http://www.saucelabs.com[SauceLabs]. The general approach is the same as discussed above, but there are a few extra Saucelabs-specific properties:
 
-`saucelabs.url`:: Usually of the form http://<my_id>:<my_API Key>@ondemand.saucelabs.com:80/wd/hu
+`saucelabs.url`:: Usually of the form http://<my_id>:<my_API Key>@ondemand.saucelabs.com:80/wd/hub
 `saucelabs.target.platform`:: See https://saucelabs.com/platforms/
 `saucelabs.driver.version`:: See https://saucelabs.com/platforms/
 `saucelabs.test.name`:: The name of the test as it will appear on the Saucelabs site
@@ -48,7 +48,7 @@ mvn verify -Dsaucelabs.target.platform=XP -Dwebdriver.driver=chrome -Dsaucelabs.
 
 === Running tests on BrowserStack
 
-The setup for running tests on BrowserStack is similar to the one for SauceLabs. The following system properties are availbale:
+The setup for running tests on BrowserStack is similar to the one for SauceLabs. The following system properties are available:
 
 `browserstack.url`:: BrowserStack Hub URL if running the tests on BrowserStack Cloud
 `browserstack.os`::
