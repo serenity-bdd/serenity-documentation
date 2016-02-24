@@ -84,7 +84,7 @@ As a financial adviser
 I want to be able to locate a customer using a variety of different criteria
 ---------------------
 
-However to make the reports more useful still, it is a good idea to document not only the stories, but to also do the same for your higher level requirements. In Serenity, you can do this by placing a text file called `narrative.txt` in each of the requirements directories you want to document (see below). These files follow the JBehave convention for writing narratives, with an optional title on the first line, followed by a narrative section started by the keyword `Narrative:`. For example, for a search feature for an online classifieds web site, you might have a description along the following lines:
+However to make the reports more useful still, it is a good idea to document not only the stories, but to also do the same for your higher level requirements (Capabilities, Themes). In Serenity, you can do this by placing a text file called `narrative.txt` in each of the requirements directories you want to document (see below). These files follow the JBehave convention for writing narratives, with an optional title on the first line, followed by a narrative section started by the keyword `Narrative:`. When a title is provided it will replace the directory name in the reports. For example, for a search feature for an online classifieds web site, you might have a description along the following lines:
 
 ---------------------
 Search for online ads
@@ -116,6 +116,8 @@ will be rendered on the report as shown below.
 [[asciidoc_narrative]]
 .Narrative with asciidoc formatting
 image::asciidoc_narrative.png[scaledwidth="80%", width=475]
+
+With Cucumber a Narrative.txt file can also be placed in any requirement directory and will be included in the Serenity reports just like with JBehave.
 
 ===== Customizing the requirements module
 
