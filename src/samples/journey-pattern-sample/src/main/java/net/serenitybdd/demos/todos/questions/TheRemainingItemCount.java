@@ -13,7 +13,7 @@ public class TheRemainingItemCount implements Question<Integer> {
     @Override
     public Integer answeredBy(Actor actor) {
         return Text.of(TodoCounter.ITEM_COUNT)
-                   .onTheScreenOf(actor)
+                   .viewedBy(actor)
                    .asInteger();
     }
 }
