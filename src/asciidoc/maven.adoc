@@ -1,4 +1,4 @@
-Serenity BDD integrates with http://maven.apache.org/[Maven] via the `serenity-maven-plugin`. 
+Serenity BDD integrates with http://maven.apache.org/[Maven] via the `serenity-maven-plugin`.
 An example of a `pom.xml` file using Serenity BDD is shown here:
 
 [source,xml]
@@ -16,7 +16,19 @@ include::{srcdir}/junit-quick-start/pom.xml[]
 
 First, you need to add the Serenity BDD dependencies to your project. You will typically add `core` and another dependency that correpsonds to the testing library you are using (JUnit in this example). Other supported testing libraries include JBehave and Cucumber.
 
-You typically want the Serenity tests to run as integration tests (that is, during the 'integration-test' phase of the Maven build) rather than as unit tests. You also want the build not to immediately fail when a test fails, but to continue until it has generated the Serenity aggregate reports before failing at the end of the build. To do this, we use the `maven-failsafe-plugin` (3). This plugin runs your integration test in the `integration-test` phase without immediately failing the build when a test fails. Build failure is triggered later in the lifecycle, during the `verify` phase.
+You typically want the Serenity tests to run as integration tests (that is, during the 'integration-test' phase of the Maven build) rather than as unit tests. You also want the build not to immediately fail when a test fails, but to continue until it has generated the Serenity aggregate reports before failing at the end of the build. To do this, we use the `maven-failsafe-plugin` (3). This plugin runs your integration test in the `integration-test` phase without immediately failing the build when a test fails. Build failure is triggered later in the lifecycle, during the `verify` phase. Also it is good idea turn off failing build if some test was failed - just to allow maven execute all tests.
+
+[source,xml]
+----
+<plugin>
+   <groupId>org.apache.maven.plugins</groupId>
+   <artifactId>maven-surefire-plugin</artifactId>
+   <version>xxxx</version>
+   <configuration>
+      <testFailureIgnore>true</testFailureIgnore>
+   </configuration>
+</plugin>
+----
 
 Normal JUnit tests run from Maven need to start or end with `Test`. But for acceptance tests, a more flexible strategy is better, as it makes it easier to name test cases after scenarios or stories. In the `pom.xml` file shown above, we configure the `maven-failsafe-plugin` to run all of the tests in the `junit` directory, regardless of how they are named (4).
 
@@ -31,4 +43,4 @@ This will run the tests and generate an aggregate report in the `target/site/ser
 
 Like the surefire plugin the `maven-failsafe-plugin` starts a new JVM instance to run the tests. For this reason, if you need to pass system parameters to the tests (for example, the `webdriver.driver` property shown here), you need to use the `<systemProperties>` section
 
-Tip: It is possible to use a Junit Run Configuration to run a Serenity Testrunner. This will not generate an aggregate report. If you find your index.html file is missing, check that you are using a Maven build Run Configuration with goal verify to run your test and get the aggregate report. 
+Tip: It is possible to use a Junit Run Configuration to run a Serenity Testrunner. This will not generate an aggregate report. If you find your index.html file is missing, check that you are using a Maven build Run Configuration with goal verify to run your test and get the aggregate report.
