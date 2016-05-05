@@ -183,7 +183,7 @@ Row *Automated* contains automated tests.
 
 - *Total* - equal to *tests in all*
 
-Row *Manual* contains manual tests, to do test manual you should use @Manual annotation, idea the same as for Automated row.
+Row *Manual* contains manual tests, to do test manual you should use @Manual annotation, idea the same as for Automated row. Generally it is possible mark as manual scenarios (@manual on scenario level) or all scenario in story (@manual on Story level).
 
 Row *Total* should contains summary for each column.
 
