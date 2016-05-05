@@ -107,6 +107,9 @@ include::spring.adoc[]
 == Running Serenity tests in parallel batches
 include::serenity-batches.adoc[]
 
+== Testing REST with Serenity BDD
+include::serenity-rest.adoc[]
+
 == Importing test results from external sources
 
 = Appendicies
