@@ -233,7 +233,7 @@ This archetype creates a project directory structure similar to the one shown he
 
 ==== Running all tests in a single browser window
 
-All web tests for one story can be run in a single browser window using either by setting the `restart.browser.each.scenario` system property or programmatically using runSerenity().inASingleSession() inside the JUnit runner. It is default behaving - to run all scenarios in same story in one browser.
+All web tests for one story can be run in a single browser window using either by setting the 'restart.browser.each.scenario' system property or programmatically using runSerenity().inASingleSession() inside the JUnit runner. It is default behaving - to run all scenarios in same story in one browser.
 
 [source,java]
 ----
