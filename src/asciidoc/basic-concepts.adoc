@@ -231,7 +231,7 @@ image::subset-of-tests-for-filtering.png[]
 
 It is easy to filter some of them with starting typing their name in filter field:
 [[filtered-tests-for-filtering]]
-.erenity BDD report example with applied filter
+.Serenity BDD report example with applied filter
 image::filtered-tests-for-filtering.png[]
 
 Filtering feature enabled for almost all main pages of serenity report.
