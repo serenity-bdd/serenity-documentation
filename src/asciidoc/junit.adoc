@@ -47,12 +47,26 @@ The `@Managed` annotation also provides several useful parameters. The 'driver' 
 @Managed(driver="chrome")
 ----
 
+Default value for `driver` is `""`, and Serenity BDD will use Firefox in this case. List of supported drivers by this annotation: **Firefox**, **Chrome**, **Opera**, **HtmlUnit**, **PhantomJS**, **IExplorer**, **Edge**, **Safari**, **Appium**.
+
 You can also get Serenity to open the browser at the start of the tests, and leave it open until all of the tests in this test case have been executed, using the 'uniqueSession' parameter:
 
 [source,java]
 ----
 @Managed(uniqueSession=true)
 ----
+
+Default value for `uniqueSession` is `false`
+
+To make Serenity BDD clear cookies for each test or never clear cookies you can use property `clearCookies`:
+
+[source,java]
+----
+@Managed(clearCookies=BeforeEachTest)
+----
+Default value for `clearCookies` is `BeforeEachTest`, possible values are: **BeforeEachTest**, **Never**.
+
+
 
 === Serenity PageObjects in JUnit
 
