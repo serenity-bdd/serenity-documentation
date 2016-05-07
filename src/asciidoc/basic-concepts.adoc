@@ -218,3 +218,20 @@ There are stories on this tab. in our example - there are 5 stories.
 [[basic-concepts-detailed-test-count]]
 .Serenity BDD report for test structure on tab with Stories
 image::basic-concepts-detailed-stories.png[]
+
+==== Filtering in Serenity Reports
+
+For better user experience in Serenity BDD aggregated reports available filtering feature. It makes much easy to find particular subset of tests by names if you have a lot of test, features, etc.:
+
+For example you have next tests:
+[[subset-of-tests-for-filtering]]
+.Serenity BDD report example for filtering
+image::subset-of-tests-for-filtering.png[]
+
+
+It is easy to filter some of them with starting typing their name in filter field:
+[[filtered-tests-for-filtering]]
+.erenity BDD report example with applied filter
+image::filtered-tests-for-filtering.png[]
+
+Filtering feature enabled for almost all main pages of serenity report.
