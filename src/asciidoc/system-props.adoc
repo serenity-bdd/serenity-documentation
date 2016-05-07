@@ -28,7 +28,7 @@ The full list is shown here:
 
 *serenity.home*:: The home directory for Serenity output and data files - by default, $USER_HOME/.serenity
 
-*serenity.outputDirectory*:: Where should reports be generated.
+*serenity.outputDirectory*:: Where should reports be generated. If project contains only one module (root module), than this path will be relative to root module, if project contains more than one submodule - than this path will be relative to submodule directory, also this path can be different for each submodule or can be inherited from root project property.
 
 *serenity.project.name*:: What name should appear on the reports
 
