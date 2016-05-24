@@ -145,7 +145,7 @@ public class MyRequirementsTagProvider implements RequirementsTagProvider {
 }
 -------------------
 
-Next, create a text file in your `src/main/resources/META-INF/serices` directory called `net.thucydides.core.statistics.service.TagProvider`, and put the fullly qualified name of your RequirementsTagProvider implementation.
+Next, create a text file in your `src/main/resources/META-INF/services` directory called `net.thucydides.core.statistics.service.TagProvider`, and put the fullly qualified name of your RequirementsTagProvider implementation.
 
 ===== Story meta-data
 
