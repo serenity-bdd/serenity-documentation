@@ -29,6 +29,48 @@ You can also pass the usual driver-specific capabilities to the remote browser
 mvn verify -Dwebdriver.remote.url=http://localhost:4444/wd/hub -Dwebdriver.remote.driver=chrome -Dwebdriver.remote.os=WINDOWS -Dchrome.switches="--no-sandbox,--ignore-certificate-errors,--homepage=about:blank,--no-first-run"
 -----
 
+=== Running tests on Appium
+Serenity supports running tests on mobile devices/emulators out of the box with http://appium.io[Appium].
+
+You just need to install Appium:
+-----
+(sudo) npm install -g appium --chromedriver_version="2.16"
+-----
+
+Afterwards Appium is available as command and can be started by invoking the following command:
+-----
+appium
+-----
+
+Then adopt `serenity.properties` to run on an Android device:
+-----
+webdriver.driver= appium
+webdriver.base.url = http://www.google.com/
+appium.hub = http://127.0.0.1:4723/wd/hub
+appium.platformName = Android
+appium.platformVersion = 5.1.1
+appium.deviceName = e2f5c460
+appium.browserName = Chrome
+-----
+
+Here's an example for iOS:
+-----
+webdriver.driver= appium
+webdriver.base.url = http://www.google.com/
+appium.hub = http://127.0.0.1:4723/wd/hub
+appium.platformName = iOS
+appium.platformVersion = 8.1
+appium.deviceName = iPhone 5
+appium.browserName = Safari
+-----
+
+Besides the properties file you can also use commandline switches:
+-----
+mvn test -Dappium.hub=http://127.0.0.1:4723/wd/hub -Dwebdriver.driver=appium -Dappium.platformName=iOS -Dappium.browserName=Safari -Dappium.deviceName="iPhone 5"
+-----
+
+You can also add Appium to an existing grid. See the http://appium.io/slate/en/v1.2.3/?java#server-flags[Appium documentation] for more details about the node-config option.
+
 === Running tests on SauceLabs
 Serenity has special support for running tests on the Cloud-based testing platform http://www.saucelabs.com[SauceLabs]. The general approach is the same as discussed above, but there are a few extra Saucelabs-specific properties:
 
@@ -45,6 +87,11 @@ An example of running tests on Saucelabs is shown here:
 ---
 mvn verify -Dsaucelabs.target.platform=XP -Dwebdriver.driver=chrome -Dsaucelabs.driver.version=26 -Dsaucelabs.url=http://<my_id>:<my_API Key>@ondemand.saucelabs.com:80/wd/hub -Dsaucelabs.access.key=<My_API_Key> -Dsaucelabs.user.id=<my_id> -Dwebdriver.base.url=https://www.website.com -Dmaven.test.failure.ignore=true
 ---
+
+
+=== Running tests on Mobile Devices with Appium
+
+
 
 === Running tests on BrowserStack
 
