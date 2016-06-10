@@ -996,4 +996,31 @@ public class EmailLoginPage extends PageObject {
 }
 ------------------
 
+=== WebElement collection loading strategies
 
+Selenium lets you use the `@FindBy` and `@FindAll` annotations to load collections of web elements, as illustrated here:
+
+```
+@FindBy(css='#colors a')
+List<WebElement> options
+```
+
+If you are working with an asynchronous application, these lists may take time to load, so Selenium may give you an empty list because the elements have not loaded yet.
+
+Serenity lets you find-tune this behaviour in two ways. The first is to use the wait DSL to load the elements directly, e.g.:
+
+[source,java]
+----
+withTimeoutOf(5, SECONDS).waitForPresenceOf(By.cssSelector("#colors a"))
+----
+
+Alternatively, you can use the "serenity.webdriver.collection_loading_strategy" property to define how Serenity loads collections of web elements when using the `@FindBy` and `@FindAll` annotations. There are three options:
+ * Optimistic
+ * Pessimistic (default)
+ * Paranoid
+
+Optimistic will only wait until the field is defined. This is the native Selenium behaviour.
+
+Pessimistic will wait until at least the first element is displayed. This is currently the default.
+
+Paranoid will wait until all of the elements are displayed. This can be slow for long lists.
