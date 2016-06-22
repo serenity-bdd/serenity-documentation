@@ -52,7 +52,7 @@ image::serenity-aggregate-report.png[]
 
 Serenity BDD also gives you a broader picture, helping you see where individual scenarios fit into the overall set of product requirements. It helps you see not only the current state of the tests, but also what requirements have been (and have not been) tested (see <<fig-aggregate-report>>).
 
-Serenity BDD is also commonly used for automated http://en.wikipedia.org/wiki/Regression_testing [Regression Tests]. Whereas BDD Acceptance Tests are defined very early on in the piece, before development starts, Regression Tests involve an existing system. Other than that, the steps involved in defining and automating the tests are very similar.
+Serenity BDD is also commonly used for automated http://en.wikipedia.org/wiki/Regression_testing[Regression Tests]. Whereas BDD Acceptance Tests are defined very early on in the piece, before development starts, Regression Tests involve an existing system. Other than that, the steps involved in defining and automating the tests are very similar.
 
 When it comes to implementing the tests themselves, Serenity BDD also provides many features that make it easier, faster and cleaner to write clear, maintainable tests. This is particularly true for automated web tests using WebDriver, but Serenity BDD also caters for non-web tests as well. Serenity BDD plays well with JUnit as well as more specialized BDD frameworks such as Cucumber and JBehave.
 
