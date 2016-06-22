@@ -1,10 +1,10 @@
 If you are working with WebDriver web tests, you will be familiar with the concept of Page Objects. Page Objects are a way of isolating the implementation details of a web page inside a class, exposing only business-focused methods related to that page. They are an excellent way of making your web tests more maintainable.
 
 In Serenity, page objects can be just ordinary WebDriver page objects, on the condition that they have a constructor that accepts a WebDriver parameter. However, the Serenity +PageObject+ class provides a number of utility methods that make page objects more convenient to work with, so a Serenity Page Object generally extends this class.
-  
+
 Here is a simple example:
 
-
+[source,java]
 ---------------------
 @DefaultUrl("http://localhost:9000/somepage")
 public class FindAJobPage extends PageObject {
@@ -30,9 +30,9 @@ public class FindAJobPage extends PageObject {
 
 The +typeInto+ method is a shorthand that simply clears a field and enters the specified text. If you prefer a more fluent-API style, you can also do something like this:
 
-
+[source,java]
 ---------------------
-@DefaultUrl("http://localhost:9000/somepage") 
+@DefaultUrl("http://localhost:9000/somepage")
 public class FindAJobPage extends PageObject {
 	WebElementFacade keywordsField;
 	WebElementFacade searchButton;
@@ -53,11 +53,11 @@ public class FindAJobPage extends PageObject {
 }
 ---------------------
 
-You can use an even more fluent style of expressing the implementation steps by using  methods like +find+, +findBy+  and +then+. 
+You can use an even more fluent style of expressing the implementation steps by using  methods like +find+, +findBy+  and +then+.
 
 For example, you can use webdriver "By" finders with element name, id, css selector or xpath selector as follows:
 
-
+[source,java]
 ---------------------
 find(By.name("demo")).then(By.name("specialField")).getValue();
 
@@ -68,6 +68,7 @@ find(By.xpath("//th")).getValue();
 
 The +findBy+ method lets you pass the css or xpath selector directly to WebDriver. For example,
 
+[source,java]
 ---------------------
 findBy("#demo").then("#specialField").getValue(); //css selectors
 
@@ -75,41 +76,42 @@ findBy("//div[@id='dataTable']").getValue(); //xpath selector
 ---------------------
 
 === Using pages in a step library
- 
+
 When you need to use a page object in one of your steps, you just need to declare a variable of type PageObject in your step library,  e.g.
 
+[source,java]
 ---------------------
 FindAJobPage page;
 ---------------------
 
 If you want to make sure you are on the right page, you can use the +currentPageAt()+ method. This will check the page class for any +@At+ annotations present in the Page Object class and, if present, check that the current URL corresponds to the URL pattern specified in the annotation. For example, when you invoke it using +currentPageAt()+, the following Page Object will check that the current URL is precisely http://www.apache.org.
 
-
+[source,java]
 ---------------------
 @At("http://www.apache.org")
 public class ApacheHomePage extends PageObject {
     ...
-}      
+}
 ---------------------
 
 The +@At+ annotation also supports wildcards and regular expressions. The following page object will match any Apache sub-domain:
 
-
+[source,java]
 ---------------------
 @At("http://.*.apache.org")
 public class AnyApachePage extends PageObject {
     ...
-}             
+}
 ---------------------
 
 More generally, however, you are more interested in what comes after the host name. You can use the special +#HOST+ token to match any server name. So the following Page Object will match both http://localhost:8080/app/action/login.form an http://staging.acme.com/app/action/login.form. It will also ignore parameters, so http://staging.acme.com/app/action/login.form?username=toto&password=oz will work fine too.
 
-
+[source,java]
 ---------------------
 @At(urls={"#HOST/app/action/login.form"})
 public class LoginPage extends PageObject {
    ...
-}     
+}
 ---------------------
 
 === Opening the page
@@ -120,7 +122,7 @@ The +@DefaultUrl+ annotation indicates the URL that this test should use when ru
 
 You can also define named URLs that can be used to open the web page, optionally with parameters. For example, in the following code, we define a URL called 'open.issue', that accepts a single parameter:
 
-
+[source,java]
 ---------------------
 @DefaultUrl("http://jira.mycompany.org")
 @NamedUrls(
@@ -135,12 +137,14 @@ public class JiraIssuePage extends PageObject {
 
 You could then open this page to the http://jira.mycompany.org/issues/ISSUE-1 URL as shown here:
 
+[source,java]
 ---------------------
 page.open("open.issue", withParameters("ISSUE-1"));
 ---------------------
 
 You could also dispense entirely with the base URL in the named URL definition, and rely on the default values:
 
+[source,java]
 ---------------------
 @DefaultUrl("http://jira.mycompany.org")
 @NamedUrls(
@@ -150,12 +154,12 @@ You could also dispense entirely with the base URL in the named URL definition, 
 )
 public class JiraIssuePage extends PageObject {
     ...
-}                                         
+}
 ---------------------
 
 And naturally you can define more than one definition:
 
-
+[source,java]
 ---------------------
 @NamedUrls(
   {
@@ -167,6 +171,7 @@ And naturally you can define more than one definition:
 
 You should never try to implement the +open()+ method yourself. In fact, it is final. If you need your page to do something upon loading, such as waiting for a dynamic element to appear, you can use the @WhenPageOpens annotation. Methods in the PageObject with this annotation will be invoked (in an unspecified order) after the URL has been opened. In this example, the +open()+ method will not return until the dataSection web element is visible:
 
+[source,java]
 ---------------------
 @DefaultUrl("http://localhost:8080/client/list")
     public class ClientList extends PageObject {
@@ -179,16 +184,16 @@ You should never try to implement the +open()+ method yourself. In fact, it is f
      public void waitUntilTitleAppears() {
          element(dataSection).waitUntilVisible();
      }
-}                    
+}
 ---------------------
 
-=== Working with web elements  
+=== Working with web elements
 
 ==== Checking whether elements are visible
 
 The WebElementFacade class convenient fluent API for dealing with web elements, providing some commonly-used extra features that are not provided out-of-the-box by the WebDriver API. WebElementFacades are largely interchangeable with WebElements: you just declare a variable of type `WebElementFacade` instead of type `WebElement`. For example, you can check that an element is visible as shown here:
 
-
+[source,java]
 ---------------------
 public class FindAJobPage extends PageObject {
 
@@ -198,12 +203,12 @@ public class FindAJobPage extends PageObject {
         return searchButton.isVisible();
     }
     ...
-}      
+}
 ---------------------
 
 If the button is not present on the screen, the test will wait for a short period in case it appears due to some Ajax magic. If you don't want the test to do this, you can use the faster version:
 
-
+[source,java]
 ---------------------
 public boolean searchButtonIsVisibleNow() {
     return searchButton.isCurrentlyVisible();
@@ -212,7 +217,7 @@ public boolean searchButtonIsVisibleNow() {
 
 You can turn this into an assert by using the +shouldBeVisible()+ method instead:
 
-
+[source,java]
 ---------------------
 public void checkThatSearchButtonIsVisible() {
     searchButton.shouldBeVisible();
@@ -223,7 +228,7 @@ This method will through an assertion error if the search button is not visible 
 
 If you are happy to expose the fact that your page has a search button to your step methods, you can make things even simpler by adding an accessor method that returns a WebElementState, as shown here:
 
-
+[source,java]
 ---------------------
 public WebElementState searchButton() {
     return element(searchButton);
@@ -232,17 +237,18 @@ public WebElementState searchButton() {
 
 Then your steps will contain code like the following:
 
+[source,java]
 ---------------------
 	searchPage.searchButton().shouldBeVisible();
 ---------------------
 
-==== Checking whether elements are enabled    
+==== Checking whether elements are enabled
 
 You can also check whether an element is enabled or not:
 
 
 ---------------------
-searchButton.isEnabled() 
+searchButton.isEnabled()
 searchButton.shouldBeEnabled()
 ---------------------
 
@@ -251,8 +257,8 @@ There are also equivalent negative methods:
 
 ---------------------
 searchButton.shouldNotBeVisible();
-searchButton.shouldNotBeCurrentlyVisible();  
-searchButton.shouldNotBeEnabled() 
+searchButton.shouldNotBeCurrentlyVisible();
+searchButton.shouldNotBeEnabled()
 ---------------------
 
 You can also check for elements that are present on the page but not visible, e.g:
@@ -262,14 +268,14 @@ You can also check for elements that are present on the page but not visible, e.
 searchButton.isPresent();
 searchButton.isNotPresent();
 searchButton.shouldBePresent();
-searchButton.shouldNotBePresent();          
+searchButton.shouldNotBePresent();
 ---------------------
- 
+
 ==== Manipulating select lists
 
 There are also helper methods available for drop-down lists. Suppose you have the following dropdown on your page:
 
-
+[source,xml]
 ---------------------
 <select id="color">
     <option value="red">Red</option>
@@ -280,7 +286,7 @@ There are also helper methods available for drop-down lists. Suppose you have th
 
 You could write a page object to manipulate this dropdown as shown here:
 
-
+[source,java]
 ---------------------
 public class FindAJobPage extends PageObject {
 
@@ -288,8 +294,8 @@ public class FindAJobPage extends PageObject {
 	WebElementFacade colorDropdown;
 
 	public selectDropdownValues() {
-	    colorDropdown.selectByVisibleText("Blue");         
-	    assertThat(colorDropdown.getSelectedVisibleTextValue(), is("Blue"));   
+	    colorDropdown.selectByVisibleText("Blue");
+	    assertThat(colorDropdown.getSelectedVisibleTextValue(), is("Blue"));
 
 	    colorDropdown.selectByValue("blue");
 	    assertThat(colorDropdown.getSelectedValue(), is("blue"));
@@ -330,15 +336,15 @@ button.waitUntilNotVisible()
 
 Another way to access a web element is to use an XPath or CSS expression. You can use the +$()+ method with an XPath expression to do this more simply. For example, imagine your web application needs to click on a list item containing a given post code. One way would be as shown here:
 
-
+[source,java]
 ---------------------
 WebElement selectedSuburb = getDriver().findElement(By.xpath("//li/a[contains(.,'" + postcode + "')]"));
-selectedSuburb.click();                   
----------------------                     
+selectedSuburb.click();
+---------------------
 
 However, a simpler option would be to do this:
 
-
+[source,java]
 ----------------------
 $("//li/a[contains(.,'" + postcode + "')]").click();
 ----------------------
@@ -351,24 +357,28 @@ Asynchronous pages are those whose fields or data is not all displayed when the 
 
 In WebDriver terms, there is a distinction between when an element is present on the screen (i.e. in the HTML source code), and when it is rendered (i.e. visible to the user). You may also need to check whether an element is visible on the screen. You can do this in two ways. Your first option is to use the isElementVisible method, which returns a boolean value based on whether the element is rendered (visible to the user) or not:
 
+[source,java]
 ---------------------
 isElementVisible(By.xpath("//h2[.='A visible title']"))
 ---------------------
 
 Your second option is to actively assert that the element should be visible:
 
+[source,java]
 ---------------------
 shouldBeVisible(By.xpath("//h2[.='An invisible title']"));
 ---------------------
 
 If the element does not appear immediately, you can wait for it to appear:
 
+[source,java]
 ---------------------
 waitForRenderedElements(By.xpath("//h2[.='A title that is not immediately visible']"));
 ---------------------
 
 An alternative to the above syntax is to use the more fluid +waitFor+ method which takes a css or xpath selector as argument:
 
+[source,java]
 ---------------------
 waitFor("#popup"); //css selector
 
@@ -377,21 +387,23 @@ waitFor("//h2[.='A title that is not immediately visible']"); //xpath selector
 
 If you just want to check if the element is present though not necessarily visible, you can use +waitForRenderedElementsToBePresent+ :
 
+[source,java]
 ----------------------
 waitForRenderedElementsToBePresent(By.xpath("//h2[.='A title that is not immediately visible']"));
 ----------------------
 
 or its more expressive flavour, +waitForPresenceOf+ which takes a css or xpath selector as argument.
 
-
+[source,java]
 ---------------------
 waitForPresenceOf("#popup"); //css
 
 waitForPresenceOf("//h2[.='A title that is not immediately visible']"); //xpath
 ---------------------
-  
+
 You can also wait for an element to disappear by using +waitForRenderedElementsToDisappear+ or +waitForAbsenceOf+ :
 
+[source,java]
 ---------------------
 waitForRenderedElementsToDisappear(By.xpath("//h2[.='A title that will soon disappear']"));
 
@@ -404,21 +416,21 @@ waitForAbsenceOf("//h2[.='A title that will soon disappear']");
 
 For simplicity, you can also use the +waitForTextToAppear+ and +waitForTextToDisappear+ methods:
 
-
+[source,java]
 ---------------------
 waitForTextToDisappear("A visible bit of text");
 ---------------------
 
 If several possible texts may appear, you can use +waitForAnyTextToAppear+ or +waitForAllTextToAppear+:
 
-
+[source,java]
 ---------------------
 waitForAnyTextToAppear("this might appear","or this", "or even this");
 ---------------------
 
 If you need to wait for one of several possible elements to appear, you can also use the +waitForAnyRenderedElementOf+ method:
 
-
+[source,java]
 ---------------------
 waitForAnyRenderedElementOf(By.id("color"), By.id("taste"), By.id("sound"));
 ---------------------
@@ -441,6 +453,7 @@ The default value in Serenity for this property is currently 2 seconds. This is 
 
 Let’s look at an example. Suppose we have a PageObject with a field defined like this:
 
+[source,java]
 ----
 @FindBy(id="slow-loader")
 public WebElementFacade slowLoadingField;
@@ -450,6 +463,7 @@ This field takes a little while to load, so won’t be ready immediately on the 
 
 Now suppose we set the webdriver.timeouts.implicitlywait value to 5000, and that our test uses the slowLoadingField:
 
+[source,java]
 ----
 boolean loadingFinished = slowLoadingField.isDisplayed()
 ----
@@ -458,6 +472,7 @@ When we access this field, two things can happen. If the field takes less than 5
 
 That this timeout also applies for lists. Suppose we have defined a field like this, which takes some time to dynamically load:
 
+[source,java]
 ----
 @FindBy(css="#elements option")
 public List<WebElementFacade> elementItems;
@@ -465,6 +480,7 @@ public List<WebElementFacade> elementItems;
 
 Now suppose we count the values of the element like this:
 
+[source,java]
 ----
 int itemCount = elementItems.size()
 ----
@@ -473,27 +489,31 @@ The number of items returned will depend on the implicit wait value. If we set t
 
 The implicit wait value is set globally for each WebDriver instance, but you can override the value yourself. The simplest way to do this from within a Serenity PageObject is to use the setImplicitTimeout() method:
 
+[source,java]
 ----
 setImplicitTimeout(5, SECONDS)
 ----
 
 But remember this is a global configuration, so will also affect other page objects. So once you are done, you should always reset the implicit timeout to its previous value. Serenity gives you a handy method to do this:
 
+[source,java]
 ----
 resetImplicitTimeout()
 ----
 
 See http://docs.seleniumhq.org/docs/04_webdriver_advanced.jsp#implicit-waits[Selenium Documentation] for more details on how the WebDriver implicit waits work.
 
-====Explicit Timeouts
+==== Explicit Timeouts
 You can also wait until an element is in a particular state. For example, we could wait until a field becomes visible:
 
+[source,java]
 ----
 slowLoadingField.waitUntilVisible()
 ----
 
 You can also wait for more arbitrary conditions, e.g.
 
+[source,java]
 ----
 waitFor(ExpectedConditions.alertIsPresent())
 ----
@@ -502,24 +522,28 @@ The default time that Serenity will wait is determined by the webdriver.wait.for
 
 Sometimes you want to give WebDriver some more time for a specific operation. From within a PageObject, you can override or extend the implicit timeout by using the withTimeoutOf() method. For example, you could wait for the #elements list to load for up to 5 seconds like this:
 
+[source,java]
 ----
 withTimeoutOf(5, SECONDS).waitForPresenceOf(By.cssSelector("#elements option"))
 ----
 
 You can also specify the timeout for a field. For example, if you wanted to wait for up to 5 seconds for a button to become clickable before clicking on it, you could do the following:
 
+[source,java]
 ----
 someButton.withTimeoutOf(5, SECONDS).waitUntilClickable().click()
 ----
 
 You can also use this approach to retrieve elements:
 
+[source,java]
 ----
 elements = withTimeoutOf(5, SECONDS).findAll("#elements option")
 ----
 
 Finally, if a specific element a PageObject needs to have a bit more time to load, you can use the timeoutInSeconds attribute in the Serenity @FindBy annotation, e.g.
 
+[source,java]
 ----
 import net.serenitybdd.core.annotations.findby.FindBy;
 ...
@@ -529,12 +553,14 @@ public WebElementFacade country;
 
 You can also wait for an element to be in a particular state, and then perform an action on the element. Here we wait for an element to be clickable before clicking on the element:
 
+[source,java]
 ----
 addToCartButton.withTimeoutOf(5, SECONDS).waitUntilClickable().click()
 ----
 
 Or, you can wait directly on a web element:
 
+[source,java]
 ----
 @FindBy(id="share1-fb-like")
 WebElementFacade facebookIcon;
@@ -546,6 +572,7 @@ public WebElementState facebookIcon() {
 
 Or even:
 
+[source,java]
 ----
 List<WebElementFacade> currencies = withTimeoutOf(5, TimeUnit.SECONDS)
                               .waitFor(currencyTab)
@@ -557,23 +584,23 @@ List<WebElementFacade> currencies = withTimeoutOf(5, TimeUnit.SECONDS)
 
 There are times when you may find it useful to execute a little Javascript directly within the browser to get the job done. You can use the +evaluateJavascript()+ method of the +PageObject+ class to do this. For example, you might need to evaluate an expression and use the result in your tests. The following command will evaluate the document title and return it to the calling Java code:
 
-
+[source,java]
 ---------------------
 String result = (String) evaluateJavascript("return document.title");
 ---------------------
 
 Alternatively, you may just want to execute a Javascript command locally in the browser. In the following code, for example, we set the focus to the 'firstname' input field:
 
-
+[source,java]
 ---------------------
-	evaluateJavascript("document.getElementById('firstname').focus()");           
+	evaluateJavascript("document.getElementById('firstname').focus()");
 ---------------------
 
 And, if you are familiar with JQuery, you can also invoke JQuery expressions:
 
-
+[source,java]
 ---------------------
-	evaluateJavascript("$('#firstname').focus()");           
+	evaluateJavascript("$('#firstname').focus()");
 ---------------------
 
 This is often a useful strategy if you need to trigger events such as mouse-overs that are not currently supported by the WebDriver API.
@@ -583,7 +610,7 @@ This is often a useful strategy if you need to trigger events such as mouse-over
 
 Uploading files is easy. Files to be uploaded can be either placed in a hard-coded location (bad) or stored on the classpath (better). Here is a simple example:
 
-
+[source,java]
 ---------------------
 public class NewCompanyPage extends PageObject {
     ...
@@ -605,7 +632,7 @@ public class NewCompanyPage extends PageObject {
 When writing acceptance tests, you often find yourself expressing expectations about individual domain objects or collections of domain objects. For example, if you are testing a multi-criteria search feature, you will want to know that the application finds the records you expected. You might be able to do this in a very precise manner (for example, knowing exactly what field values you expect), or you might want to make your tests more flexible by expressing the ranges of values that would be acceptable. Serenity provides a few features that make it easier to write acceptance tests for this sort of case.
 
 In the rest of this section, we will study some examples based on tests for the Maven Central search site (see <<maven-search-report>>). This site lets you search the Maven repository for Maven artifacts, and view the details of a particular artifact.
-     
+
 [[maven-search-report]]
 .The results page for the Maven Central search page
 image::maven-search-report.png[scaledwidth="80%", width=800]
@@ -618,7 +645,7 @@ We will use some imaginary regression tests for this site to illustrate how the 
 
 In JUnit, a Serenity test for this scenario might look like the one:
 
-
+[source,java]
 --------------
 ...
 import static net.thucydides.core.matchers.BeanMatchers.the_count;
@@ -660,9 +687,9 @@ Let's see how the test in this class is implemented. The +should_find_the_right_
 
  . Then we should see a list of artifacts where each Group ID starts with "net.Serenity", each Artifact ID is unique, and that there are at least 16 such entries displayed.
 
-The implementation of these steps is illustrated here: 
+The implementation of these steps is illustrated here:
 
-
+[source,java]
 -----------
 ...
 import static net.thucydides.core.matchers.BeanMatcherAsserts.shouldMatch;
@@ -701,7 +728,7 @@ public class DeveloperSteps extends ScenarioSteps {
 
 The first two steps are implemented by relatively simple methods. However the third step is more interesting. Let's look at it more closely:
 
-
+[source,java]
 -----------
     @Step
     public void should_see_artifacts_where(BeanMatcher... matchers) {
@@ -715,7 +742,7 @@ The +shouldMatch()+ method from the BeanMatcherAsserts class takes either a sing
 
 There are a number of different matcher expressions to choose from. The most commonly used matcher just checks the value of a field in an object. For example, suppose you are using the domain object shown here:
 
-
+[source,java]
 -----------
      public class Person {
         private final String firstName;
@@ -734,40 +761,40 @@ There are a number of different matcher expressions to choose from. The most com
 
 You could write a test to ensure that a list of Persons contained at least one person named "Bill" by using the "the" static method, as shown here:
 
-
+[source,java]
 -----------
     List<Person> persons = Arrays.asList(new Person("Bill", "Oddie"), new Person("Tim", "Brooke-Taylor"));
- 
+
     shouldMatch(persons, the("firstName", is("Bill"))
 -----------
 
 The second parameter in the the() method is a Hamcrest matcher, which gives you a great deal of flexibility with your expressions. For example, you could also write the following:
 
-
+[source,java]
 -----------
     List<Person> persons = Arrays.asList(new Person("Bill", "Oddie"), new Person("Tim", "Brooke-Taylor"));
- 
+
     shouldMatch(persons, the("firstName", is(not("Tim"))));
     shouldMatch(persons, the("firstName", startsWith("B")));
 -----------
 
 You can also pass in multiple conditions:
 
-
+[source,java]
 -----------
     List<Person> persons = Arrays.asList(new Person("Bill", "Oddie"), new Person("Tim", "Brooke-Taylor"));
- 
+
     shouldMatch(persons, the("firstName", is("Bill"), the("lastName", is("Oddie"));
 -----------
 
 Serenity also provides the DateMatchers class, which lets you apply Hamcrest matches to standard java Dates and +JodaTime+ DateTimes. The following code samples illustrate how these might be used:
 
-
+[source,java]
 -----------
     DateTime january1st2010 = new DateTime(2010,01,01,12,0).toDate();
     DateTime may31st2010 = new DateTime(2010,05,31,12,0).toDate();
 
-    the("purchaseDate", isBefore(january1st2010))  
+    the("purchaseDate", isBefore(january1st2010))
     the("purchaseDate", isAfter(january1st2010))
     the("purchaseDate", isSameAs(january1st2010))
     the("purchaseDate", isBetween(january1st2010, may31st2010))
@@ -775,29 +802,29 @@ Serenity also provides the DateMatchers class, which lets you apply Hamcrest mat
 
 You sometimes also need to check constraints that apply to all of the elements under consideration. The simplest of these is to check that all of the field values for a particular field are unique. You can do this using the +each()+ method:
 
-
+[source,java]
 -----------
     shouldMatch(persons, each("lastName").isDifferent())
 -----------
 
 You can also check that the number of matching elements corresponds to what you are expecting. For example, to check that there is only one person who's first name is Bill, you could do this:
 
-
+[source,java]
 -----------
      shouldMatch(persons, the("firstName", is("Bill"), the_count(is(1)));
 -----------
 
 You can also check the minimum and maximum values using the max() and min() methods. For example, if the Person class had a +getAge()+ method, we could ensure that every person is over 21 and under 65 by doing the following:
 
-
+[source,java]
 -----------
-     shouldMatch(persons, min("age", greaterThanOrEqualTo(21)), 
+     shouldMatch(persons, min("age", greaterThanOrEqualTo(21)),
                           max("age", lessThanOrEqualTo(65)));
 -----------
 
 These methods work with normal Java objects, but also with Maps. So the following code will also work:
 
-
+[source,java]
 -----------
     Map<String, String> person = new HashMap<String, String>();
     person.put("firstName", "Bill");
@@ -808,14 +835,14 @@ These methods work with normal Java objects, but also with Maps. So the followin
 -----------
 
 The other nice thing about this approach is that the matchers play nicely with the Serenity reports. So when you use the BeanMatcher class as a parameter in your test steps, the conditions expressed in the step will be displayed in the test report, as shown in <<fig-maven-search-report>>.
-      
+
 [[fig-maven-search-report]]
 .Conditional expressions are displayed in the test reports
 image::maven-search-report.png[scaledwidth="80%", width=800]
 
 There are two common usage patterns when building Page Objects and steps that use this sort of matcher. The first is to write a Page Object method that returns the list of domain objects (for example, Persons) displayed on the table. For example, the getSearchResults() method used in the should_see_artifacts_where() step could be implemented as follows:
 
-
+[source,java]
 -------------
     public List<Artifact> getSearchResults() {
         List<WebElement> rows = resultTable.findElements(By.xpath(".//tr[td]"));
@@ -823,9 +850,9 @@ There are two common usage patterns when building Page Objects and steps that us
         for (WebElement row : rows) {
             List<WebElement> cells = row.findElements(By.tagName("td"));
             artifacts.add(new Artifact(cells.get(0).getText(),
-                                       cells.get(1).getText(), 
+                                       cells.get(1).getText(),
                                        cells.get(2).getText()));
-            
+
         }
         return artifacts;
     }
@@ -836,8 +863,8 @@ The second is to access the HTML table contents directly, without explicitly mod
 ==== Working with HTML Tables
 
 Since HTML tables are still widely used to represent sets of data on web applications, Serenity comes the HtmlTable class, which provides a number of useful methods that make it easier to write Page Objects that contain tables. For example, the rowsFrom method returns the contents of an HTML table as a list of Maps, where each map contains the cell values for a row indexed by the corresponding heading, as shown here:
- 
 
+[source,java]
 -------------
 ...
 import static net.thucydides.core.pages.components.HtmlTable.rowsFrom;
@@ -859,7 +886,7 @@ public class SearchResultsPage extends PageObject {
 
 This saves a lot of typing - our +getSearchResults()+ method now looks like this:
 
-
+[source,java]
 ---------
     public List<Map<String, String>> getSearchResults() {
         return rowsFrom(resultTable);
@@ -870,7 +897,7 @@ And since the Serenity matchers work with both Java objects and Maps, the matche
 
 You can also read tables without headers (i.e., <th> elements) by specifying your own headings using the +withColumns+ method. For example:
 
-
+[source,java]
 ---------
     List<Map<Object, String>> tableRows =
                     HtmlTable.withColumns("First Name","Last Name", "Favorite Colour")
@@ -880,7 +907,7 @@ You can also read tables without headers (i.e., <th> elements) by specifying you
 
 You can also use the HtmlTable class to select particular rows within a table to work with. For example, another test scenario for the Maven Search page involves clicking on an artifact and displaying the details for that artifact. The test for this might look something like this:
 
-
+[source,java]
 -------------
     @Test
     public void clicking_on_artifact_should_display_details_page() {
@@ -896,7 +923,7 @@ You can also use the HtmlTable class to select particular rows within a table to
 
 Now the open_artifact_where() method needs to click on a particular row in the table. This step looks like this:
 
-
+[source,java]
 -------------
     @Step
     public void open_artifact_where(BeanMatcher... matchers) {
@@ -906,7 +933,7 @@ Now the open_artifact_where() method needs to click on a particular row in the t
 
 So we are effectively delegating to the Page Object, who does the real work. The corresponding Page Object method looks like this:
 
-
+[source,java]
 -------------
 import static net.thucydides.core.pages.components.HtmlTable.filterRows;
 ...
@@ -915,16 +942,16 @@ import static net.thucydides.core.pages.components.HtmlTable.filterRows;
         WebElement targetRow = matchingRows.get(0);
         WebElement detailsLink = targetRow.findElement(By.xpath(".//a[contains(@href,'artifactdetails')]"));
         detailsLink.click();
-    }   
+    }
 -------------
 
 The interesting part here is the first line of the method, where we use the filterRows() method. This method will return a list of WebElements that match the matchers you have passed in. This method makes it fairly easy to select the rows you are interested in for special treatment.
-    
-=== Running several steps using the same page object    
+
+=== Running several steps using the same page object
 
 Sometimes, querying the browser can be expensive. For example, if you are testing tables with large numbers of web elements (e.g. a web element for each cell), performance can be slow, and memory usage high. Normally, Serenity will requery the page (and create a new Page Object) each time you call +Pages.get()+ or +Pages.currentPageAt()+. If you are certain that the page will not change (i.e., that you are only performing read-only operations on the page), you can use the onSamePage() method of the ScenarioSteps class to ensure that subsequent calls to +Pages.get()+ or +Pages.currentPageAt()+ will return the same page object:
 
-
+[source,java]
 ------------------
 @RunWith(SerenityRunner.class)
 public class WhenDisplayingTableContents {
@@ -936,11 +963,11 @@ public class WhenDisplayingTableContents {
     public Pages pages;
 
     @Steps
-    public DemoSiteSteps steps;                   
+    public DemoSiteSteps steps;
 
     @Test
     public void the_user_opens_another_page() {
-        steps.navigate_to_page_with_a_large_table();       
+        steps.navigate_to_page_with_a_large_table();
         steps.onSamePage(DemoSiteSteps.class).check_row(1);
         steps.onSamePage(DemoSiteSteps.class).check_row(2);
         steps.onSamePage(DemoSiteSteps.class).check_row(3);
@@ -952,11 +979,11 @@ public class WhenDisplayingTableContents {
 
 A method, switchToPage() is provided in PageObject class to make it convenient to return a new PageObject after navigation from within a method of a PageObject class. For example,
 
+[source,java]
 ------------------
-
 @DefaultUrl("http://mail.acme.com/login.html")
 public class EmailLoginPage extends PageObject {
- 
+
     ...
     public void forgotPassword() {
         ...
@@ -967,8 +994,6 @@ public class EmailLoginPage extends PageObject {
     }
     ...
 }
-
-
 ------------------
 
 

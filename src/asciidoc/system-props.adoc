@@ -28,7 +28,7 @@ The full list is shown here:
 
 *serenity.home*:: The home directory for Serenity output and data files - by default, $USER_HOME/.serenity
 
-*serenity.outputDirectory*:: Where should reports be generated.
+*serenity.outputDirectory*:: Where should reports be generated. If project contains only one module (root module), than this path will be relative to root module, if project contains more than one submodule - than this path will be relative to submodule directory, also this path can be different for each submodule or can be inherited from root project property.
 
 *serenity.project.name*:: What name should appear on the reports
 
@@ -41,9 +41,10 @@ The full list is shown here:
 
 *serenity.take.screenshots*:: Set this property to have more finer control on how screenshots are taken. This property can take the following values:
   * *FOR_EACH_ACTION* : Similar to +serenity.verbose.screenshots+
-  * *BEFORE_AND_AFTER_EACH_STEP*,
-  * *AFTER_EACH_STEP*, and
+  * *BEFORE_AND_AFTER_EACH_STEP*
+  * *AFTER_EACH_STEP*
   * *FOR_FAILURES* : Similar to +serenity.only.save.failing.screenshots+
+  * *DISABLED*
 
 *serenity.report.encoding*:: Encoding used to generate the CSV exports
 
@@ -83,7 +84,9 @@ The full list is shown here:
 
 *serenity.batch.number*:: If batch testing is being used, this is the number of the batch being run on this machine.
 
-*serenity.use.unique.browser*:: Set this to run all web tests in a single browser.
+*serenity.use.unique.browser*:: Set this to true for running all web tests in a single browser, for one test. Can be used for configuring Junit and Cucumber, default value is 'false'.
+
+*restart.browser.each.scenario*:: Set this to false for running all web tests in same story file with one browser, can be used when Jbehave is used. default value is 'false'
 
 *serenity.locator.factory*:: Set this property to override the default locator factory with another locator factory (for ex., AjaxElementLocatorFactory or DefaultElementLocatorFactory). By default, Serenity uses a custom locator factory called DisplayedElementLocatorFactory.
 
@@ -103,7 +106,10 @@ The full list is shown here:
 
 *serenity.proxy.password*:: HTTP Proxy password configuration for Firefox and PhantomJS
 
-*serenity.logging*:: Three levels are supported: QUIET, NORMAL and VERBOSE
+*serenity.logging*:: Property for providing level of serenity actions, results, etc.
+  * *QUIET* : No Thucydides logging at all
+  * *NORMAL* : Log the start and end of tests
+  * *VERBOSE* : Log the start and end of tests and test steps, default value
 
 *serenity.test.root*:: The root package for the tests in a given project. If provided, Serenity will use this as the root package when determining the capabilities associated with a test. If you are using the File System Requirements provider, Thucydides will expect this directory structure to exist at the top of the requirements tree. If you want to exclude packages in a requirements definition and start at a lower level in the hierarchy, use the `serenity.requirement.exclusions` property.
 
@@ -133,7 +139,7 @@ requirements stored inside a sub-module.
 when instantiating page objects. This is to ensure that web elements are available and usable before they are used.
 For alternative behaviour, you can set this value to DisplayedElementLocatorFactory, AjaxElementLocatorFactory or DefaultElementLocatorFactory.
 
-*chrome.switches*:: Arguments to be passed to the Chrome driver, separated by commas.
+*chrome.switches*:: Arguments to be passed to the Chrome driver, separated by commas. Example: `chrome.switches = --incognito;--disable-download-notification`
 
 *webdriver.firefox.profile*:: The path to the directory of the profile to use when starting firefox. This defaults to webdriver creating an anonymous profile. This is useful if you want to run the web tests using your own Firefox profile. If you are not sure about how to find the path to your profile, look here: http://support.mozilla.com/en-US/kb/Profiles. For example, to run the default profile on a Mac OS X system, you would do something like this:
 
@@ -161,7 +167,7 @@ A complete reference to Firefox's configuration settings is given http://kb.mozi
 
 *serenity.console.headings*:: Write the console headings using ascii-art ("ascii", default value) or in normal text ("normal")
 
-*tags*:: Comma separated list of tags. If provided, only jUnit classes and/or methods with tags in this list will be executed. For example,
+*tags*:: Comma separated list of tags. If provided, only JUnit classes and/or methods with tags in this list will be executed. For example,
 
 ---------------
 mvn verify -Dtags="iteration:I1"
@@ -196,11 +202,14 @@ mvn verify -Dtags="color:red,flavor:strawberry"
 
 *serenity.maintain.session*:: Keep the Thucydides session data between tests. Normally, the session data is cleared between tests.
 
+*serenity.console.colors*:: Enabling or disabling in console output. All details you can find under <<Colors in console output>>
+
 
 === Providing your own Firefox profile
 
 If you need to configure your own customized Firefox profile, you can do this by using the Thucydidies.useFirefoxProfile() method before you start your tests. For example:
 
+[source,java]
 ------
 @Before
 public void setupProfile() {
@@ -214,3 +223,25 @@ public void setupProfile() {
 @Test
 public void aTestUsingMyCustomProfile() {...}
 ------
+
+=== Colors in console output
+
+There is feature for colorful console output during executing serenity tests. To enable it you should provide variable +serenity.console.colors = true+, by default it is turned off. This feature can cause errors if it is enabled for builds under Jenkins.
+Possible values are:
+
+ - true
+ - false (default value)
+
+If this property equal to false (or not provided at all) - output will be as configured in your system, for example:
+
+[[console-colors-off]]
+.Console color output is disabled
+image::console-colors-off.png[]
+
+If this property equal to true you will find colorful output:
+
+[[console-colors-on]]
+.Console color output is enabled
+image::console-colors-on.png[]
+
+
