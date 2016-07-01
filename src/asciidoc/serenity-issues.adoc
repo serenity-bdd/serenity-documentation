@@ -71,7 +71,7 @@ The `@issue` or `@issues` annotations can be used in Cucumber `.feature` files t
 
 @issues:ISSUE-123,ISSUE-789
 Feature: Basic Arithmetic
-  Calculing additions
+  Calculating Additions
 
   Background: A Calculator
     Given a calculator I just turned on
