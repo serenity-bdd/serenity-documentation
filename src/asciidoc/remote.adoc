@@ -84,9 +84,14 @@ Serenity has special support for running tests on the Cloud-based testing platfo
 `saucelabs.implicit.wait`:: Override the default implicit timeout value for the Saucelabs driver
 
 An example of running tests on Saucelabs is shown here:
----
+-----
 mvn verify -Dsaucelabs.target.platform=XP -Dwebdriver.driver=chrome -Dsaucelabs.driver.version=26 -Dsaucelabs.url=http://<my_id>:<my_API Key>@ondemand.saucelabs.com:80/wd/hub -Dsaucelabs.access.key=<My_API_Key> -Dsaucelabs.user.id=<my_id> -Dwebdriver.base.url=https://www.website.com -Dmaven.test.failure.ignore=true
----
+-----
+
+In case if you need to define an OS-Browser Combination, you should change *serenity.driver.capabilities* as follows:
+-----
+serenity.driver.capabilities="browserName:iphone; deviceName:iPad Retina; version:9.2"
+-----
 
 
 === Running tests on Mobile Devices with Appium
