@@ -1,8 +1,8 @@
 In real-world projects, scenarios can become quite numerous, and it's important to keep them well organized. You may also need to be able to identify and group scenarios in different ways;
 for example, you might want to distinguish UI-related scenarios from batch-processing scenarios, or identify the regression scenarios only.
- 
+
 Tags are also a great way to help organize test execution. For example, you might want to flag all of the web services tests, or mark certain tests to run against Internet Explorer browser only.
- 
+
 === Annotating scenarios with tags
 
 Tags are added to JUnit tests using +WithTag+ annotation. The following will add a tag of type _epic_ with name _Audit_:
@@ -52,23 +52,23 @@ Using +@WithTagsValuesOf+, the above can be written more succinctly as:
 ----
 @WithTagsValuesOf({"Reporting", "release:sprint-2"})
 ----
- 
+
 In JBehave, you can add tags using the +Meta+ keyword:
- 
+
 [source,java]
 ----
 Download account statements
- 
+
 Meta:               //<1>
 @web @iexplorer     //<2>
- 
+
 Scenario: Download account statement in SWIFT MT940 format
 ----
 <1> Tags need to be introduced by the Meta keyword
 <2> Tags start with @ and can be any text value
- 
+
 With Cucumber, things are even simpler:
- 
+
 [source,gherkin]
 ----
 Feature: Download account statements
@@ -76,21 +76,21 @@ Feature: Download account statements
 Scenario: Download account statement in SWIFT MT940 format
 ----
 <1> Cucumber doesn't need the Meta keyword
- 
+
 This way, when executing the tests, you can configure one or more filters to run (or exclude from run) the tests with a particular tag.
- 
+
 You can also use tags as a powerful reporting tool. Using +@tag+ or +@tags+, Serenity lets you define tags that will appear in the test reports:
- 
+
 ----
 Executing an international payment
- 
+
 Meta:
 @tag component: payment     //<1>
- 
+
 Scenario: Executing an international payment as a standing order
 ----
 <1> Scenarios in this file all involve the Payment component
- 
+
 These tags can take any 'name' and 'value' combination and so can be used to report on whatever aspects you need in the living documentation.
 
 TIP: In +@Step+ libraries you have access to both read and add tag values.
@@ -127,10 +127,14 @@ public void add_tags_based_on_sidebar_status () {
 	}
 }
 ----
- 
+
 === Running scenarios by tags
 
-You can filter tests by tag while running Serenity. With JUnit tests, this can be achieved by providing a single tag or a comma separated list of tags from command line.
+You can filter tests by tag while running Serenity.
+
+==== JUnit
+
+With JUnit tests, this can be achieved by providing a single tag or a comma separated list of tags from command line.
 If provided, only classes and/or methods with tags in this list will be executed.
 
 [source,xml]
@@ -144,6 +148,17 @@ or
 ----
 mvn clean verify -Dtags="feature:Reporting, release:sprint-2"
 ----
+
+==== Cucumber
+
+With Cucumber framework, you need to use the cucumber.options system property for tests filtering.
+
+[source,xml]
+----
+mvn clean verify -Dcucumber.options="--tags release:sprint-2"
+----
+
+==== JBehave
 
 In case JBehave is your framework of choice, you can filter tests by using +-Dmetafilter+ in your maven command, as follows:
 
