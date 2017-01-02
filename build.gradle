@@ -10,7 +10,7 @@ buildscript {
 
 apply plugin: 'org.asciidoctor.convert'
 
-version='1.0.1.1'
+version='2.1.0'
 
 asciidoctor {
   sourceDir 'src/asciidoc'
