@@ -29,6 +29,48 @@ You can also pass the usual driver-specific capabilities to the remote browser
 mvn verify -Dwebdriver.remote.url=http://localhost:4444/wd/hub -Dwebdriver.remote.driver=chrome -Dwebdriver.remote.os=WINDOWS -Dchrome.switches="--no-sandbox,--ignore-certificate-errors,--homepage=about:blank,--no-first-run"
 -----
 
+=== Running tests on Appium
+Serenity supports running tests on mobile devices/emulators out of the box with http://appium.io[Appium].
+
+You just need to install Appium:
+-----
+(sudo) npm install -g appium --chromedriver_version="2.16"
+-----
+
+Afterwards Appium is available as command and can be started by invoking the following command:
+-----
+appium
+-----
+
+Then adopt `serenity.properties` to run on an Android device:
+-----
+webdriver.driver= appium
+webdriver.base.url = http://www.google.com/
+appium.hub = http://127.0.0.1:4723/wd/hub
+appium.platformName = Android
+appium.platformVersion = 5.1.1
+appium.deviceName = e2f5c460
+appium.browserName = Chrome
+-----
+
+Here's an example for iOS:
+-----
+webdriver.driver= appium
+webdriver.base.url = http://www.google.com/
+appium.hub = http://127.0.0.1:4723/wd/hub
+appium.platformName = iOS
+appium.platformVersion = 8.1
+appium.deviceName = iPhone 5
+appium.browserName = Safari
+-----
+
+Besides the properties file you can also use commandline switches:
+-----
+mvn test -Dappium.hub=http://127.0.0.1:4723/wd/hub -Dwebdriver.driver=appium -Dappium.platformName=iOS -Dappium.browserName=Safari -Dappium.deviceName="iPhone 5"
+-----
+
+You can also add Appium to an existing grid. See the http://appium.io/slate/en/v1.2.3/?java#server-flags[Appium documentation] for more details about the node-config option.
+
 === Running tests on SauceLabs
 Serenity has special support for running tests on the Cloud-based testing platform http://www.saucelabs.com[SauceLabs]. The general approach is the same as discussed above, but there are a few extra Saucelabs-specific properties:
 
@@ -42,28 +84,38 @@ Serenity has special support for running tests on the Cloud-based testing platfo
 `saucelabs.implicit.wait`:: Override the default implicit timeout value for the Saucelabs driver
 
 An example of running tests on Saucelabs is shown here:
----
+-----
 mvn verify -Dsaucelabs.target.platform=XP -Dwebdriver.driver=chrome -Dsaucelabs.driver.version=26 -Dsaucelabs.url=http://<my_id>:<my_API Key>@ondemand.saucelabs.com:80/wd/hub -Dsaucelabs.access.key=<My_API_Key> -Dsaucelabs.user.id=<my_id> -Dwebdriver.base.url=https://www.website.com -Dmaven.test.failure.ignore=true
----
+-----
+
+In case if you need to define an OS-Browser Combination, you should change *serenity.driver.capabilities* as follows:
+-----
+serenity.driver.capabilities="browserName:iphone; deviceName:iPad Retina; version:9.2"
+-----
+
+
+=== Running tests on Mobile Devices with Appium
+
+
 
 === Running tests on BrowserStack
 
 The setup for running tests on BrowserStack is similar to the one for SauceLabs. The following system properties are available:
 
 `browserstack.url`:: BrowserStack Hub URL if running the tests on BrowserStack Cloud
-`browserstack.os`::
-`browserstack.os.version`::
-`browserstack.browser`::
-`browserstack.browser.version`::
-`browserstack.device`:: BrowserStack mobile device name on which tests should be run
-`browserstack.device.orientation`:: Set the screen orientation of BrowserStack mobile device
+`browserstack.os`:: OS type (e.g. WINDOWS, OS X)
+`browserstack.os_version`:: OS version (e.g. Windows: XP, 7, 8 and 8.1; OS X: Snow Leopard, Lion, Mountain Lion, Mavericks, Yosemite, El Capitan)
+`browserstack.browser`:: Browser type (e.g. Firefox, Safari, IE, Chrome, Opera)
+`browserstack.browser_version`:: Browser version (defaults to latest stable; check https://www.browserstack.com/list-of-browsers-and-platforms?product=automate[list of available browsers])
+`browserstack.device`:: BrowserStack https://www.browserstack.com/list-of-browsers-and-platforms?product=automate[mobile device] name on which tests should be run
+`browserstack.deviceOrientation`:: Set the screen orientation of BrowserStack mobile device (portrait or landscape, default: portrait)
 `browserstack.project`:: Specify a name for a logical group of builds on BrowserStack
 `browserstack.build`:: Specify a name for a logical group of tests on BrowserStack
-`browserstack.session.name`:: Specify an identifier for the test run on BrowserStack
-`browserstack.local`:: For Testing against internal/local servers on BrowserStack
+`browserstack.name`:: Specify an identifier for the test run on BrowserStack
+`browserstack.local`:: For Testing against https://www.browserstack.com/local-testing[internal/local] servers on BrowserStack
 `browserstack.debug`::  Generates screenshots at various steps in tests on BrowserStack
 `browserstack.resolution`:: Sets resolution of VM on BrowserStack
-`browserstack.selenium.version`::
-`browserstack.ie.no.flash`:: Disable flash on Internet Explorer on BrowserStack
+`browserstack.selenium_version`::
+`browserstack.ie.noFlash`:: Disable flash on Internet Explorer on BrowserStack
 `browserstack.ie.driver`:: Specify the Internet Explorer webdriver version on BrowserStack
-`browserstack.ie.enable.popups`:: Enable the popup blocker in Internet Explorer on BrowserStack
+`browserstack.ie.enablePopups`:: Enable the popup blocker in Internet Explorer on BrowserStack

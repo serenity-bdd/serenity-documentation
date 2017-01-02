@@ -28,7 +28,7 @@ The full list is shown here:
 
 *serenity.home*:: The home directory for Serenity output and data files - by default, $USER_HOME/.serenity
 
-*serenity.outputDirectory*:: Where should reports be generated.
+*serenity.outputDirectory*:: Where should reports be generated. If project contains only one module (root module), than this path will be relative to root module, if project contains more than one submodule - than this path will be relative to submodule directory, also this path can be different for each submodule or can be inherited from root project property.
 
 *serenity.project.name*:: What name should appear on the reports
 
@@ -84,7 +84,9 @@ The full list is shown here:
 
 *serenity.batch.number*:: If batch testing is being used, this is the number of the batch being run on this machine.
 
-*serenity.use.unique.browser*:: Set this to run all web tests in a single browser.
+*serenity.use.unique.browser*:: Set this to true for running all web tests in a single browser, for one test. Can be used for configuring Junit and Cucumber, default value is 'false'.
+
+*restart.browser.each.scenario*:: Set this to false for running all web tests in same story file with one browser, can be used when Jbehave is used. default value is 'false'
 
 *serenity.locator.factory*:: Set this property to override the default locator factory with another locator factory (for ex., AjaxElementLocatorFactory or DefaultElementLocatorFactory). By default, Serenity uses a custom locator factory called DisplayedElementLocatorFactory.
 
@@ -137,7 +139,7 @@ requirements stored inside a sub-module.
 when instantiating page objects. This is to ensure that web elements are available and usable before they are used.
 For alternative behaviour, you can set this value to DisplayedElementLocatorFactory, AjaxElementLocatorFactory or DefaultElementLocatorFactory.
 
-*chrome.switches*:: Arguments to be passed to the Chrome driver, separated by commas.
+*chrome.switches*:: Arguments to be passed to the Chrome driver, separated by commas. Example: `chrome.switches = --incognito;--disable-download-notification`
 
 *webdriver.firefox.profile*:: The path to the directory of the profile to use when starting firefox. This defaults to webdriver creating an anonymous profile. This is useful if you want to run the web tests using your own Firefox profile. If you are not sure about how to find the path to your profile, look here: http://support.mozilla.com/en-US/kb/Profiles. For example, to run the default profile on a Mac OS X system, you would do something like this:
 

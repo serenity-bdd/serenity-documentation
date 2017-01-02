@@ -145,7 +145,7 @@ public class MyRequirementsTagProvider implements RequirementsTagProvider {
 }
 -------------------
 
-Next, create a text file in your `src/main/resources/META-INF/serices` directory called `net.thucydides.core.statistics.service.TagProvider`, and put the fullly qualified name of your RequirementsTagProvider implementation.
+Next, create a text file in your `src/main/resources/META-INF/services` directory called `net.thucydides.core.statistics.service.TagProvider`, and put the fullly qualified name of your RequirementsTagProvider implementation.
 
 ===== Story meta-data
 
@@ -204,6 +204,76 @@ include::{srcdir}/jbehave-quick-start/src/test/java/net/serenitybdd/samples/etsy
 
 When these tests are executed, the JBehave steps combine with the Serenity steps to create a narrative report of the test results.
 
+==== Comments in scenario
+
+In case if you use comments in scenario, Serenity will ignore a commented condition, but it will be displayed in the generated report like this:
+
+[[jbehave_comments_report]]
+.Report with commented conditions in scenario
+image::jbehave_comments_report.png[]
+
+You can comment particular conditions or the whole scenario. Here are some examples for different cases.
+
+Commenting one condition:
+
+-----
+Narrative:
+In order to provide some business value
+As a user
+I want to perform some simple action, but I commented then condition
+
+Scenario: Single scenario with commented then condition
+Given I have prepared environment for simple action one
+When I perform "simple action one"
+!-- Then I expect result for "simple action one" should be "success"
+-----
+
+Report:
+
+[[jbehave_one_condition_commented]]
+.Report with commented Then condition
+image::jbehave_one_condition_commented.png[]
+
+Commenting all conditions:
+
+-----
+Narrative:
+In order to provide some business value
+As a user
+I want to perform some simple action, but I commented all conditions
+
+Scenario: Single scenario with all commented conditions
+!-- Given I have prepared environment for simple action one
+!-- When I perform "simple action one"
+!-- Then I expect result for "simple action one" should be "success"
+-----
+
+Report:
+
+[[jbehave_all_conditions_commented]]
+.Report with commented all conditions
+image::jbehave_all_conditions_commented.png[]
+
+Commenting a whole scenario:
+
+-----
+Narrative:
+In order to provide some business value
+As a user
+I want to perform some simple action, but I commented scenario
+
+!-- Scenario: Single commented scenario
+!-- Given I have prepared environment for simple action one
+!-- When I perform "simple action one"
+!-- Then I expect result for "simple action one" should be "success"
+-----
+
+Report:
+
+[[jbehave_scenario_commented]]
+.Report with commented scenario
+image::jbehave_scenario_commented.png[]
+
 ==== JBehave Maven Archetype
 
 A jBehave archetype is availble to help you jumpstart a new project. As usual, you can run mvn archetype:generate from the command line and then select the net.thucydides.thucydides-jbehave-archetype archetype from the proposed list of archetypes. Or you can use your favorite IDE to generate a new Maven project using an archetype.
@@ -233,7 +303,7 @@ This archetype creates a project directory structure similar to the one shown he
 
 ==== Running all tests in a single browser window
 
-All web tests can be run in a single browser window using either by setting the `serenity.use.unique.browser` system property or programmatically using runSerenity().inASingleSession() inside the JUnit runner.
+All web tests for one story can be run in a single browser window using either by setting the 'restart.browser.each.scenario' system property or programmatically using runSerenity().inASingleSession() inside the JUnit runner. It is default behaving - to run all scenarios in same story in one browser.
 
 [source,java]
 ----
