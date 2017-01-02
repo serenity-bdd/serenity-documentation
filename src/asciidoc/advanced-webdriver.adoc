@@ -1,3 +1,26 @@
+=== Restarting the browser between tests
+
+By default, Serenity will start a new browser for each test. This helps ensure that each test is isolated and independant, but it can result in slower test execution for test suites with large numbers of relatively fast-running tests.
+
+You can fine-tune this behavior with the `serenity.restart.browser.for.each` property. This property takes the following values:
+
+  * never
+  * feature
+  * story
+  * scenario
+  * example
+
+These values work as follows:
+
+A value of **never** will open a single browser (or one browser per thread if the tests are being run in parallel), and use this browser for every test. Serenity will attempt to clear
+
+A value of **feature** and **story** (which are equivalent in this context) will cause Serenity to open a new browser for each test case (in JUnit), or each feature (in Cucumber) or story (in JBehave).
+
+A value of **scenario** will open a new browser for each test (in JUnit) or scenario (in Cucumber or JBehave).
+
+
+There are some caveats to this configuration. Browsers are managed per thread, so if the tests are run in parallel (and therefore on separate threads), several browsers will be opened.
+
 === Custom WebDriver implementations
 
 You can add your own custom WebDriver provider by implementing the DriverSource interface. First, you need to set up the following system properties (e.g. in your `serenity.properties` file):
