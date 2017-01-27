@@ -69,6 +69,32 @@ Besides the properties file you can also use commandline switches:
 mvn test -Dappium.hub=http://127.0.0.1:4723/wd/hub -Dwebdriver.driver=appium -Dappium.platformName=iOS -Dappium.browserName=Safari -Dappium.deviceName="iPhone 5"
 -----
 
+All properties starting with appium.* will be forwarded to the appium driver as appium desired capabilities. For example, setting the property `appium.automationName=myAutomationName` will have as effect setting the capability `automationName`
+in the appium driver to `myAutomationName`.
+
+Following annotations are supported for a PageObject element:
+-----
+@AndroidFindBy(id="")
+private WebElement loginButton;
+-----
+-----
+@iOSFindBy(id="")
+private WebElement loginButton;
+-----
+-----
+@FindBy(accessibilityId="")
+private WebElement loginButton;
+-----
+
+Sometimes it may be necessary in a PageObject to use specific methods of the underlying driver
+-----
+AndroidDriver<AndroidElement> androidDriver() {
+    return (AndroidDriver<AndroidElement>) ((WebDriverFacade) getDriver()).getProxiedDriver();
+}
+...
+androidDriver().hideKeyboard();
+-----
+
 You can also add Appium to an existing grid. See the http://appium.io/slate/en/v1.2.3/?java#server-flags[Appium documentation] for more details about the node-config option.
 
 === Running tests on SauceLabs
@@ -92,11 +118,6 @@ In case if you need to define an OS-Browser Combination, you should change *sere
 -----
 serenity.driver.capabilities="browserName:iphone; deviceName:iPad Retina; version:9.2"
 -----
-
-
-=== Running tests on Mobile Devices with Appium
-
-
 
 === Running tests on BrowserStack
 
