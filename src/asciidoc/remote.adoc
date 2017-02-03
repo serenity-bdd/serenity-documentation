@@ -64,6 +64,9 @@ appium.deviceName = iPhone 5
 appium.browserName = Safari
 -----
 
+`Note`:: All properties which are starting with `appium` in serenity.properties will be forwarded to appium driver. 
+e.g. setting `appium.automationName = XCUITest` in serenity.properties will have as end effect setting the property `automationName = XCUITest` in appium driver capabilities.
+
 Besides the properties file you can also use commandline switches:
 -----
 mvn test -Dappium.hub=http://127.0.0.1:4723/wd/hub -Dwebdriver.driver=appium -Dappium.platformName=iOS -Dappium.browserName=Safari -Dappium.deviceName="iPhone 5"
