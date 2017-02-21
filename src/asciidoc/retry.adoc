@@ -1,4 +1,6 @@
-Sometimes it is required to retry a failed test. This can be achieved by setting the system properties +junit.retry.tests+ to true and +max.retries+ to the number of times you want failed tests to be retried. If +max.retries+ provided and +junit.retry.tests+=true, all method tests will be executed until first successful run, but not more than 1 + +max.retries+ times.
+Sometimes it is required to retry a failed test. For the Junit tests, this can be achieved by setting the system property +test.retry.count+ to the maximum number of times you want the failed tests to be retried. All method tests will be executed until first successful run, but not more than +test.retry.count+ times.
+
+For the Cucumber tests, there is an equivalent property +test.retry.count.cucumber+
 
 Here is short example, for it we will use next test class:
 
@@ -21,19 +23,13 @@ If this test will be executed - it will fail:
 .Report with failed scenario
 image::retry_test_fail.png[]
 
-If we provide next properties in serenity.property file, framework will execute tests more according to configuration until test will be successful or number of tries will be reached:
+If we set the property +test.retry.count=4+ in serenity.property file, the failing tests will be executed until they will be successful or the maximum number of tries will be reached:
 
-----
-max.retries=4
-junit.retry.tests=true
-----
-
-After executing same test it will be successful - because method +then_example_result_should_be+ fails only twice, and third "try" will successful:
-
+The same test execution with the +test.retry.count+ property set will be successfull - because the method +then_example_result_should_be+ fails only twice, and third execution will be successful:
 
 [[retry_test_fail]]
-.Report with successful scenario
-image::retry_test_success.png[]
+.Report with successful unstable scenario
+image::retry_test_success_unstable.png[]
 
 If you're using Jenkins for aggregating your test results use this folder pattern for JUnit test results:
 
