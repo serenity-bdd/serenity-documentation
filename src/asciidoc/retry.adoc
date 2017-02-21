@@ -38,3 +38,12 @@ target/site/serenity/SERENITY-JUNIT-*.xml
 ----
 
 This will exclude the previous failed tests from your report.
+
+Failed JUnit tests can also be recorded in files and rerun later.
+To activate recording of the failed tests, the property +record.failures+ must be set to true.
+By default, the failed tests are recorded in a directory called +rerun+ in the current directory.
+To change the directory where the tests are recorded, the property +rerun.failures.directory+ can be used.
+To rerun only the failed tests which are registered in the +rerun+ directory, the property +replay.failures+ must be set to true.
+
+
+
