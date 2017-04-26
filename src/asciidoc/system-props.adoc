@@ -84,7 +84,7 @@ The full list is shown here:
 
 *serenity.batch.number*:: If batch testing is being used, this is the number of the batch being run on this machine.
 
-§*restart.browser.each.scenario*:: Set this to false for running all web tests in same story file with one browser, can be used when Jbehave is used. default value is 'false'
+*restart.browser.each.scenario*:: Set this to false for running all web tests in same story file with one browser, can be used when Jbehave is used. default value is 'false'
 
 *serenity.restart.browser.for.each*:: Indicate when a browser should be restarted during a test run. Can be one of:
   * *EXAMPLE*
