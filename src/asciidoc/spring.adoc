@@ -1,12 +1,12 @@
 
 If you are running your acceptance tests against an embedded web server (for example, using Jetty), it can occasionally be useful to access the service layers directly for fixture or infrastructure-related code. For example, you may have a scenario where a user action must, as a side effect, record an audit log in a table in the database. To keep your test focused and simple, you may want to call the service layer directly to check the audit logs, rather than logging on as an administrator and navigating to the audit logs screen.
 
-Spring provides excellent support for integration tests, via the SpringJUnit4ClassRunner test runner. Unfortunately, if you are using Serenity, this is not an option, as a test cannot have two runners at the same time. Fortunately, however, there is a solution! To inject dependencies using a Spring configuration file, you just need to include the Serenity SpringIntegration rule in your test class. You instantiate this variable as shown here:
+Spring provides excellent support for integration tests, via the SpringJUnit4ClassRunner test runner. Unfortunately, if you are using Serenity, this is not an option, as a test cannot have two runners at the same time. Fortunately, however, there is a solution! To inject dependencies using a Spring configuration file, you just need to include the Serenity SpringIntegrationMethodRule in your test class. You instantiate this variable as shown here:
 
 [source,java]
 --------------------
 @Rule
-public SpringIntegration springIntegration = new SpringIntegration();
+public SpringIntegrationMethodRule springIntegrationMethodRule = new SpringIntegrationMethodRule();
 --------------------
 
 Then you use the +@ContextConfiguration+ annotation to define the configuration file or files to use. The you can inject dependencies as you would with an ordinary Spring integration test, using the usual Spring annotations such as @Autowired or +@Resource+. For example, suppose we are using the following Spring configuration file, called ‘config.xml’:
@@ -40,7 +40,7 @@ public class WhenInjectingSpringDependencies {
     public Pages pages;
 
     @Rule
-    public SpringIntegration springIntegration = new SpringIntegration();
+    public SpringIntegrationMethodRule springIntegrationMethodRule = new SpringIntegrationMethodRule();
 
     @Autowired
     public GizmoService gizmoService;
