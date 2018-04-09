@@ -137,6 +137,7 @@ You can filter tests by tag while running Serenity.
 With JUnit tests, this can be achieved by providing a single tag or a comma separated list of tags from command line.
 If provided, only classes and/or methods with tags in this list will be executed.
 
+===== Maven Build
 [source,xml]
 ----
 mvn clean verify -Dtags="release:sprint-2"
@@ -147,6 +148,30 @@ or
 [source,xml]
 ----
 mvn clean verify -Dtags="feature:Reporting, release:sprint-2"
+----
+
+===== Gradle Build
+In order to filter with Gradle, the following needs to be added to the configuration of the test task. If it is not present, the value of 'tags' does not get passed to the SerenityRunner, and the tags filter is not applied.
+
+[source,groovy]
+----
+test {
+    systemProperty 'tags', System.properties['tags']
+}
+----
+
+Once this configuration is in place, one can filter in a similar manner to Maven. 
+
+[source,xml]
+----
+gradle test verify -Dtags="release:sprint-2"
+----
+
+or
+
+[source,xml]
+----
+gradle test -Dtags="feature:Reporting, release:sprint-2"
 ----
 
 ==== Cucumber

@@ -28,3 +28,24 @@ gradle test aggregate
 ----
 
 This will run the tests and generate an aggregate report in the `target/site/thucydides` directory.
+
+Alternatively, configure Gradle as below by first removing the `gradle.startParameter.continueOnFailure = true` line.
+
+Then add the following lines. As per the comments, this will configure the test task so that it will clear the reports first, 
+always execute the Serenity tests, and will run the aggregate task regardless of whether a test fails or not.
+
+If a test fails, the build will also fail, so you will receive appropriate notification, and if it's run on a CI server, the build will appear as broken.
+
+This means you only need to execute `gradle test` to execute the tests and don't have to worry about previous runs cluttering up the results of this test execution.
+
+[source,groovy]
+----
+test {
+    // Ensure reports from a previous run are cleared up
+    dependsOn clearReports
+    // Ensure integration tests are always run. Will never report as 'UP-TO-DATE'
+    outputs.upToDateWhen {false}
+    // Ensure Serenity aggregation is run after, and if, integration tests are run
+    finalizedBy aggregate
+}
+----
