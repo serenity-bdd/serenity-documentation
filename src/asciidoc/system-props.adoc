@@ -64,7 +64,7 @@ The full list is shown here:
 
 *refuse.untrusted.certificates*:: Don't accept sites using untrusted certificates. By default, Thucydides accepts untrusted certificates - use this to change this behaviour.
 
-*serenity.timeout*:: How long should the driver wait for elements not immediately visible.
+*serenity.timeout*:: How long should the driver wait for elements not immediately visible, in milliseconds.
 
 *serenity.browser.width* and *serenity.browser.height*:: Resize the browser to the specified dimensions, in order to take larger screenshots. This should work with Internet Explorer and Firefox, but not with Chrome.
 
