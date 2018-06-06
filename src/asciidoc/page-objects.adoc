@@ -443,7 +443,7 @@ But hard-coded waits are evil. They slow down your test suite, and cause them to
 
 ==== Implicit Waits
 
-The first way you can manage how WebDriver handles tardy fields is to use the  webdriver.timeouts.implicitlywait property. This determines how long, in milliseconds, WebDriver will wait if an element it tries to access is not present on the page. To quote the WebDriver documentation:
+The first way you can manage how WebDriver handles tardy fields is to use the  +webdriver.timeouts.implicitlywait+ property. This determines how long, in milliseconds, WebDriver will wait if an element it tries to access is not present on the page. To quote the WebDriver documentation:
 
 ----
 “An implicit wait is to tell WebDriver to poll the DOM for a certain amount of time when trying to find an element or elements if they are not immediately available.”
@@ -518,9 +518,9 @@ You can also wait for more arbitrary conditions, e.g.
 waitFor(ExpectedConditions.alertIsPresent())
 ----
 
-The default time that Serenity will wait is determined by the webdriver.wait.for.timeout property. The default value for this property is 5 seconds.
+The default time that Serenity will wait is determined by the +webdriver.wait.for.timeout+ property. The default value for this property is 5 seconds.
 
-Sometimes you want to give WebDriver some more time for a specific operation. From within a PageObject, you can override or extend the implicit timeout by using the withTimeoutOf() method. For example, you could wait for the #elements list to load for up to 5 seconds like this:
+Sometimes you want to give WebDriver some more time for a specific operation. From within a PageObject, you can override or extend the explicit timeout by using the withTimeoutOf() method. For example, you could wait for the #elements list to load for up to 5 seconds like this:
 
 [source,java]
 ----
