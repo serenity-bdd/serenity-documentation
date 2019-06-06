@@ -9,7 +9,41 @@ Spring provides excellent support for integration tests, via the SpringJUnit4Cla
 public SpringIntegrationMethodRule springIntegrationMethodRule = new SpringIntegrationMethodRule();
 --------------------
 
-Then you use the +@ContextConfiguration+ annotation to define the configuration file or files to use. The you can inject dependencies as you would with an ordinary Spring integration test, using the usual Spring annotations such as @Autowired or +@Resource+. For example, suppose we are using the following Spring configuration file, called ‘config.xml’:
+Since Spring Boot v1.4 you can use the +@SpringBootTest+ annotation to be able to use the usual Spring annotations like +@Autowired+ or +@Resource+.
+
+[source,java]
+--------------------
+@RunWith(SerenityRunner.class)
+@SpringBootTest
+public class WhenInjectingSpringDependencies {
+
+    @Managed
+    WebDriver driver;
+
+    @ManagedPages(defaultUrl = "http://www.google.com")
+    public Pages pages;
+
+    @Rule
+    public SpringIntegrationMethodRule springIntegrationMethodRule = new SpringIntegrationMethodRule();
+
+    @Autowired
+    public GizmoService gizmoService;
+
+    @Test
+    public void shouldInstanciateGizmoService() {
+        assertThat(gizmoService, is(not(nullValue())));
+    }
+
+    @Test
+    public void shouldInstanciateNestedServices() {
+        assertThat(gizmoService.getWidgetService(), is(not(nullValue())));
+    }
+}
+--------------------
+
+For Spring Boot <1.3
+
+use the +@ContextConfiguration+ annotation to define the configuration file or files to use. The you can inject dependencies as you would with an ordinary Spring integration test, using the usual Spring annotations such as @Autowired or +@Resource+. For example, suppose we are using the following Spring configuration file, called ‘config.xml’:
 
 [source,xml]
 --------------------
