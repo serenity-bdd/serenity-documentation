@@ -176,7 +176,7 @@ You should never try to implement the +open()+ method yourself. In fact, it is f
 @DefaultUrl("http://localhost:8080/client/list")
     public class ClientList extends PageObject {
 
-     @FindBy(id="data-section");
+     @FindBy(id="data-section")
      WebElement dataSection;
      ...
 
